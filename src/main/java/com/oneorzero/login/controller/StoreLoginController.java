@@ -11,26 +11,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.oneorzero.bean.MemberBean;
-import com.oneorzero.login.service.IUserLoginService;
+import com.oneorzero.bean.StoreBean;
+import com.oneorzero.login.service.IStoreLoginService;
 
 @Controller
-public class UserLoginController{
+public class StoreLoginController{
 	
 	@Autowired
-	IUserLoginService service;
+	IStoreLoginService service;
 	
-	@GetMapping("/login/UserLogin")
+	@GetMapping("/storeLogin/StoreLogin")
 	public String getNewLoginForm(Model model) {
-		MemberBean bean = new MemberBean();
-		model.addAttribute("memberBean", bean);
-		return "login/UserLogin";
+		StoreBean bean = new StoreBean();
+		model.addAttribute("storeBean", bean);
+		return "storeLogin/StoreLogin";
 	}
 	
-	@PostMapping("/login/UserLogin")
-	public String userLogin(@RequestParam String email,
+	@PostMapping("/storeLogin/StoreLogin")
+	public String storeLogin(@RequestParam String email,
 							@RequestParam String password,
-							@ModelAttribute("memberBean") MemberBean mb,
+							@ModelAttribute("storeBean") StoreBean sb,
 							Model model) {
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		model.addAttribute("ErrorMsg", errorMsg);
@@ -41,9 +41,9 @@ public class UserLoginController{
 			errorMsg.put("PasswordEmptyError", "密碼不可為空");
 		}
 		if (!errorMsg.isEmpty()) {
-			return "login/UserLogin";
+			return "storeLogin/StoreLogin";
 		}
-		MemberBean bean = null;
+		StoreBean bean = null;
 		bean = service.checkAccountPassword(email, password);
 		if(bean != null && bean.getIsSuccess().equals("on")) {
 			model.addAttribute("LoginSuccess", bean.getEmail());
@@ -56,7 +56,7 @@ public class UserLoginController{
 		if (errorMsg.isEmpty()) {
 			return "login/LoginOK";
 		} else {
-			return "login/UserLogin";
+			return "storeLogin/StoreLogin";
 		}
 	}
 }

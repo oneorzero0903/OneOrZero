@@ -6,22 +6,22 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.oneorzero.bean.MemberBean;
-import com.oneorzero.login.dao.IUserLoginDao;
+import com.oneorzero.bean.StoreBean;
+import com.oneorzero.login.dao.IStoreLoginDao;
 @Repository
-public class UserLoginDaoImpl implements IUserLoginDao {
+public class StoreLoginDaoImpl implements IStoreLoginDao {
 	
 	@Autowired
 	SessionFactory factory;
 	
 	@Override
-	public MemberBean checkAccountPassword(String account, String password) {
+	public StoreBean checkAccountPassword(String account, String password) {
 		Session session = null;
-		MemberBean member = null;
-		String hql = "FROM MemberBean WHERE email = :email and password = :password";
+		StoreBean member = null;
+		String hql = "FROM StoreBean WHERE email = :email and password = :password";
 		session = factory.getCurrentSession();
 		try {
-			member = (MemberBean) session.createQuery(hql)
+			member = (StoreBean) session.createQuery(hql)
 					.setParameter("email", account)
 					.setParameter("password", password)
 					.getSingleResult();
