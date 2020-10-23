@@ -23,6 +23,9 @@ public class StoreSignUpController{
 	@Autowired
 	IUserSignUpService service;
 	
+	
+	
+	
 //	@GetMapping("/signUp/UserSignUp")
 //	public String getNewSignUpForm(Model model) {
 //		MemberBean bean = new MemberBean();
