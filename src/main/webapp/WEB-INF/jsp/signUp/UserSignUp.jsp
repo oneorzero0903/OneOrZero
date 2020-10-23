@@ -153,7 +153,7 @@
 
 		<script>
 			function oneclick(){
-				document.getElementById("email").value = "sakurazaki0428@gmail.com";
+				document.getElementById("email").value = "oneorzerocorp@gmail.com";
 				document.getElementById("name").value = "Mark";
 				document.getElementById("birthday").value = "2020-01-01";
 				document.getElementById("password").value = "abcd1234!";

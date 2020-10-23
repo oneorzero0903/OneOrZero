@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.oneorzero.bean.MemberBean;
-import com.oneorzero.login.dao.IUserLoginDao;
-import com.oneorzero.login.service.IUserLoginService;
+import com.oneorzero.bean.StoreBean;
+import com.oneorzero.login.dao.IStoreLoginDao;
+import com.oneorzero.login.service.IStoreLoginService;
 
 @Service
 @Transactional
-public class UserLoginService implements IUserLoginService {
+public class StoreLoginService implements IStoreLoginService {
 	@Autowired
-	IUserLoginDao dao;
+	IStoreLoginDao dao;
 	
 	@Override
-	public MemberBean checkAccountPassword(String account, String password) {
+	public StoreBean checkAccountPassword(String account, String password) {
 		return dao.checkAccountPassword(account, password);
 	}
 }
