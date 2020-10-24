@@ -21,14 +21,14 @@ public class StoreForgetPwdController{
 	@Autowired
 	IStoreForgetPwdService service;
 	
-	@GetMapping("/storeLogin/StoreForgetPwd")
+	@GetMapping("/login/StoreForgetPwd")
 	public String getNewStoreLoginForm(Model model) {
 		StoreBean bean = new StoreBean();
 		model.addAttribute("storeBean", bean);
-		return "storeLogin/StoreForgetPwd";
+		return "login/StoreForgetPwd";
 	}
 	
-	@PostMapping("/storeLogin/StoreForgetPwd")
+	@PostMapping("/login/StoreForgetPwd")
 	public String storeForgetPwd(@RequestParam String email,
 							@ModelAttribute("storeBean") StoreBean sb,
 							Model model, 
@@ -40,7 +40,7 @@ public class StoreForgetPwdController{
 		}
 		
 		if (!errorMsg.isEmpty()) {
-			return "storeLogin/StoreForgetPwd";
+			return "login/StoreForgetPwd";
 		}
 		StoreBean bean = null;
 		bean = service.checkAccountExist(email);
@@ -51,15 +51,15 @@ public class StoreForgetPwdController{
 		}
 		if (errorMsg.isEmpty()) {
 			redirectAttributes.addFlashAttribute("EmailOK", "我們已將臨時密碼發送至您的信箱:");
-			return "redirect:/storeLogin/StorePwdResetSuccess";
+			return "redirect:/login/StorePwdResetSuccess";
 		} else {
-			return "storeLogin/StoreForgetPwd";
+			return "login/StoreForgetPwd";
 		}
 	}
 	
-	@GetMapping("/storeLogin/StorePwdResetSuccess")
+	@GetMapping("/login/StorePwdResetSuccess")
 	public String userPwdRedirect() {
-		return "/storeLogin/StorePwdResetSuccess";
+		return "/login/StorePwdResetSuccess";
 	}
 
 }

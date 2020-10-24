@@ -11,17 +11,7 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
-	
-	@GetMapping("/signUp/Terms")
-	public String terms(Model model) {
-		return "signUp/Terms";
-	}
-	
-	@GetMapping("/backEnd/storeOrder/StoreOrderList")
-	public String storeOrderList(Model model) {
-		return "backEnd/storeOrder/StoreOrderList";
-	}
-	
+		
 	@GetMapping("/indexShop")
 	public String indexShop(Model model) {
 		return "indexShop";
@@ -42,22 +32,6 @@ public class HomeController {
 	@GetMapping("/post-details")
 	public String postDetails(Model model) {
 		return "post-details";
-	}
-			
-	@GetMapping("/storeSignup/Terms")
-	public String storeTerms(Model model) {
-		return "storeSignup/Terms";
-	}
-	
-	@GetMapping("/backEnd/storeOrder/StoreOrder")
-	public String storeOrder(Model model) {
-		return "backEnd/storeOrder/StoreOrder";
-	}
-	
-	
-	@GetMapping("/storeSignUp/StoreSignUp")
-	public String storeSignUp(Model model) {
-		return "storeSignUp/StoreSignUp";
 	}
 	
 }
