@@ -117,7 +117,6 @@ color:#fff
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/backEnd/storeOrder/StoreOrder'	/>">訂單管理</a>
-                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/contact'	/>">聯絡我們</a>
