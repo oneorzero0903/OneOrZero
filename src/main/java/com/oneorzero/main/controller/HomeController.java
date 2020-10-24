@@ -43,12 +43,7 @@ public class HomeController {
 	public String postDetails(Model model) {
 		return "post-details";
 	}
-	
-	@GetMapping("/storeLogin/StoreLogin")
-	public String storeLogin(Model model) {
-		return "storeLogin/StoreLogin";
-	}
-	
+			
 	@GetMapping("/storeSignup/Terms")
 	public String storeTerms(Model model) {
 		return "storeSignup/Terms";
