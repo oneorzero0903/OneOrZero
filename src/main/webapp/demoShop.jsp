@@ -113,7 +113,7 @@ color:#fff
                 <a class="nav-link" href="<c:url value='/login/StoreLogin'	/>">登入</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/signup/StoreTerms'	/>">註冊</a>
+                <a class="nav-link" href="<c:url value='/signUp/StoreTerms'	/>">註冊</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/backEnd/storeOrder/StoreOrder'	/>">訂單管理</a>

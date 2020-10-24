@@ -23,6 +23,11 @@ public class StoreSignUpController{
 	@Autowired
 	IStoreSignUpService service;
 	
+	@GetMapping("/signUp/StoreTerms")
+	public String storeTerms(Model model) {
+		return "signUp/StoreTerms";
+	}
+	
 	@GetMapping("/signUp/StoreSignUp")
 	public String getNewSignUpForm(Model model) {
 		StoreBean bean = new StoreBean();

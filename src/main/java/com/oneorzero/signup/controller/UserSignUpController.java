@@ -23,6 +23,11 @@ public class UserSignUpController{
 	@Autowired
 	IUserSignUpService service;
 	
+	@GetMapping("/signUp/Terms")
+	public String terms(Model model) {
+		return "signUp/Terms";
+	}
+	
 	@GetMapping("/signUp/UserSignUp")
 	public String getNewSignUpForm(Model model) {
 		MemberBean bean = new MemberBean();
