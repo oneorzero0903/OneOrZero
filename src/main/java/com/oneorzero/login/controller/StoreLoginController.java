@@ -20,14 +20,14 @@ public class StoreLoginController{
 	@Autowired
 	IStoreLoginService service;
 	
-	@GetMapping("/storeLogin/StoreLogin")
+	@GetMapping("/login/StoreLogin")
 	public String getNewLoginForm(Model model) {
 		StoreBean bean = new StoreBean();
 		model.addAttribute("storeBean", bean);
-		return "storeLogin/StoreLogin";
+		return "login/StoreLogin";
 	}
 	
-	@PostMapping("/storeLogin/StoreLogin")
+	@PostMapping("/login/StoreLogin")
 	public String storeLogin(@RequestParam String email,
 							@RequestParam String password,
 							@ModelAttribute("storeBean") StoreBean sb,
@@ -41,7 +41,7 @@ public class StoreLoginController{
 			errorMsg.put("PasswordEmptyError", "密碼不可為空");
 		}
 		if (!errorMsg.isEmpty()) {
-			return "storeLogin/StoreLogin";
+			return "login/StoreLogin";
 		}
 		StoreBean bean = null;
 		bean = service.checkAccountPassword(email, password);
@@ -56,7 +56,7 @@ public class StoreLoginController{
 		if (errorMsg.isEmpty()) {
 			return "login/LoginOK";
 		} else {
-			return "storeLogin/StoreLogin";
+			return "login/StoreLogin";
 		}
 	}
 }

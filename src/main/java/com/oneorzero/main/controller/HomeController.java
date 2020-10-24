@@ -43,21 +43,5 @@ public class HomeController {
 	public String postDetails(Model model) {
 		return "post-details";
 	}
-			
-	@GetMapping("/storeSignup/Terms")
-	public String storeTerms(Model model) {
-		return "storeSignup/Terms";
-	}
-	
-	@GetMapping("/backEnd/storeOrder/StoreOrder")
-	public String storeOrder(Model model) {
-		return "backEnd/storeOrder/StoreOrder";
-	}
-	
-	
-	@GetMapping("/storeSignUp/StoreSignUp")
-	public String storeSignUp(Model model) {
-		return "storeSignUp/StoreSignUp";
-	}
-	
+
 }
