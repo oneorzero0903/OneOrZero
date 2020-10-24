@@ -183,10 +183,8 @@
 4.為避免惡意情事發生致使會員應享權益損失，當會員通知本公司停止會員身份時，本公司將再次以電子郵件確認無誤後，再進行註銷會員資格。         
         </textarea>
 		<br> <p id="ok"><input type="checkbox" name="agr" value="agree">我已閱讀並同意會員約定條款說明</p><br>
-		<br>
 		<div id="btn">
 			<input type="button" value="確認送出" class="button" onclick="register()">
-			<input type="button" value="取消重填" class="button">
 		</div>
 
 		<script>

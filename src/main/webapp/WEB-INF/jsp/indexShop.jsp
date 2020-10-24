@@ -110,7 +110,7 @@ color:#fff
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/storeLogin/StoreLogin'	/>">登入</a>
+                <a class="nav-link" href="<c:url value='/login/StoreLogin'	/>">登入</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/storeSignup/Terms'	/>">註冊</a>
