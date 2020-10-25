@@ -217,7 +217,7 @@ color:#fff
 	<script>
    		function oneClick() {
 			document.getElementById("email").value = "oneorzerocorp@gmail.com";
-			document.getElementById("password").value = "!paSSw0rd";
+			document.getElementById("password").value = "abcd1234!";
 		}
    	</script>
   </body>
