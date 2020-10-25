@@ -1,5 +1,23 @@
+function checkEmail() {
+	let emailVal = document.getElementById("email").value;
+	let spanEmail = document.getElementById("spanEmail");
+	if (emailVal == "") {
+		spanEmail.innerHTML = "Not empty!";
+		//submitBtn.disabled = true;
+		return false
+	} else if (!/@/.test(emailVal) || !/./.test(emailVal)) {
+		spanEmail.innerHTML = "帳號要有@";
+		return false
+	} else {
+		spanEmail.innerHTML = "";
+		return true
+		<!--submitBtn.disabled = false;
+		-->
+	}
+}
+
 function checkPwd() {
-    let pwd = document.getElementById("idPwd1");
+    let pwd = document.getElementById("password");
     let spPwd = document.getElementById("idspPwd1");
 
     let check =
@@ -76,59 +94,59 @@ function checkChinese(element, text) {
     element.innerHTML = "請填寫中文";
 }
 
-function register() {
-    let check = validate();
-    if (check) {
-        var email = document.getElementById('email').value;
-        var idPwd1 = document.getElementById('idPwd1').value; //Password
-        var Store_name = document.getElementById('Store_name').value;
-        var country = document.getElementById('country').value; //Address_county
-        var area = document.getElementById('area').value; //Address_area
-        var Address_road = document.getElementById('Address_road').value;
-        var Tel = document.getElementById('Tel').value;
-        var Phone = document.getElementById('Phone').value;
-        var Opentime_start = document.getElementById('Opentime_start').value;
-        var Opentime_end = document.getElementById('Opentime_end').value;
-        var idName = document.getElementById('idName').value; //contact_person
-        //var progressbarTWInput = document.getElementById('progressbarTWInput').value;
-
-        var myData = {
-            "email": email,
-            "idPwd1": idPwd1,
-            "Store_name": Store_name,
-            "country": country,
-            "area": area,
-            "Address_road": Address_road,
-            "Tel": Tel,
-            "Phone": Phone,
-            "Opentime_start": Opentime_start,
-            "Opentime_end": Opentime_end,
-            "idName": idName,
-        };
-        $.ajax({
-            type: 'POST',
-            url: '${pageContext.request.contextPath}/StoreSignupController',
-            data: { jsonData: JSON.stringify(myData) },
-            dataType: 'json',
-
-            success:
-                function (data) {
-                    if (data.isOK == "ok") {
-                        alert("註冊成功");
-                        window.location.href = "${pageContext.request.contextPath}/jsp/SignUpOK.jsp";
-                    } else {
-                        alert("輸入資料有誤");
-                        window.location.href = "${pageContext.request.contextPath}/jsp/StoreSignUp.jsp";					
-                    }
-                },
-            error:
-                function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + thrownError);
-                }
-        });
-    }
-
-}
+//function register() {
+//    let check = validate();
+//    if (check) {
+//        var email = document.getElementById('email').value;
+//        var idPwd1 = document.getElementById('idPwd1').value; //Password
+//        var Store_name = document.getElementById('Store_name').value;
+//        var country = document.getElementById('country').value; //Address_county
+//        var area = document.getElementById('area').value; //Address_area
+//        var Address_road = document.getElementById('Address_road').value;
+//        var Tel = document.getElementById('Tel').value;
+//        var Phone = document.getElementById('Phone').value;
+//        var Opentime_start = document.getElementById('Opentime_start').value;
+//        var Opentime_end = document.getElementById('Opentime_end').value;
+//        var idName = document.getElementById('idName').value; //contact_person
+//        //var progressbarTWInput = document.getElementById('progressbarTWInput').value;
+//
+//        var myData = {
+//            "email": email,
+//            "idPwd1": idPwd1,
+//            "Store_name": Store_name,
+//            "country": country,
+//            "area": area,
+//            "Address_road": Address_road,
+//            "Tel": Tel,
+//            "Phone": Phone,
+//            "Opentime_start": Opentime_start,
+//            "Opentime_end": Opentime_end,
+//            "idName": idName,
+//        };
+//        $.ajax({
+//            type: 'POST',
+//            url: '${pageContext.request.contextPath}/StoreSignupController',
+//            data: { jsonData: JSON.stringify(myData) },
+//            dataType: 'json',
+//
+//            success:
+//                function (data) {
+//                    if (data.isOK == "ok") {
+//                        alert("註冊成功");
+//                        window.location.href = "${pageContext.request.contextPath}/jsp/SignUpOK.jsp";
+//                    } else {
+//                        alert("輸入資料有誤");
+//                        window.location.href = "${pageContext.request.contextPath}/jsp/StoreSignUp.jsp";					
+//                    }
+//                },
+//            error:
+//                function (xhr, ajaxOptions, thrownError) {
+//                    alert(xhr.status + "\n" + thrownError);
+//                }
+//        });
+//    }
+//
+//}
 
 function validate() {
     console.log("validate")
@@ -147,7 +165,6 @@ function checkEmpty(form, ...fields) {
         .map(field => form[field])
         .every(field => field);
 }
-
 
 $("#progressbarTWInput").change(function () {
 

@@ -142,7 +142,7 @@
 					<div class='col-lg-offset-2 col-lg-10'>
 						
 						<input id="btnAdd" type="button" class='btn btn-primary' value='送出' onclick="submit()"/>
-						
+						<input type="reset" class='btn btn-primary' value="取消重填" class="cancel">
 					</div>
 					
 				</fieldset>
@@ -162,13 +162,13 @@
 			//let submitBtn = document.querySelector("input[type='button']");
 			function submit() {
 				let checkAll = checkEmail() && checkName() && checkAgain()
-						&& checkDate()
+						&& checkDate();
 				// let form =  document.querySelector("SignUpForm");
 				if (checkAll) {
 					///submitBtn.disabled = false;
-					document.forms["SignUpForm"].submit()
+					document.forms["SignUpForm"].submit();
 				} else {
-					return false
+					return false;
 				}
 
 			}
