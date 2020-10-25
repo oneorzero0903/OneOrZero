@@ -20,23 +20,30 @@ public class UserInfoController {
 	@Autowired
 	IUserInfoService service;
 
-	@GetMapping("/userInfo/UserInfoPage")
+	@GetMapping("/infoPage/UserInfoPage")
 	public String userInfo() {
-		return "userInfo/UserInfoPage";
+		return "infoPage/UserInfoPage";
 	}
 	
-	@GetMapping("/userInfo/UserInfoChange")
+	@GetMapping("/infoPage/UserInfoChange")
 	public String userInfoChange() {
-		return "userInfo/UserInfoChange";
+		return "infoPage/UserInfoChange";
 	}
 	
 	//修改資料
-	@PutMapping(value = "/userInfo/UserInfoChange",
-				 consumes = {"application/json"}, produces = {"application/json"})
-	public @ResponseBody Map<String, String> updateUser(@RequestBody MemberBean member
+	@PutMapping(value = "/infoPage/UserInfoChange/{pk}",
+			consumes= {"application/json"}, produces= {"application/json"})
+	public @ResponseBody Map<String, String> updateUser(@RequestBody MemberBean member,
+														@PathVariable Integer pk
 														) {
-//		MemberBean bean = service.findByPK(pk);
-		System.out.println(member.getEmail());
+		MemberBean origin = service.findByPK(pk);
+		member.setEmail(origin.getEmail());
+		member.setPassword(origin.getPassword());
+		member.setCreate_dt(origin.getCreate_dt());
+		member.setResetPwd(origin.getResetPwd());
+		member.setIsSuccess(origin.getIsSuccess());
+		member.setVip(origin.getVip());
+		service.evitMember(origin);
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			service.updateMember(member);
@@ -48,11 +55,11 @@ public class UserInfoController {
 		return map;
 	}
 	
-	//讀取並回傳單筆資料
-	@GetMapping(value = "/userInfo/UserInfoChange/{pk}", produces = {"application/json"})
-	public @ResponseBody MemberBean display(@PathVariable Integer pk) {
-		MemberBean mb = service.findByPK(pk);
-		return mb;
-	}
+//	//讀取並回傳單筆資料
+//	@GetMapping(value = "/infoPage/UserInfoChange/{pk}", produces = {"application/json"})
+//	public @ResponseBody MemberBean display(@PathVariable Integer pk) {
+//		MemberBean mb = service.findByPK(pk);
+//		return mb;
+//	}
 	
 }

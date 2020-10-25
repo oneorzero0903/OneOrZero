@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -24,7 +25,7 @@
     <link rel="stylesheet" href="<c:url value='/css/templatemo-stand-blog.css'	/>">
     <link rel="stylesheet" href="<c:url value='/css/owl.css'	/>">
 
-  
+	<script src="https://code.jquery.com/jquery-3.1.0.js"> </script>
   </head>
 
   <body style="background-color: #272727;">
@@ -92,15 +93,65 @@
       </section>
     </div>
 
-    <!-- Banner Ends Here -->
-
-
-    <h1 style="color: white;">Hello ${LoginSuccess} !!</h1>
-    <a href="<c:url value='/infoPage/UserInfoPage'/>" style="color: white;">會員資料</a>
-    
-
-
-    <footer>
+<div align="center">
+	<table style="background-color: white;">
+ 	<tr><td>信箱</td><td><input type="text" id="email" name="account" value="${member.email}" disabled placeholder="未填寫" size="30"></td></tr>
+ 	<tr><td>名稱</td><td><input type="text" id="name" name="name" value="${member.name}" placeholder="未填寫" size="30"></td></tr>
+ 	<tr><td>生日</td><td><input type="date" id="birthday" value="${member.birthday}" placeholder="未填寫" size="30"></td></tr>
+	<tr><td>性別</td><td>
+                <input type="radio" id="gender" name="gender" value="M">男
+                <input type="radio" id="gender" name="gender" value="F">女
+                <input type="radio" id="gender" name="gender" value="N" checked="checked">不方便透漏</td></tr>
+ 	
+ 	<tr><td>電話</td><td><input type="text" id="tel" value="${member.tel}" placeholder="未填寫" size="30"></td></tr>
+ 	<tr><td>創建日期</td><td><input type="text" value="${member.create_dt}" placeholder="未填寫" disabled size="30"></td></tr>
+  	<tr><td>更新日期</td><td><input type="text" value="${member.update_dt}" placeholder="未填寫" disabled size="30"></td></tr>
+ 	<tr><td>等級</td><td><input type="text" value="${member.vip}" placeholder="未填寫" disabled size="30"></td></tr>
+	</table>
+	<button id="updateBtn">送出</button>	
+	<div id="divResult"></div>
+</div>
+	
+	<script>
+		 var updateBtn = document.getElementById("updateBtn");
+		 var id = ${member.member_id};
+		 
+		 updateBtn.onclick = function () {
+			var name = document.getElementById('name').value;
+			var birthday = document.getElementById('birthday').value;
+			var gender = document.querySelector('input[name="gender"]:checked').value;
+			console.log(gender);
+			var tel = document.getElementById('tel').value;
+			var email = document.getElementById('email').value;
+			console.log();
+			var xhr = new XMLHttpRequest();
+			xhr.open("PUT", "<c:url value='/infoPage/UserInfoChange/' />" +id, true);
+			var jsonMember = {
+					"birthday": birthday,
+					"gender": gender,
+					"name": name,
+					"tel": tel,
+					"member_id": id,
+			}
+			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	   		xhr.send(JSON.stringify(jsonMember));
+			xhr.onreadystatechange = function () {
+				console.log(xhr.status);
+				if (xhr.readyState == 4 && ( xhr.status == 200 || xhr.status == 201 )) {
+					result = JSON.parse(xhr.responseText);
+					if (result.success) {
+						document.getElementById("divResult").innerHTML = 
+							"<font color='GREEN'>"+result.success+"</font>";
+					} else if (result.fail) {
+						document.getElementById("divResult").innerHTML = 
+							"<font color='RED'>"+result.fail+"</font>";
+					}
+				}
+			}
+		}
+	</script>
+	
+  <footer>
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -132,6 +183,17 @@
     <script src="<c:url value='/js/slick.js'	/>"></script>
     <script src="<c:url value='/js/isotope.js'	/>"></script>
     <script src="<c:url value='/js/accordions.js'	/>"></script>
+
+    <script language = "text/Javascript">
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
 
   </body>
 </html>
