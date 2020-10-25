@@ -31,17 +31,23 @@ public class StoreSignUpController{
 	@GetMapping("/signUp/StoreSignUp")
 	public String getNewSignUpForm(Model model) {
 		StoreBean bean = new StoreBean();
-		model.addAttribute("StoreBean", bean);
+		model.addAttribute("storeBean", bean);
 		return "signUp/StoreSignUp";
 	}
 	
 	@PostMapping("/signUp/StoreSignUp")
 	public String storeSignUp(@RequestParam String email,
-							@RequestParam String name,
-							@RequestParam String gender,
-							@RequestParam String birthday,
 							@RequestParam String password,
-							@ModelAttribute("StoreBean") StoreBean sb,
+							@RequestParam String store_name,
+							@RequestParam String address_county,
+							@RequestParam String address_area,
+							@RequestParam String address_road,
+							@RequestParam String tel,
+							@RequestParam String phone,
+							@RequestParam String opentime_start,
+							@RequestParam String opentime_end,
+							@RequestParam String contact_person,
+							@ModelAttribute("storeBean") StoreBean sb,
 							Model model,
 							RedirectAttributes redirectAttributes) {
 		Map<String, String> errorMsg = new HashMap<String, String>();
@@ -68,14 +74,14 @@ public class StoreSignUpController{
 		}	
 	}
 	
-	@GetMapping("/SignUp/StoreSignUpOK")
+	@GetMapping("/signUp/StoreSignUpOK")
 	public String storeSignUpRedirect(Model model) {
 		return "signUp/StoreSignUpOK";
 	}
 	
 	@GetMapping("/signUp/StoreAccountVerify")
 	public String storeAccountVerify(String email,
-									@ModelAttribute("StoreBean") StoreBean sb,
+									@ModelAttribute("storeBean") StoreBean sb,
 									Model model,
 									RedirectAttributes redirectAttributes) {
 		Base64.Decoder decoder = Base64.getDecoder();		
