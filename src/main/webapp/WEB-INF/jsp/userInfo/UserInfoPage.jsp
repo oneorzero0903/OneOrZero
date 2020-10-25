@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +26,7 @@
 		<input type="submit" value="Logout">
 		</form>
 		<br>
-		<form action="UserInfoChange.jsp">
-		<input type="submit" value="會員資料修改">
-		</form>
+		<a href="<c:url value='/userInfo/UserInfoChange'/>">會員資料修改</a> 
 	</div>
 </body>
 </html>

@@ -30,15 +30,15 @@
 	<property name="connection_pool_size">8</property>
 	
 	<!-- 3. 宣告程式使用的Mapping檔 ，每個永續類別都需要定義一個Mapping檔	-->
-	<mapping class="com.oneorzero.bean.Member"></mapping>
-	<mapping class="com.oneorzero.bean.Advertising"></mapping>
-	<mapping class="com.oneorzero.bean.Discount"></mapping>
-	<mapping class="com.oneorzero.bean.Employee"></mapping>
-	<mapping class="com.oneorzero.bean.Orders"></mapping>
-	<mapping class="com.oneorzero.bean.Problem"></mapping>
-	<mapping class="com.oneorzero.bean.Program"></mapping>
-	<mapping class="com.oneorzero.bean.Store_OrderSetting"></mapping>
-	<mapping class="com.oneorzero.bean.Store"></mapping>
+	<mapping class="com.oneorzero.bean.MemberBean"></mapping>
+	<mapping class="com.oneorzero.bean.AdvertisingBean"></mapping>
+	<mapping class="com.oneorzero.bean.DiscountBean"></mapping>
+	<mapping class="com.oneorzero.bean.EmployeeBean"></mapping>
+	<mapping class="com.oneorzero.bean.OrdersBean"></mapping>
+	<mapping class="com.oneorzero.bean.ProblemBean"></mapping>
+	<mapping class="com.oneorzero.bean.ProgramBean"></mapping>
+	<mapping class="com.oneorzero.bean.Store_OrderSettingBean"></mapping>
+	<mapping class="com.oneorzero.bean.StoreBean"></mapping>
 	
 	
 	</session-factory>

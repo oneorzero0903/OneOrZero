@@ -10,18 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oneorzero.bean.MemberBean;
 import com.oneorzero.login.service.IUserLoginService;
 
 @Controller
+@SessionAttributes({"member","LoginSuccess"})
 public class UserLoginController{
 	
 	@Autowired
 	IUserLoginService service;
 	
 	@GetMapping("/login/UserLogin")
-	public String getNewLoginForm(Model model) {
+	public String getNewLoginForm(Model model) {  //產生空白登入表單
 		MemberBean bean = new MemberBean();
 		model.addAttribute("memberBean", bean);
 		return "login/UserLogin";
@@ -54,9 +56,14 @@ public class UserLoginController{
 			errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 		}		
 		if (errorMsg.isEmpty()) {
-			return "login/LoginOK";
+			return "redirect:/login/LoginOK";
 		} else {
 			return "login/UserLogin";
 		}
+	}
+	
+	@GetMapping("/login/LoginOK")
+	public String redirect() {
+		return "login/LoginOK";
 	}
 }

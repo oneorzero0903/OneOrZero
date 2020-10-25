@@ -96,6 +96,8 @@
 
 
     <h1 style="color: white;">Hello ${LoginSuccess} !!</h1>
+    <a href="<c:url value='/userInfo/UserInfoPage'/>" style="color: white;">會員資料</a>
+    
 
 
     <footer>
@@ -130,17 +132,6 @@
     <script src="<c:url value='/js/slick.js'	/>"></script>
     <script src="<c:url value='/js/isotope.js'	/>"></script>
     <script src="<c:url value='/js/accordions.js'	/>"></script>
-
-    <script language = "text/Javascript">
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
 
   </body>
 </html>

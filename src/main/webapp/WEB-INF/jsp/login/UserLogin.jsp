@@ -11,7 +11,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="LILY">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
     <title>search("咖啡");</title>
@@ -172,8 +171,8 @@
 
    	<script>
    		function oneClick() {
-			document.getElementById("email").value = "oneorzerocorp@gmail.com.tw";
-			document.getElementById("password").value = "12345";
+			document.getElementById("email").value = "oneorzerocorp@gmail.com";
+			document.getElementById("password").value = "!paSSw0rd";
 		}
    	</script>
 

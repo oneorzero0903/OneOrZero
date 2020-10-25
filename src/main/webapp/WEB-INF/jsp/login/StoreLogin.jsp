@@ -11,7 +11,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
     <title>search("咖啡");</title>
@@ -171,6 +170,7 @@ color:#fff
 				<br>${ErrorMsg.VerifyError}${ErrorMsg.LoginError}<br>
 			</div>
 		</form:form>
+		<button onclick="oneClick()">一鍵登入</button>
 	</div>
 	<div align="center">
 		<a href="/OneOrZero/jsp/corp_signup.jsp">還沒有帳號？</a> <a
@@ -214,16 +214,11 @@ color:#fff
     <script src="<c:url value='/js/isotope.js'	/>"></script>
     <script src="<c:url value='/js/accordions.js'	/>"></script>
 
-    <script language = "text/Javascript">
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
-
+	<script>
+   		function oneClick() {
+			document.getElementById("email").value = "oneorzerocorp@gmail.com";
+			document.getElementById("password").value = "!paSSw0rd";
+		}
+   	</script>
   </body>
 </html>
