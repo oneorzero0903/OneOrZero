@@ -5,16 +5,18 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oneorzero.bean.MemberBean;
 import com.oneorzero.infoPage.service.IUserInfoService;
 
 @Controller
+@SessionAttributes({"member"})
 public class UserInfoController {
 	
 	@Autowired
@@ -31,22 +33,14 @@ public class UserInfoController {
 	}
 	
 	//修改資料
-	@PutMapping(value = "/infoPage/UserInfoChange/{pk}",
+	@PutMapping(value = "/infoPage/UserInfoChange",
 			consumes= {"application/json"}, produces= {"application/json"})
 	public @ResponseBody Map<String, String> updateUser(@RequestBody MemberBean member,
-														@PathVariable Integer pk
-														) {
-		MemberBean origin = service.findByPK(pk);
-		member.setEmail(origin.getEmail());
-		member.setPassword(origin.getPassword());
-		member.setCreate_dt(origin.getCreate_dt());
-		member.setResetPwd(origin.getResetPwd());
-		member.setIsSuccess(origin.getIsSuccess());
-		member.setVip(origin.getVip());
-		service.evitMember(origin);
+														Model model) {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			service.updateMember(member);
+			model.addAttribute("member", member);
 			map.put("success", "更新成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,8 +50,8 @@ public class UserInfoController {
 	}
 	
 //	//讀取並回傳單筆資料
-//	@GetMapping(value = "/infoPage/UserInfoChange/{pk}", produces = {"application/json"})
-//	public @ResponseBody MemberBean display(@PathVariable Integer pk) {
+//	@GetMapping(value = "/infoPage/UserInfoChange", produces = {"application/json"})
+//	public @ResponseBody MemberBean display() {
 //		MemberBean mb = service.findByPK(pk);
 //		return mb;
 //	}
