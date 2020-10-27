@@ -34,18 +34,21 @@
 			   		<a class="nav-link" href="<c:url value='/out' />">登出</a>
 				</c:if>
               </li>
-              <li class="nav-item">
-              	<c:if test="${ funcName != 'SIG' }">
-                	<a class="nav-link" href="<c:url value='/signUp/StoreTerms'	/>">註冊</a>
-              	</c:if>
-              	<c:if test="${ funcName == 'SIG' }"> 
-                    <a class="nav-link">註冊</a>
+              <c:if test="${ empty LoginSuccess }">
+              	<li class="nav-item">
+              		<c:if test="${ funcName != 'SIGST' }">
+                		<a class="nav-link" href="<c:url value='/signUp/StoreTerms'	/>">註冊</a>
+              		</c:if>
+              		<c:if test="${ funcName == 'SIGST' }"> 
+                    	<a class="nav-link">註冊</a>
+               		</c:if>
+               	</li>
                </c:if>
               <li class="nav-item">
-              	<c:if test="${ funcName != 'ORD' }">
-                  <a class="nav-link" href="<c:url value='/backEnd/storeOrder/StoreOrder'	/>">訂單管理</a>
+              	<c:if test="${ funcName != 'ORDST' }">
+                  <a class="nav-link" href="<c:url value='/storeOrder/StoreOrder'	/>">訂單管理</a>
 			    </c:if>
-			    <c:if test="${ funcName == 'ORD' }"> 
+			    <c:if test="${ funcName == 'ORDST' }"> 
                   <a class="nav-link">訂單管理</a>
                 </c:if>
               </li>

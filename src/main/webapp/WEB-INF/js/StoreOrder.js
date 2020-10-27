@@ -1,42 +1,45 @@
-function callStoreOrder() {
+function checkTimeEnd() {
+	var t1 = new Date();
+    var timeStart = document.getElementById("timeStart").value;
+    var timeEnd = document.getElementById("timeEnd").value;
+    var parts = timeStart.split(":");
+    t1.setHours(parts[0],parts[1],0,0);
+    var t2 = new Date();
+    parts = timeEnd.split(":");
+    t2.setHours(parts[0],parts[1],0,0);
+	if (timeStart == "" || timeEnd == "") {
+		spanTime.innerHTML = "請輸入您的營業時間";
+		return false;
+	}
+	
+	if (t2.getTime() <= t1.getTime()) {
+		spanTime.innerHTML = "結束時間不能大於或等於開始營業時間";
+		return false;
+	} 
+	
+	if ((t2.getTime() - t1.getTime()) < 7200000) {
+		spanTime.innerHTML = "開放可訂位時間要大於2小時";
+		return false;
+	} else {
+		spanTime.innerHTML = "";
+		return true;
+	}
+	
+}
 
-	var timeStart = document.getElementById('timeStart').value;
-	var timeEnd = document.getElementById('timeEnd').value;
-	var BoothNum = document.getElementById('BoothNum').value;
-	var Booth = document.getElementById('Booth').checked;
-	var Phone = document.getElementById('Phone').value;
+function checkBoothNum() {
+    var boothNum = document.getElementById("boothNum").value;
+	if (boothNum == "") {
+		spanBoothNum.innerHTML = "請輸入您的包廂數量";
+		return false;
+	}
+}
 
-	var myData = {
-		"timeStart": timeStart,
-		"timeEnd": timeEnd,
-		"BoothNum": BoothNum,
-		"Booth": Booth,
-		"Phone": Phone
-	};
-	$.ajax({
-		type: 'POST',
-		url: '${pageContext.request.contextPath}/StoreOrderController',
-		data: { jsonData: JSON.stringify(myData) },
-		dataType: 'json',
+function checkPhone() {
+    var phone = document.getElementById("phone").value;
+	if (phone == "") {
+		spanPhone.innerHTML = "請輸入您的連絡電話";
+		return false;
+	}
+}
 
-		success:
-			function (data) {
-				if (data.isOK == "ok") {
-					alert("訂單設定成功");
-					window.location.href = "${pageContext.request.contextPath}/jsp/index.jsp";
-				} else {
-					alert("輸入資料有誤");
-					window.location.href = "${pageContext.request.contextPath}/jsp/StoreOrder.jsp";
-					//					alert(data.account + "," + data.password);
-					//					var elementObj = document.getElementById("test");
-					//					elementObj.innerHTML = "<h1>account = " + data.account +"</h1>";
-					//					elementObj.innerHTML += "<h1>password = " + data.password +"</h1>";
-					//window.location.href="${pageContext.request.contextPath}/jsp/Output.jsp";
-				}
-			},
-		error:
-			function (xhr, ajaxOptions, thrownError) {
-				alert(xhr.status + "\n" + thrownError);
-			}
-	});
-} 

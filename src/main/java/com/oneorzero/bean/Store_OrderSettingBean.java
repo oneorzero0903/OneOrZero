@@ -23,9 +23,9 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 	@JoinColumn
 	private StoreBean store;//商家編號
 	
-	private String TimeStart;//可預約時間(起)
-	private String TimeEnd;//可預約時間(迄)
-	private Integer BoothNum;//可預約包廂數量
+	private String timeStart;//可預約時間(起)
+	private String timeEnd;//可預約時間(迄)
+	private Integer boothNum;//可預約包廂數量
 	private String isBooth;//是否有包廂
 	private String phone;//電話
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//建立日期
@@ -38,9 +38,9 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 			String isBooth, String phone, String create_dt, String update_dt) {
 		String timeStr1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.setting_id = setting_id;
-		this.TimeStart = timeStart;
-		this.TimeEnd = timeEnd;
-		this.BoothNum = boothNum;
+		this.timeStart = timeStart;
+		this.timeEnd = timeEnd;
+		this.boothNum = boothNum;
 		this.isBooth = isBooth;
 		this.phone = phone;
 		this.create_dt = timeStr1;
@@ -56,27 +56,27 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 	}
 
 	public String getTimeStart() {
-		return TimeStart;
+		return timeStart;
 	}
 
 	public void setTimeStart(String timeStart) {
-		TimeStart = timeStart;
+		this.timeStart = timeStart;
 	}
 
 	public String getTimeEnd() {
-		return TimeEnd;
+		return timeEnd;
 	}
 
 	public void setTimeEnd(String timeEnd) {
-		TimeEnd = timeEnd;
+		this.timeEnd = timeEnd;
 	}
 
 	public Integer getBoothNum() {
-		return BoothNum;
+		return boothNum;
 	}
 
 	public void setBoothNum(Integer boothNum) {
-		BoothNum = boothNum;
+		this.boothNum = boothNum;
 	}
 
 	public String getIsBooth() {

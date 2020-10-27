@@ -20,42 +20,10 @@
         </div>
     </div>
     <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
-    <header class="">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="<c:url value='/'	/>"><h2>search("咖啡");<em>.</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="<c:url value='/'	/>">首頁
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/login/UserLogin'	/>">登入</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/signUp/Terms'	/>">註冊</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/backEnd/storeOrder/StoreOrderList'	/>">訂位</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/indexShop'	/>">商家頁面</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<c:url value='/contact'	/>">聯絡我們</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+	<!-- 下列敘述設定變數funcName的值為XXX，topMVC.jsp 會用到此變數 -->
+<%-- 	<c:set var="funcName" value="ORDST" scope="session"/> --%>
+	<!-- 引入共同的頁首 -->
+	<jsp:include page="/fragment/top.jsp" />
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->

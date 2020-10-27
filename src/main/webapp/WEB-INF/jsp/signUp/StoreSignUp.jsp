@@ -83,7 +83,7 @@ color:#fff
     </div>  
     <!-- ***** Preloader End ***** -->
 	<!-- 下列敘述設定變數funcName的值為SHO，topMVC.jsp 會用到此變數 -->
-	<c:set var="funcName" value="SIG" scope="session"/>
+	<c:set var="funcName" value="SIGST" scope="session"/>
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/topStore.jsp" />
 
