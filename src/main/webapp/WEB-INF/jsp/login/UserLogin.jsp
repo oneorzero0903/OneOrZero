@@ -86,6 +86,13 @@
 	</div>
 	<!--顯示用戶的姓名、email↓-->
 	<div id="content"></div>
+	
+	<script>
+   		function oneClick() {
+			document.getElementById("email").value = "oneorzerocorp@gmail.com";
+			document.getElementById("password").value = "abcd1234!";
+		}
+   	</script>
 
 	<jsp:include page="/fragment/footer.jsp" />
 
