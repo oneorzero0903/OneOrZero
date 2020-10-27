@@ -27,8 +27,6 @@ public class HomeController {
 		return "blog";
 	}
 	
-	//-----------------------------------index end--------------------------------------------
-	
 	@GetMapping("/post-details")
 	public String postDetails(Model model) {
 		return "post-details";

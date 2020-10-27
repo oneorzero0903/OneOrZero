@@ -13,6 +13,7 @@ public class LogoutController {
 	
 	@GetMapping("/out")
 	public String logout(HttpSession session, SessionStatus status) {
+		status.setComplete();
 		session.invalidate();
 		return "index";
 	}

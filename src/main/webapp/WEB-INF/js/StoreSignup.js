@@ -11,8 +11,8 @@ function checkEmail() {
 	} else {
 		spanEmail.innerHTML = "";
 		return true
-		<!--submitBtn.disabled = false;
-		-->
+//		<!--submitBtn.disabled = false;
+//		-->
 	}
 }
 

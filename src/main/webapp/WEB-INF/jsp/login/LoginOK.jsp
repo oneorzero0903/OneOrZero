@@ -6,25 +6,7 @@
 <html lang="zh-TW">
 
   <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="LILY">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-
-    <title>search("咖啡");</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="<c:url value='/css/vendor/bootstrap/css/bootstrap.min.css'	/>" rel="stylesheet">
-
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="<c:url value='/css/fontawesome.css'	/>">
-    <link rel="stylesheet" href="<c:url value='/css/templatemo-stand-blog.css'	/>">
-    <link rel="stylesheet" href="<c:url value='/css/owl.css'	/>">
-
-  
+	<jsp:include page="/fragment/linkCss.jsp" />
   </head>
 
   <body style="background-color: #272727;">
@@ -97,41 +79,8 @@
 
     <h1 style="color: white;">Hello ${LoginSuccess} !!</h1>
     <a href="<c:url value='/infoPage/UserInfoPage'/>" style="color: white;">會員資料</a>
-    
 
-
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <ul class="social-icons">
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="https://www.instagram.com/oneorzero_searchcoffee/">Instagram</a></li>
-              <li><a href="#">Linkedin</a></li>
-              <li><a href="https://github.com/oneorzero0903">Github</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-12">
-            <div class="copyright-text">
-              <p>Copyright 2020 One||Zero corp. Ltd. </p>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="<c:url value='/css/vendor/jquery/jquery.min.js'	/>" ></script>
-    <script src="<c:url value='/css/vendor/bootstrap/js/bootstrap.bundle.min.js'	/>" ></script>
-
-    <!-- Additional Scripts -->
-    <script src="<c:url value='/js/custom.js'	/>"></script>
-    <script src="<c:url value='/js/owl.js'	/>"></script>
-    <script src="<c:url value='/js/slick.js'	/>"></script>
-    <script src="<c:url value='/js/isotope.js'	/>"></script>
-    <script src="<c:url value='/js/accordions.js'	/>"></script>
+    <jsp:include page="/fragment/footer.jsp" />
 
   </body>
 </html>
