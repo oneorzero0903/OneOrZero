@@ -29,7 +29,7 @@ public class StoreBean implements java.io.Serializable{
 	private String tel;//公司電話
 	private String phone;//行動電話
 	private String contact_person;//聯絡人
-	private String progressbarTWInput;//圖片路徑
+	private String imgPath;//圖片路徑
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//建立日期
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//修改日期
 	private Integer resetPwd = 0; //需要更新密碼 0:不需要 1:需要
@@ -43,7 +43,7 @@ public class StoreBean implements java.io.Serializable{
 
 	public StoreBean(String password, String email, String store_name, String address_county, String address_area,
 			String address_road, String opentime_start, String opentime_end, String isSuccess, String tel, String phone,
-			String contact_person, String progressbarTWInput, String create_dt, String update_dt) {
+			String contact_person, String imgPath, String create_dt, String update_dt) {
 		String timeStr1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.password = password;
 		this.email = email;
@@ -57,10 +57,10 @@ public class StoreBean implements java.io.Serializable{
 		this.tel = tel;
 		this.phone = phone;
 		this.contact_person = contact_person;
-		this.progressbarTWInput = progressbarTWInput;
 		this.create_dt = timeStr1;
 		this.update_dt = timeStr1;
 		this.resetPwd = 0;
+		this.imgPath = imgPath;
 	}
 
 	public Integer getStore_id() {
@@ -175,12 +175,12 @@ public class StoreBean implements java.io.Serializable{
 		this.contact_person = contact_person;
 	}
 
-	public String getProgressbarTWInput() {
-		return progressbarTWInput;
+	public String getImgPath() {
+		return imgPath;
 	}
 
-	public void setProgressbarTWInput(String progressbarTWInput) {
-		this.progressbarTWInput = progressbarTWInput;
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
 	}
 
 	public String getCreate_dt() {
