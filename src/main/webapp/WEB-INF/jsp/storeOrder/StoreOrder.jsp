@@ -129,7 +129,6 @@ color:#fff
 						class='form:input-large' size="11" autocomplete="off" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')"/>
 		<span id="spanPhone"></span>
 		<br><br>
-		
 		<div id="btn">
 			<input type="button" onclick="register()" value="確認送出">
      		<input type="reset"	value="全部清空" />

@@ -16,7 +16,7 @@ import com.oneorzero.bean.MemberBean;
 import com.oneorzero.login.service.IUserLoginService;
 
 @Controller
-@SessionAttributes({"member","LoginSuccess"})
+@SessionAttributes({"member"})
 public class UserLoginController{
 	
 	@Autowired
@@ -48,7 +48,6 @@ public class UserLoginController{
 		MemberBean bean = null;
 		bean = service.checkAccountPassword(email, password);
 		if(bean != null && bean.getIsSuccess().equals("on")) {
-			model.addAttribute("LoginSuccess", bean.getEmail());
 			model.addAttribute("member", bean);
 		} else if (bean != null && bean.getIsSuccess().equals("off")) {
 			errorMsg.put("VerifyError", "帳號尚未開通");

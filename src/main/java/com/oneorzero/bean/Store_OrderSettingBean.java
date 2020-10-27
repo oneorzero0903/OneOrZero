@@ -46,6 +46,14 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 		this.create_dt = timeStr1;
 		this.update_dt = timeStr1;
 	}
+	
+	public StoreBean getStore() {
+		return store;
+	}
+
+	public void setStore(StoreBean store) {
+		this.store = store;
+	}
 
 	public Integer getSetting_id() {
 		return setting_id;

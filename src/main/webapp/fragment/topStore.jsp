@@ -13,14 +13,12 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-<%--               	<c:if test="${ funcName != 'INDST' }"> --%>
                 	<a class="nav-link" href="<c:url value='/'	/>">首頁
                   	<span class="sr-only">(current)</span>
                 	</a>
-<%--                 </c:if> --%>
               </li> 
               <li class="nav-item">
-              	<c:if test="${ empty LoginSuccess }">
+              	<c:if test="${ empty store }">
               		<c:choose>
                 		<c:when test="${ funcName == 'LOGST' }">
                 			<a class="nav-link">登入</a>
@@ -30,11 +28,11 @@
                 		</c:otherwise>
                 	</c:choose>
               	</c:if>
-              	<c:if test="${ ! empty LoginSuccess }">
+              	<c:if test="${ ! empty store }">
 			   		<a class="nav-link" href="<c:url value='/out' />">登出</a>
 				</c:if>
               </li>
-              <c:if test="${ empty LoginSuccess }">
+              <c:if test="${ empty store }">
               	<li class="nav-item">
               		<c:if test="${ funcName != 'SIGST' }">
                 		<a class="nav-link" href="<c:url value='/signUp/StoreTerms'	/>">註冊</a>

@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oneorzero.bean.StoreBean;
 import com.oneorzero.login.service.IStoreLoginService;
 
 @Controller
+@SessionAttributes({"store"})
 public class StoreLoginController{
 	
 	@Autowired
@@ -46,8 +48,7 @@ public class StoreLoginController{
 		StoreBean bean = null;
 		bean = service.checkAccountPassword(email, password);
 		if(bean != null && bean.getIsSuccess().equals("on")) {
-			model.addAttribute("LoginSuccess", bean.getEmail());
-			model.addAttribute("member", bean);
+			model.addAttribute("store", bean);
 		} else if (bean != null && bean.getIsSuccess().equals("off")) {
 			errorMsg.put("VerifyError", "帳號尚未開通");
 		} else {

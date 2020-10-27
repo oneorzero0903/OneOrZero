@@ -20,7 +20,7 @@
                 </c:if>
               </li> 
               <li class="nav-item">
-                <c:if test="${ empty LoginSuccess }">
+                <c:if test="${ empty member }">
                 	<c:choose>
                 		<c:when test="${ funcName == 'LOG' }">
                 			<a class="nav-link">登入</a>
@@ -30,11 +30,11 @@
                 		</c:otherwise>
                 	</c:choose>
               	</c:if>
-              	<c:if test="${ ! empty LoginSuccess }">
+              	<c:if test="${ ! empty member }">
 			   		<a class="nav-link" href="<c:url value='/out' />">登出</a>
 				</c:if>
               </li>
-              <c:if test="${ empty LoginSuccess }">
+              <c:if test="${ empty member }">
               	<li class="nav-item">
                 	<c:if test="${ funcName != 'SIG' }">
                 		<a class="nav-link" href="<c:url value='/signUp/Terms'	/>">註冊</a>
