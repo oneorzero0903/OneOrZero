@@ -45,7 +45,7 @@
     <!-- Banner Ends Here -->
 
 
-    <h1 style="color: white;">Hello ${LoginSuccess} !!</h1>
+    <h1 style="color: white;">Hello ${member.email} !!</h1>
     <a href="<c:url value='/infoPage/UserInfoPage'/>" style="color: white;">會員資料</a>
 
     <jsp:include page="/fragment/footer.jsp" />

@@ -46,7 +46,6 @@ public class UserForgetPwdController {
 		bean = service.checkAccountExist(email);
 		if(bean != null) {
 			redirectAttributes.addFlashAttribute("LoginSuccess", bean.getEmail());
-//			model.addAttribute("LoginSuccess", bean.getEmail());
 		} else {
 			errorMsg.put("LoginError", "信箱不存在");
 		}
