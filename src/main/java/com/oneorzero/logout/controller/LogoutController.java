@@ -17,4 +17,11 @@ public class LogoutController {
 		session.invalidate();
 		return "index";
 	}
+	
+	@GetMapping("/out/store")
+	public String logoutStore(HttpSession session, SessionStatus status) {
+		status.setComplete();
+		session.invalidate();
+		return "indexShop";
+	}
 }

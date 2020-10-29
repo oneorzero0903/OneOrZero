@@ -66,6 +66,7 @@ color:#fff
 }
   </style>
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="<c:url value='/js/StoreOrder.js'	/>"></script>
   </head>
 
@@ -104,29 +105,77 @@ color:#fff
     
     <!-- Banner Ends Here -->
 
-<%-- 	<form method="POST" action="/OneOrZero/StoreOrderController" > --%>
 	<br><br>
 	<div align="center">
+		<label class="t1" for="">可訂位時間 :</label>
+		<div class="container1">
+    		<button class="add_form_field">設定包廂 &nbsp; 
+      			<span style="font-size:16px; font-weight:bold;">+ </span>
+    		</button>
+<!--     		<div><input type="text" name="mytext[]"></div> -->
+		</div>		
+		<script>	
+		$(document).ready(function() {
+    		var max_fields = 4;
+    		var wrapper = $(".container1");
+    		var add_button = $(".add_form_field");
+
+    		var x = 1;
+    		$(add_button).click(function(e) {
+        		e.preventDefault();
+        		if (x < max_fields) {
+            		x++;
+            		$(wrapper).append('<div><select name="boothNum" id="boothNum">'+
+            						  	   		'<option value="" selected>請選擇</option>'+ 
+            						  	   		'<option value="1">週一</option>'+
+            						  	   		'<option value="2">週二</option>'+
+            						  	   		'<option value="3">週三</option>'+
+            						       		'<option value="4">週四</option>'+
+            						       		'<option value="5">週五</option>'+
+            						       		'<option value="6">週六</option>'+
+            						       		'<option value="7">週日</option>'+
+            						       '</select>'+
+            						       '<label class="t1" for="">&nbsp; 最少人數 : &nbsp;</label>'+
+            						       '<input type="text" size="5" id="min" >'+
+            						       '<label class="t1" for="">&nbsp; 最多人數 : &nbsp;</label>'+
+            						       '<input type="text" size="5" id="max" >'+
+            						       '<a href="#" class="delete">Delete</a>'+
+            						  '</div>'); //add input box
+        		} else {
+            		alert('包廂最多設定三組喔~')
+            		
+        		}
+    		});
+
+    		$(wrapper).on("click", ".delete", function(e) {
+        		e.preventDefault();
+        		$(this).parent('div').remove();
+        		x--;
+    		})
+		});
+		</script>	
+
+
+	
 	<form:form method="POST" modelAttribute="store_OrderSettingBean" id="Store_OrderSettingForm">
-		<p>  
-            <label class="t1" for="">可訂位時間 :</label>
-            <form:input id="timeStart" path="timeStart" type='time'
-						class='form:input-large' size="30" autocomplete="off"/> ~
-			<form:input id="timeEnd" path="timeEnd" type='time'
-						class='form:input-large' size="30" autocomplete="off" onblur="checkTimeEnd();"/>
+        
+        <label class="t1" for="">可訂位時間 :</label>
+        <form:input id="timeStart" path="timeStart" type='time'
+					class='form:input-large' size="30" autocomplete="off"/> ~
+		<form:input id="timeEnd" path="timeEnd" type='time'
+					class='form:input-large' size="30" autocomplete="off" onblur="checkTimeEnd();"/>
         <span id="spanTime"></span>
-        </p>
         <br><br>
 		
         <label for="" class="t1">包廂數 :</label>
-        <form:input id="boothNum" path="boothNum" type='text' onblur="checkBoothNum();"
-						class='form:input-large' size="10" autocomplete="off" oninput="value=value.replace(/[^\d]/g,'')"/>
+        <form:input id="boothNum" path="boothNum" type='boothNum'
+					class='form:input-large' size="10" autocomplete="off" onblur="checkBoothNum();" oninput="value=value.replace(/[^\d]/g,'')"/>
         <span id="spanBoothNum"></span>
         <br><br>    
         
         <label for="" class="t1">電話 :</label> 
-        <form:input id="phone" path="phone" type='tel' onblur="checkPhone();"
-						class='form:input-large' size="11" autocomplete="off" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')"/>
+        <form:input id="phone" path="phone" type='phone'
+						class='form:input-large' size="11" autocomplete="off" onblur="checkPhone();" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')"/>
 		<span id="spanPhone"></span>
 		<br><br>
 		<div id="btn">
@@ -142,56 +191,24 @@ color:#fff
  		document.getElementById("timeEnd").value = "20:00";
  		document.getElementById("boothNum").value = 10;
  		document.getElementById("phone").value = "0919123456";
- 		console.log(document.getElementById("phone").value);
  	}
      function register() {
-         if (checkTimeEnd() && checkBoothNum() && checkBoothNum()) {
+    	 console.log(checkTimeEnd());
+    	 console.log(checkBoothNum());
+    	 console.log(checkPhone());
+         if (checkTimeEnd() && checkBoothNum() && checkPhone()) {
          	document.forms["Store_OrderSettingForm"].submit();
  		} else {
  			return false;
  		}
      }
-//      function callStoreOrder() {
-
-//     		var timeStart = document.getElementById('timeStart').value;
-//     		var timeEnd = document.getElementById('timeEnd').value;
-//     		var BoothNum = document.getElementById('BoothNum').value;
-//     		var Booth = document.getElementById('Booth').checked;
-//     		var Phone = document.getElementById('Phone').value;
-
-//     		var myData = {
-//     			"timeStart": timeStart,
-//     			"timeEnd": timeEnd,
-//     			"boothNum": boothNum,
-//     			"phone": phone
-//     		};
-//     		$.ajax({
-//     			type: 'POST',
-//     			url: '${pageContext.request.contextPath}/StoreOrderController',
-//     			data: { jsonData: JSON.stringify(myData) },
-//     			dataType: 'json',
-
-//     			success:
-//     				function (data) {
-//     					if (data.isOK == "ok") {
-//     						alert("訂單設定成功");
-//     						window.location.href = "${pageContext.request.contextPath}/jsp/index.jsp";
-//     					} else {
-//     						alert("輸入資料有誤");
-//     						window.location.href = "${pageContext.request.contextPath}/jsp/StoreOrder.jsp";
-//     						//					alert(data.account + "," + data.password);
-//     						//					var elementObj = document.getElementById("test");
-//     						//					elementObj.innerHTML = "<h1>account = " + data.account +"</h1>";
-//     						//					elementObj.innerHTML += "<h1>password = " + data.password +"</h1>";
-//     						//window.location.href="${pageContext.request.contextPath}/jsp/Output.jsp";
-//     					}
-//     				},
-//     			error:
-//     				function (xhr, ajaxOptions, thrownError) {
-//     					alert(xhr.status + "\n" + thrownError);
-//     				}
-//     		});
-//     	} 
+     
+//      function myFunction() {
+//     	var x = document.createElement("INPUT");
+//     	x.setAttribute("type", "text");
+//     	x.setAttribute("value", "Hello World!");
+//     	document.body.appendChild(x);
+//      }
      </script>
 
     <!-- 寫上面 -->

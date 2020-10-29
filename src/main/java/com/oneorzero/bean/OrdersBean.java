@@ -22,11 +22,11 @@ public class OrdersBean implements java.io.Serializable{
 	private Integer order_id; //訂單編號
 	
 	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn
+	@JoinColumn(name = "member_id")
 	private MemberBean member; //會員編號
 	
 	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn
+	@JoinColumn(name = "store_id")
 	private StoreBean store; //商家編號
 	
 	@Column(name = "email", columnDefinition = "VARCHAR(50) NOT NULL")

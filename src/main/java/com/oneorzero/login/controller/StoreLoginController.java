@@ -55,7 +55,7 @@ public class StoreLoginController{
 			errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 		}		
 		if (errorMsg.isEmpty()) {
-			return "redirect:/login/LoginOK";
+			return "redirect:/indexShop";
 		} else {
 			return "login/StoreLogin";
 		}

@@ -20,7 +20,7 @@ public class AdvertisingBean implements java.io.Serializable{
 	private Integer ad_id;  //廣告編號
 	
 	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn
+	@JoinColumn(name = "store_id")
 	private StoreBean store;  //商家編號
 	
 	private String title;  //標題

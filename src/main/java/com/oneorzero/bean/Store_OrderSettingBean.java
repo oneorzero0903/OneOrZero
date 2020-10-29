@@ -20,7 +20,7 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 	private Integer setting_id;//商家訂單編號
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn
+	@JoinColumn(name = "store_id")
 	private StoreBean store;//商家編號
 	
 	private String timeStart;//可預約時間(起)

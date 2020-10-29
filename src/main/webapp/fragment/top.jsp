@@ -63,6 +63,11 @@
                     <a class="nav-link">聯絡我們</a>         
                 </c:if>
               </li>
+              <c:if test="${ ! empty member }">
+              	<li class="nav-item">
+                    <a class="nav-link">Hello ${ member.name }</a>         
+              	</li>
+              </c:if>
             </ul>
           </div>
         </div>

@@ -32,6 +32,9 @@ function checkBoothNum() {
 	if (boothNum == "") {
 		spanBoothNum.innerHTML = "請輸入您的包廂數量";
 		return false;
+	} else {
+		spanBoothNum.innerHTML = "";
+		return true;
 	}
 }
 
@@ -40,6 +43,9 @@ function checkPhone() {
 	if (phone == "") {
 		spanPhone.innerHTML = "請輸入您的連絡電話";
 		return false;
+	} else {
+		spanPhone.innerHTML = "";
+		return true;
 	}
 }
 

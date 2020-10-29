@@ -18,8 +18,4 @@ public class StoreOrderService implements IStoreOrderService {
 		return dao.signUp(sob);
 	}
 
-	@Override
-	public void verifyAccount(String email) {
-		dao.verifyAccount(email);
-	}
 }

@@ -24,7 +24,7 @@
 	<%-- <c:set var="funcName" value="XXX" scope="session"/> --%>
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/top.jsp" />
-
+	
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="heading-page header-text">
@@ -43,6 +43,9 @@
     </div>
     
     <!-- Banner Ends Here -->
+    
+    
+    
     
     <jsp:include page="/fragment/footer.jsp" />
 

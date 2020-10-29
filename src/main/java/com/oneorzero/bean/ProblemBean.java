@@ -21,7 +21,7 @@ public class ProblemBean implements java.io.Serializable{
 	private Integer problem_id; //問題反映編號
 	
 	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn
+	@JoinColumn(name = "member_id")
 	private MemberBean member; //會員編號
 	private String note; //問題內容
 	private String status = "undo"; //處理狀態(ok:已處理, ing:處理中, undo:未處理)

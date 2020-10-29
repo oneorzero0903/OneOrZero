@@ -6,6 +6,4 @@ public interface IStoreOrderDao {
 
 	boolean signUp(Store_OrderSettingBean sob);
 	
-	void verifyAccount(String email);
-
 }
