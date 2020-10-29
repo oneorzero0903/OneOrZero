@@ -57,4 +57,27 @@ package com.oneorzero.showStore.dao.impl;
  				.getResultList();
  	}
 
+	@Override
+	public List<StoreBean> showStoresByArea(Integer pageNo, String area) {
+		int startNo = (pageNo - 1) * storesPerPage;
+ 		String hql = "FROM StoreBean where address_area = " + area;
+ 		if (area.equals("'不限'") || area.trim().length() == 0) hql = "FROM StoreBean";
+ 		Session session = factory.getCurrentSession();
+
+ 		return session.createQuery(hql)
+ 				.setMaxResults(storesPerPage)
+ 				.setFirstResult(startNo)
+ 				.getResultList();
+	}
+
+	@Override
+	public int getTotalAreaPages(String area) {
+		String hql = "SELECT count(*) FROM StoreBean where address_area = " + area;
+ 		if (area.equals("'不限'") || area.trim().length() == 0) hql = " SELECT count(*)FROM StoreBean";
+ 		Session session = factory.getCurrentSession();
+ 		long counts = (long) session.createQuery(hql).getSingleResult();
+ 		int totalPages = (int) (Math.ceil((double)counts / (double)storesPerPage));
+ 		return totalPages;
+	}
+
  }
