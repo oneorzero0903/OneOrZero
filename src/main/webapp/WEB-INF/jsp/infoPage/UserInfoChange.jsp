@@ -76,7 +76,7 @@
 			var email = document.getElementById('email').value;
 			console.log();
 			var xhr = new XMLHttpRequest();
-			xhr.open("PUT", "<c:url value='/infoPage/UserInfoChange/' />" +id, true);
+			xhr.open("PUT", "<c:url value='/infoPage/UserInfoChange' />", true);
 			var jsonMember = {
 					"birthday": birthday,
 					"gender": gender,

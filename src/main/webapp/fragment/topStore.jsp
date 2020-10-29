@@ -29,7 +29,7 @@
                 	</c:choose>
               	</c:if>
               	<c:if test="${ ! empty store }">
-			   		<a class="nav-link" href="<c:url value='/out' />">登出</a>
+			   		<a class="nav-link" href="<c:url value='/out/store' />">登出</a>
 				</c:if>
               </li>
               <c:if test="${ empty store }">
@@ -58,6 +58,11 @@
                     <a class="nav-link">聯絡我們</a>
                 </c:if>
               </li>
+              <c:if test="${ ! empty store }">
+              	<li class="nav-item">
+                    <a class="nav-link">Hello ${ store.store_name }</a>         
+              	</li>
+              </c:if>
             </ul>
           </div>
         </div>

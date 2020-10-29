@@ -20,7 +20,7 @@ public class StoreBean implements java.io.Serializable{
 	private String password;//商家密碼
 	private String email;//Email
 	private String store_name;//商家名稱
-	private String address_county;//所在地_縣市
+	private String address_city;//所在地_縣市
 	private String address_area;//所在地_區
 	private String address_road;//所在地_路名
 	private String opentime_start;//營業時間(開始)
@@ -33,34 +33,14 @@ public class StoreBean implements java.io.Serializable{
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//建立日期
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//修改日期
 	private Integer resetPwd = 0; //需要更新密碼 0:不需要 1:需要
+	private Double rating = 0.0;
+	private Integer rateCount = 0;
 
 	
 	@OneToOne(mappedBy = "store")
 	private Store_OrderSettingBean store_OrderSetting;
 	
 	public StoreBean() {
-	}
-
-	public StoreBean(String password, String email, String store_name, String address_county, String address_area,
-			String address_road, String opentime_start, String opentime_end, String isSuccess, String tel, String phone,
-			String contact_person, String imgPath, String create_dt, String update_dt) {
-		String timeStr1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-		this.password = password;
-		this.email = email;
-		this.store_name = store_name;
-		this.address_county = address_county;
-		this.address_area = address_area;
-		this.address_road = address_road;
-		this.opentime_start = opentime_start;
-		this.opentime_end = opentime_end;
-		this.isSuccess = "off";
-		this.tel = tel;
-		this.phone = phone;
-		this.contact_person = contact_person;
-		this.create_dt = timeStr1;
-		this.update_dt = timeStr1;
-		this.resetPwd = 0;
-		this.imgPath = imgPath;
 	}
 
 	public Integer getStore_id() {
@@ -103,12 +83,28 @@ public class StoreBean implements java.io.Serializable{
 		this.store_name = store_name;
 	}
 
-	public String getAddress_county() {
-		return address_county;
+	public String getAddress_city() {
+		return address_city;
 	}
 
-	public void setAddress_county(String address_county) {
-		this.address_county = address_county;
+	public void setAddress_city(String address_city) {
+		this.address_city = address_city;
+	}
+
+	public Double getRating() {
+		return rating;
+	}
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+
+	public Integer getRateCount() {
+		return rateCount;
+	}
+
+	public void setRateCount(Integer rateCount) {
+		this.rateCount = rateCount;
 	}
 
 	public String getAddress_area() {
