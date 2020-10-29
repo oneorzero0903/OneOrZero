@@ -135,7 +135,7 @@ color:#fff
             <div class="st1">
 
                 <label for="" class="t1">所在縣市</label>
-                <form:select path="address_county" id="address_county">
+                <form:select path="address_city" id="address_city">
                         <form:option value="NONE" label="請選擇..." />
                         <form:option value="Taipei City">台北市</form:option>
               			<form:option value="New Taipei City">新北市</form:option>
@@ -204,7 +204,7 @@ color:#fff
 		document.getElementById("password").value = "abcd1234!";
 		document.getElementById("idPwd2").value = "abcd1234!";
 		document.getElementById("store_name").value = "Jacob company";
-		document.getElementById("address_county").value = "Taipei City";
+		document.getElementById("address_city").value = "Taipei City";
 		document.getElementById("address_area").value = "Zhong Zheng";
 		document.getElementById("address_road").value = "中正路";
 		document.getElementById("tel").value = "02-1234567";

@@ -190,7 +190,6 @@ color:#fff
         <br>
         <div id="btn">
             <input type="button" value="確認送出" class="button" onclick="register()">
-            <input type="button" value="取消重填" class="button">
         </div>
 
         <script>

@@ -39,7 +39,7 @@ public class StoreSignUpController{
 	public String storeSignUp(@RequestParam String email,
 							@RequestParam String password,
 							@RequestParam String store_name,
-							@RequestParam String address_county,
+							@RequestParam String address_city,
 							@RequestParam String address_area,
 							@RequestParam String address_road,
 							@RequestParam String tel,
