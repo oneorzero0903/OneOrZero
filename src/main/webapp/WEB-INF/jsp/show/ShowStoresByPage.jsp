@@ -194,7 +194,7 @@ button.pageBtn {
 
 	<!-- Banner Ends Here -->
 	<div>
-		<select id="areaId">
+		<select id="areaId" onfocus="changeSize()" onblur="changeBack()">
 			<option disabled="disabled" selected="selected"></option>
 			<option value="不限">不限</option>
 			<option value="中正區">中正區</option>
@@ -246,6 +246,13 @@ button.pageBtn {
 	<div style="color: white;" align="center" id="pageDiv"></div>
 
 	<jsp:include page="/fragment/footer.jsp" />
-
+	<script type="text/javascript">
+		function changeSize() {
+			document.getElementById("areaId").size = '6';
+		}
+		function changeBack() {
+			document.getElementById("areaId").size = '1';
+		}
+	</script>
 </body>
 </html>

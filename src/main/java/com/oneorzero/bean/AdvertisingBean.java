@@ -25,23 +25,13 @@ public class AdvertisingBean implements java.io.Serializable{
 	
 	private String title;  //標題
 	private String description;  //說明
-	private String application_status; //申請狀態(ing:審核中, ok:已通過, bad:未通過)
-	private String images;  //照片路徑
+	private String status; //申請狀態(ing:審核中, ok:已通過, bad:未通過)
+	private String imgPath;  //照片路徑
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));  //建立日期
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));  //修改日期
-
-	public AdvertisingBean() {
-	}
-
-	public AdvertisingBean(String title, String description, String application_status, String images) {
-		String timeStr1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-		this.create_dt = timeStr1;
-		this.update_dt = timeStr1;
-		this.title = title;
-		this.description = description;
-		this.application_status = application_status; 
-		this.images = images;
+	private Long adTime;
 	
+	public AdvertisingBean() {
 	}
 
 	public Integer getAd_id() {
@@ -76,20 +66,20 @@ public class AdvertisingBean implements java.io.Serializable{
 		this.description = description;
 	}
 
-	public String getApplication_status() {
-		return application_status;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setApplication_status(String application_status) {
-		this.application_status = application_status;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public String getImages() {
-		return images;
+	public String getImgPath() {
+		return imgPath;
 	}
 
-	public void setImages(String images) {
-		this.images = images;
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
 	}
 
 	public String getCreate_dt() {
@@ -106,6 +96,14 @@ public class AdvertisingBean implements java.io.Serializable{
 
 	public void setUpdate_dt(String update_dt) {
 		this.update_dt = update_dt;
+	}
+
+	public Long getAdTime() {
+		return adTime;
+	}
+
+	public void setAdTime(Long adTime) {
+		this.adTime = adTime;
 	}
 
 }

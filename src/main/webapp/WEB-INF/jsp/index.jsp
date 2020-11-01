@@ -7,6 +7,21 @@
 
   <head>
 	<jsp:include page="/fragment/linkCss.jsp" />
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(document).ready(function(){
+			  $('.item').slick({
+			      draggable: true,
+			      autoplay: true, /* this is the new line */
+			      autoplaySpeed: 2000,
+			      infinite: true,
+			      slidesToShow: 1,
+			      slidesToScroll: 1,
+			      touchThreshold: 1000,
+			  });
+			});
+		  
+	</script>
   </head>
 
   <body style="background-color: #272727;">
@@ -27,6 +42,7 @@
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
+    
     <div class="main-banner header-text">
       <div class="container-fluid">
         <div class="owl-banner owl-carousel">
@@ -47,7 +63,7 @@
             </div>
           </div>
           <div class="item">
-            <img src="<c:url value='/images/restaurant2.jpg'	/>" alt="">
+            <img src="<c:url value='/images/cafeImg/1.jpg'	/>" alt="">
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
@@ -63,7 +79,7 @@
             </div>
           </div>
           <div class="item">
-            <img src="<c:url value='/images/co4.jpg'	/>" alt="">
+            <img src="<c:url value='/images/cafeImg/1.jpg'	/>" alt="">
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
@@ -139,11 +155,11 @@
               <div class="row">
                 <div class="col-lg-8">
                   <span>加入會員了嗎？</span>
-                  <h4>快案左上角加入會員！</h4>
+                  <h4>快按右邊加入會員！</h4>
                 </div>
                 <div class="col-lg-4">
                   <div class="main-button">
-                    <a rel="nofollow" href="https://templatemo.com/tm-551-stand-blog" target="_parent">加入會員</a>
+                    <a rel="nofollow" href="<c:url value='/signUp/Terms'/>" target="_parent">加入會員</a>
                   </div>
                 </div>
               </div>
