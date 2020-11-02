@@ -29,11 +29,20 @@ public class ShowStoreController {
 	// 按照頁面顯示店家
 	@GetMapping("/show/pagingStoresData.json")
 	public @ResponseBody List<StoreBean> showStoresByPageNo(
-			@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo, Model model) {
-		model.addAttribute("currentPageNo", pageNo);
+			@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
+			Model model) {
 		return service.showStoresByPageNo(pageNo);
 	}
-
+	
+	//以區域顯示店家
+	@GetMapping("/show/pagingStoresData.json/{area}")
+	public @ResponseBody List<StoreBean> showStoresByArea(
+			@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
+			@PathVariable String area,
+			Model model) {
+		return service.showStoresByArea(pageNo, area);
+	}
+	
 	// 顯示單筆店家資料
 	@GetMapping(value = "show/showOneStore/{key}", produces = { "application/json" })
 	public @ResponseBody StoreBean showStore(@PathVariable Integer key) {

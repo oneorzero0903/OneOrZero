@@ -44,6 +44,11 @@
                		</c:if>
               	</li>
               </c:if>
+              
+              <li class="nav-item">
+              	<a class="nav-link" href="<c:url value='/show/ShowStoresByPage'	/>">店家一覽</a>
+              </li>
+              
               <li class="nav-item">
                 <c:if test="${ funcName != 'ORD' }">
                   <a class="nav-link" href="<c:url value='/orders/OrderMenu'	/>">訂位</a>

@@ -11,7 +11,7 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
-		
+	
 	@GetMapping("/indexShop")
 	public String indexShop(Model model) {
 		return "indexShop";
