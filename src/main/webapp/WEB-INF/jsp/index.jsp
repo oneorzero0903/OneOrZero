@@ -7,21 +7,6 @@
 
   <head>
 	<jsp:include page="/fragment/linkCss.jsp" />
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$(document).ready(function(){
-			  $('.item').slick({
-			      draggable: true,
-			      autoplay: true, /* this is the new line */
-			      autoplaySpeed: 2000,
-			      infinite: true,
-			      slidesToShow: 1,
-			      slidesToScroll: 1,
-			      touchThreshold: 1000,
-			  });
-			});
-		  
-	</script>
   </head>
 
   <body style="background-color: #272727;">

@@ -7,4 +7,5 @@ import com.oneorzero.bean.AdvertisingBean;
 public interface IAdvertisingDao {
 	List<AdvertisingBean> showOKAd();
 	void deleteExpiredAd();
+	boolean buyAd(AdvertisingBean adBean);
 }

@@ -23,4 +23,9 @@ public class AdvertisingService implements IAdvertisingService {
 		return dao.showOKAd();
 	}
 
+	@Override
+	public boolean buyAd(AdvertisingBean adBean) {
+		return dao.buyAd(adBean);
+	}
+
 }
