@@ -1,17 +1,15 @@
 package com.oneorzero.showStore.dao.impl;
 
  import java.util.ArrayList;
- import java.util.List;
-import java.util.logging.Logger;
+import java.util.List;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
- import org.hibernate.SessionFactory;
- import org.springframework.beans.factory.annotation.Autowired;
- import org.springframework.stereotype.Repository;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
- import com.oneorzero.bean.StoreBean;
- import com.oneorzero.showStore.dao.IShowStoreDao;
+import com.oneorzero.bean.StoreBean;
+import com.oneorzero.showStore.dao.IShowStoreDao;
 
  @SuppressWarnings("unchecked")
  @Repository
@@ -39,8 +37,8 @@ import org.hibernate.Session;
 
  	@Override
  	public int getTotalPages() {
- 		String hql = "SELECT count(*) FROM StoreBean";
  		Session session = factory.getCurrentSession();
+ 		String hql = "SELECT count(*) FROM StoreBean";
  		long counts = (long) session.createQuery(hql).getSingleResult();
  		int totalPages = (int) (Math.ceil((double)counts / (double)storesPerPage));
  		return totalPages;
@@ -62,11 +60,16 @@ import org.hibernate.Session;
 	@Override
 	public List<StoreBean> showStoresByArea(Integer pageNo, String area) {
 			int startNo = (pageNo - 1) * storesPerPage;
-			String hql = "FROM StoreBean where address_area = " + area;
-			if (area.equals("'不限'") || area.trim().length() == 0) hql = "FROM StoreBean";
 			Session session = factory.getCurrentSession();
-
-			return session.createQuery(hql)
+			String hql = "FROM StoreBean where address_area = :area";
+			if (area.equals("不限") || area.trim().length() == 0) {
+				hql = "FROM StoreBean";
+				return session.createQuery(hql)
+						.setMaxResults(storesPerPage)//最大筆數
+						.setFirstResult(startNo)//第一筆資料(從0開始)
+						.getResultList();
+			} else return session.createQuery(hql)
+					.setParameter("area", area)
 					.setMaxResults(storesPerPage)//最大筆數
 					.setFirstResult(startNo)//第一筆資料(從0開始)
 					.getResultList();
@@ -74,12 +77,20 @@ import org.hibernate.Session;
 
 	@Override
 	public int getTotalAreaPages(String area) {
-		String hql = "SELECT count(*) FROM StoreBean where address_area = " + area;
- 		if (area.equals("'不限'") || area.trim().length() == 0) hql = " SELECT count(*)FROM StoreBean";
- 		Session session = factory.getCurrentSession();
- 		long counts = (long) session.createQuery(hql).getSingleResult();
- 		int totalPages = (int) (Math.ceil((double)counts / (double)storesPerPage));
- 		return totalPages;
+		String hql = "SELECT count(*) FROM StoreBean where address_area = :area";
+		Session session = factory.getCurrentSession();
+		long counts;
+		int totalPages;
+ 		if (area.equals("不限") || area.trim().length() == 0) {
+ 			hql = " SELECT count(*)FROM StoreBean";
+ 			counts = (long) session.createQuery(hql).getSingleResult();
+ 	 		totalPages = (int) (Math.ceil((double)counts / (double)storesPerPage));
+ 	 		return totalPages;
+ 		} else {
+ 			counts = (long) session.createQuery(hql).setParameter("area", area).getSingleResult();
+ 	 		totalPages = (int) (Math.ceil((double)counts / (double)storesPerPage));
+ 	 		return totalPages;
+ 		}
 	}
 
  }
