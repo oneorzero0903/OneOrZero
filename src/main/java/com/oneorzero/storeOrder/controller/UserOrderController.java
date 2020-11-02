@@ -2,14 +2,25 @@ package com.oneorzero.storeOrder.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.oneorzero.bean.StoreBean;
+import com.oneorzero.bean.Store_OrderSettingBean;
 import com.oneorzero.storeOrder.service.IUserOrderService;
 
 @Controller
+@SessionAttributes({ "member" })
 public class UserOrderController{
 	
 	@Autowired
 	IUserOrderService service;
+	
+	@GetMapping("/orders/OrderMenu")
+	public String getOrderForm(Model model) {
+		return "/orders/OrderMenu";
+	}
 	
 //	@GetMapping("/signUp/Terms")
 //	public String terms(Model model) {
