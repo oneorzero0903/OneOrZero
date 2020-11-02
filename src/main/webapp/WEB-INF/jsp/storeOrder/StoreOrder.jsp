@@ -102,118 +102,233 @@ color:#fff
         </div>
       </section>
     </div>
-    
     <!-- Banner Ends Here -->
-
+    
 	<br><br>
-	<div align="center">
-		<label class="t1" for="">可訂位時間 :</label>
+	<div align="left">
 		<div class="container1">
-    		<button class="add_form_field">設定包廂 &nbsp; 
+			<label for="" class="t1">電話 :</label> 
+			<input class="phone" id="phone" type='text' size="11" onblur="checkPhone($(this));" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')"/>
+    		<span></span><br><br>
+    		<label for="" class="t1">地址 :</label> 
+			<input class="address" id="address" type='text' size="30" onblur="checkAddress($(this));" />
+    		<span></span><br><br>
+    		<button class="add_form_field" onclick="add()">設定包廂 &nbsp; 
       			<span style="font-size:16px; font-weight:bold;">+ </span>
     		</button>
-<!--     		<div><input type="text" name="mytext[]"></div> -->
-		</div>		
-		<script>	
-		$(document).ready(function() {
-    		var max_fields = 4;
-    		var wrapper = $(".container1");
-    		var add_button = $(".add_form_field");
+    		<div class="wrap">
+  			</div>
+		<script>
+		let template = `<div class="menuList">
+				<label class="t1" for="">&nbsp; 可預約日期 : &nbsp;</label>
+				<select id="dateStart" onblur="checkDate( $(this), $(this).next() )">
+				   	<option value="0" selected>請選擇</option> 
+					<option value="1">週一</option>
+					<option value="2">週二</option>
+					<option value="3">週三</option>
+					<option value="4">週四</option>
+					<option value="5">週五</option>
+					<option value="6">週六</option>
+					<option value="7">週日</option>
+				</select>~
+				<select id="dateEnd" onblur="checkDate( $(this).prev(), $(this) )">
+			   		<option value="0" selected>請選擇</option> 
+					<option value="1">週一</option>
+					<option value="2">週二</option>
+					<option value="3">週三</option>
+					<option value="4">週四</option>
+					<option value="5">週五</option>
+					<option value="6">週六</option>
+					<option value="7">週日</option>
+				</select>
+				<span></span>
+				<br>
+				<label class="t1" for="">&nbsp; 最少人數 : &nbsp;</label>
+				<input class="personMin" type="text" size="5" id="personMin" onkeyup="return ValidateNumber($(this),value)" onblur="checkPerson( $(this), $(this).next().next());"/>
+				<label class="t1" for="">&nbsp; 最多人數 : &nbsp;</label>
+				<input class="personMax" type="text" size="5" id="personMax" onkeyup="return ValidateNumber($(this),value)" onblur="checkPerson( $(this).prev().prev(), $(this));"/>
+				<span></span><br>
+				<label class="t1" for="">&nbsp; 可預約起迄時間 : &nbsp;</label>
+				<select id="timeStart" onfocus='this.size=5;' onblur='this.size=1; checkTime( $(this), $(this).next());' onchange='this.size=1; this.blur();'>
+					<option value="-1" selected>請選擇</option> 
+					<option value="0">00:00</option>
+					<option value="0.5">00:30</option>
+					<option value="1">01:00</option>
+					<option value="1.5">01:30</option>
+					<option value="2">02:00</option>
+					<option value="2.5">02:30</option>
+					<option value="3">03:00</option>
+					<option value="3.5">03:30</option>
+					<option value="4">04:00</option>
+					<option value="4.5">04:30</option>
+					<option value="5">05:00</option>
+					<option value="5.5">05:30</option>
+					<option value="6">06:00</option>
+					<option value="6.5">06:30</option>
+					<option value="7">07:00</option>
+					<option value="7.5">07:30</option>
+					<option value="8">08:00</option>
+					<option value="8.5">08:30</option>
+					<option value="9">09:00</option>
+					<option value="9.5">09:30</option>
+					<option value="10">10:00</option>
+					<option value="10.5">10:30</option>
+					<option value="11">11:00</option>
+					<option value="11.5">11:30</option>
+					<option value="12">12:00</option>
+					<option value="12.5">12:30</option>
+					<option value="13">13:00</option>
+					<option value="13.5">13:30</option>
+					<option value="14">14:00</option>
+					<option value="14.5">14:30</option>
+					<option value="15">15:00</option>
+					<option value="15.5">15:30</option>
+					<option value="16">16:00</option>
+					<option value="16.5">16:30</option>
+					<option value="17">17:00</option>
+					<option value="17.5">17:30</option>
+					<option value="18">18:00</option>
+					<option value="18.5">18:30</option>
+					<option value="19">19:00</option>
+					<option value="19.5">19:30</option>
+					<option value="20">20:00</option>
+					<option value="20.5">20:30</option>
+					<option value="21">21:00</option>
+					<option value="21.5">21:30</option>
+					<option value="22">22:00</option>
+					<option value="22.5">22:30</option>
+					<option value="23">23:00</option>
+					<option value="23.5">23:30</option>
+				</select>~
+				<select id="timeEnd" onfocus='this.size=5;' onblur='this.size=1; checkTime( $(this).prev(), $(this));' onchange='this.size=1; this.blur();'>
+					<option value="-1" selected>請選擇</option> 
+					<option value="0">00:00</option>
+					<option value="0.5">00:30</option>
+					<option value="1">01:00</option>
+					<option value="1.5">01:30</option>
+					<option value="2">02:00</option>
+					<option value="2.5">02:30</option>
+					<option value="3">03:00</option>
+					<option value="3.5">03:30</option>
+					<option value="4">04:00</option>
+					<option value="4.5">04:30</option>
+					<option value="5">05:00</option>
+					<option value="5.5">05:30</option>
+					<option value="6">06:00</option>
+					<option value="6.5">06:30</option>
+					<option value="7">07:00</option>
+					<option value="7.5">07:30</option>
+					<option value="8">08:00</option>
+					<option value="8.5">08:30</option>
+					<option value="9">09:00</option>
+					<option value="9.5">09:30</option>
+					<option value="10">10:00</option>
+					<option value="10.5">10:30</option>
+					<option value="11">11:00</option>
+					<option value="11.5">11:30</option>
+					<option value="12">12:00</option>
+					<option value="12.5">12:30</option>
+					<option value="13">13:00</option>
+					<option value="13.5">13:30</option>
+					<option value="14">14:00</option>
+					<option value="14.5">14:30</option>
+					<option value="15">15:00</option>
+					<option value="15.5">15:30</option>
+					<option value="16">16:00</option>
+					<option value="16.5">16:30</option>
+					<option value="17">17:00</option>
+					<option value="17.5">17:30</option>
+					<option value="18">18:00</option>
+					<option value="18.5">18:30</option>
+					<option value="19">19:00</option>
+					<option value="19.5">19:30</option>
+					<option value="20">20:00</option>
+					<option value="20.5">20:30</option>
+					<option value="21">21:00</option>
+					<option value="21.5">21:30</option>
+					<option value="22">22:00</option>
+					<option value="22.5">22:30</option>
+					<option value="23">23:00</option>
+					<option value="23.5">23:30</option>
+				</select>
+				<span></span>&nbsp;
+				<br><label class="t1" for="">&nbsp; 預約間格 : &nbsp;</label>
+				<select id="space" onblur="checkspace( $(this) )">
+			   		<option value="0" selected>請選擇</option> 
+					<option value="1">1小時</option>
+					<option value="2">2小時</option>
+					<option value="3">3小時</option>
+					<option value="4">4小時</option>
+				</select>
+				<span></span>&nbsp;
+				<br><label class="t1" for="">&nbsp; 包廂數量 : &nbsp;</label>
+				<input class="boothNum" type="text" size="5" id="boothNum" onblur="checkBoothNum($(this));" />
+				<span></span>
+				<br><button onclick="del(this)">Delete</button><br><br>
+		  </div>`
+		  
+		    function submit () {
+			  if (checkPhoneSubmit && checkAddressSubmit && checkDateSubmit &&
+					  checkTimeSubmit && checkPersonSubmit && checkBoothNumSubmit) {
+				  let storeOrderArray = []
+			      $('.menuList').each((index, el) => {
+			        let data = {
+			          phone:$( ".phone" ).val(),
+			          address:$( ".address" ).val(),
+			          dateStart: $(el).find('select[id="dateStart"]').val(),
+			          dateEnd: $(el).find('select[id="dateEnd"]').val(),
+			          personMin: $(el).find('input[id="personMin"]').val(),
+			          personMax: $(el).find('input[id="personMax"]').val(),
+			          timeStart: $(el).find('select[id="timeStart"]').val(),
+			          timeEnd: $(el).find('select[id="timeEnd"]').val(),
+			          space: $(el).find('select[id="space"]').val(),
+			          boothNum: $(el).find('input[id="boothNum"]').val()
+			        }
+			        storeOrderArray.push(data)
+			      })
+			      let arrays = {
+					  storeOrder: storeOrderArray
+				  }
+			      $.ajax({
+			  		type: 'PUT',
+			  		url: '<c:url value="/storeOrder/StoreOrder"	/>',
+			  		data: JSON.stringify(arrays),
+			  		contentType:"application/json;charset=UTF-8",
+			  		dataType: 'json',
 
-    		var x = 1;
-    		$(add_button).click(function(e) {
-        		e.preventDefault();
-        		if (x < max_fields) {
-            		x++;
-            		$(wrapper).append('<div><select name="boothNum" id="boothNum">'+
-            						  	   		'<option value="" selected>請選擇</option>'+ 
-            						  	   		'<option value="1">週一</option>'+
-            						  	   		'<option value="2">週二</option>'+
-            						  	   		'<option value="3">週三</option>'+
-            						       		'<option value="4">週四</option>'+
-            						       		'<option value="5">週五</option>'+
-            						       		'<option value="6">週六</option>'+
-            						       		'<option value="7">週日</option>'+
-            						       '</select>'+
-            						       '<label class="t1" for="">&nbsp; 最少人數 : &nbsp;</label>'+
-            						       '<input type="text" size="5" id="min" >'+
-            						       '<label class="t1" for="">&nbsp; 最多人數 : &nbsp;</label>'+
-            						       '<input type="text" size="5" id="max" >'+
-            						       '<a href="#" class="delete">Delete</a>'+
-            						  '</div>'); //add input box
-        		} else {
-            		alert('包廂最多設定三組喔~')
-            		
-        		}
-    		});
-
-    		$(wrapper).on("click", ".delete", function(e) {
-        		e.preventDefault();
-        		$(this).parent('div').remove();
-        		x--;
-    		})
-		});
+			  		success:
+			  			function (data) {
+			  				if (data.isOk == "ok") {
+			  					alert("訂單設定成功");
+			  					window.location.href = "<c:url value='/storeOrder/StoreOrder'	/>";
+			  				} else {
+			  					alert("輸入資料有誤");
+			  					window.location.href = "<c:url value='/storeOrder/StoreOrder'	/>";
+			  				}
+			  			},
+			  		error:
+			  			function (xhr, ajaxOptions, thrownError) {
+			  				alert(xhr.status + "\n" + thrownError);
+			  			}
+			  	});
+			  } 
+		    }
+		function oneclick(){//一鍵輸入
+	 		document.getElementById("timeStart").value = "08:00";
+	 		document.getElementById("timeEnd").value = "20:00";
+	 		document.getElementById("boothNum").value = 10;
+	 		document.getElementById("phone").value = "0919123456";
+	 	}
 		</script>	
-
-
-	
-	<form:form method="POST" modelAttribute="store_OrderSettingBean" id="Store_OrderSettingForm">
-        
-        <label class="t1" for="">可訂位時間 :</label>
-        <form:input id="timeStart" path="timeStart" type='time'
-					class='form:input-large' size="30" autocomplete="off"/> ~
-		<form:input id="timeEnd" path="timeEnd" type='time'
-					class='form:input-large' size="30" autocomplete="off" onblur="checkTimeEnd();"/>
-        <span id="spanTime"></span>
-        <br><br>
-		
-        <label for="" class="t1">包廂數 :</label>
-        <form:input id="boothNum" path="boothNum" type='boothNum'
-					class='form:input-large' size="10" autocomplete="off" onblur="checkBoothNum();" oninput="value=value.replace(/[^\d]/g,'')"/>
-        <span id="spanBoothNum"></span>
-        <br><br>    
-        
-        <label for="" class="t1">電話 :</label> 
-        <form:input id="phone" path="phone" type='phone'
-						class='form:input-large' size="11" autocomplete="off" onblur="checkPhone();" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')"/>
-		<span id="spanPhone"></span>
-		<br><br>
-		<div id="btn">
-			<input type="button" onclick="register()" value="確認送出">
-     		<input type="reset"	value="全部清空" />
-     	</div>
-     </form:form>
-     	<button id='btn' onclick="oneclick()">一鍵輸入</button>
-     </div>
-     <script>
-     function oneclick(){//一鍵輸入
- 		document.getElementById("timeStart").value = "08:00";
- 		document.getElementById("timeEnd").value = "20:00";
- 		document.getElementById("boothNum").value = 10;
- 		document.getElementById("phone").value = "0919123456";
- 	}
-     function register() {
-    	 console.log(checkTimeEnd());
-    	 console.log(checkBoothNum());
-    	 console.log(checkPhone());
-         if (checkTimeEnd() && checkBoothNum() && checkPhone()) {
-         	document.forms["Store_OrderSettingForm"].submit();
- 		} else {
- 			return false;
- 		}
-     }
-     
-//      function myFunction() {
-//     	var x = document.createElement("INPUT");
-//     	x.setAttribute("type", "text");
-//     	x.setAttribute("value", "Hello World!");
-//     	document.body.appendChild(x);
-//      }
-     </script>
-
+     	</div><br><br>
+     	
+	 		<div id="btn">
+				<input type="button" onclick="submit()" value="確認送出">
+     			<input type="reset"	value="全部清空" />
+     		</div>
+     			<button id='btn' onclick="oneclick()">一鍵輸入</button>
+	</div>
     <!-- 寫上面 -->
-    
     <jsp:include page="/fragment/footer.jsp" />
-
   </body>
 </html>

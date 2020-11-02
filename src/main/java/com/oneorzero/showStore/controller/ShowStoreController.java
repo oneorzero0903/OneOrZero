@@ -53,7 +53,7 @@ public class ShowStoreController {
 	@GetMapping("/show/ShowStoresByPage")
 	public String showByPage(Model model) {
 		model.addAttribute("totalPages", service.getTotalPages());
-		return "/show/ShowStoresByPage";
+		return "show/ShowStoresByPage";
 	}
 
 	@GetMapping("/show/showStoreAjax")

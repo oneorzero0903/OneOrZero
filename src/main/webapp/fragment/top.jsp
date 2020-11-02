@@ -51,7 +51,7 @@
               
               <li class="nav-item">
                 <c:if test="${ funcName != 'ORD' }">
-                  <a class="nav-link" href="<c:url value='/orders/OrderList'	/>">訂位</a>
+                  <a class="nav-link" href="<c:url value='/orders/OrderMenu'	/>">訂位</a>
 			    </c:if>
 			    <c:if test="${ funcName == 'ORD' }"> 
                   <a class="nav-link">訂位</a>
