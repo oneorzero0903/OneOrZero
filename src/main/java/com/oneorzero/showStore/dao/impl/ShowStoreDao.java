@@ -2,8 +2,10 @@ package com.oneorzero.showStore.dao.impl;
 
  import java.util.ArrayList;
  import java.util.List;
+import java.util.logging.Logger;
 
- import org.hibernate.Session;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
  import org.hibernate.SessionFactory;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Repository;
@@ -59,15 +61,15 @@ package com.oneorzero.showStore.dao.impl;
 
 	@Override
 	public List<StoreBean> showStoresByArea(Integer pageNo, String area) {
-		int startNo = (pageNo - 1) * storesPerPage;
- 		String hql = "FROM StoreBean where address_area = " + area;
- 		if (area.equals("'不限'") || area.trim().length() == 0) hql = "FROM StoreBean";
- 		Session session = factory.getCurrentSession();
+			int startNo = (pageNo - 1) * storesPerPage;
+			String hql = "FROM StoreBean where address_area = " + area;
+			if (area.equals("'不限'") || area.trim().length() == 0) hql = "FROM StoreBean";
+			Session session = factory.getCurrentSession();
 
- 		return session.createQuery(hql)
- 				.setMaxResults(storesPerPage)
- 				.setFirstResult(startNo)
- 				.getResultList();
+			return session.createQuery(hql)
+					.setMaxResults(storesPerPage)//最大筆數
+					.setFirstResult(startNo)//第一筆資料(從0開始)
+					.getResultList();
 	}
 
 	@Override

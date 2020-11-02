@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Store_OrderSettingBean implements java.io.Serializable{
@@ -19,7 +19,7 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer setting_id;//商家訂單編號
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "store_id")
 	private StoreBean store;//商家編號
 	

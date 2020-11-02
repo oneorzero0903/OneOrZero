@@ -2,12 +2,15 @@ package com.oneorzero.bean;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class StoreBean implements java.io.Serializable{
@@ -36,10 +39,6 @@ public class StoreBean implements java.io.Serializable{
 	private Double rating = 0.0;
  	private Integer rateCount = 0;
 
-	
-	@OneToOne(mappedBy = "store")
-	private Store_OrderSettingBean store_OrderSetting;
-	
 	public StoreBean() {
 	}
 	
@@ -163,14 +162,5 @@ public class StoreBean implements java.io.Serializable{
 	public void setUpdate_dt(String update_dt) {
 		this.update_dt = update_dt;
 	}
-	public Store_OrderSettingBean getStore_OrderSetting() {
-		return store_OrderSetting;
-	}
-	public void setStore_OrderSetting(Store_OrderSettingBean store_OrderSetting) {
-		this.store_OrderSetting = store_OrderSetting;
-	}
-
-
-
 	
 }

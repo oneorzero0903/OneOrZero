@@ -44,11 +44,4 @@ public class StoreOrderDaoImpl implements IStoreOrderDao {
 		return (Integer)store_id;
 	}
 
-//	@Override
-//	public void verifyAccount(String email) {
-//		String hql = "UPDATE StoreBean SET isSuccess='on'  WHERE email = :email";
-//		Session session = factory.getCurrentSession();
-//		session.createQuery(hql).setParameter("email", email).executeUpdate();
-//	}
-	
 }
