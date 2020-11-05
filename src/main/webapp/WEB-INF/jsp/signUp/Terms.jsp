@@ -140,7 +140,9 @@
 			function register() {
 				if ($("[name=agr]").prop("checked")) {
 					location.href = "<c:url value='/signUp/UserSignUp'	/>";
-				}
+				} else {
+                	alert('未勾選已同意!')
+                }
 			}
 		</script>
 	</div>

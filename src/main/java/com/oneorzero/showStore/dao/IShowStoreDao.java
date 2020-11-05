@@ -11,4 +11,5 @@ package com.oneorzero.showStore.dao;
  	int getTotalAreaPages(String area);
  	List<StoreBean> showStoresByPageNo(Integer pageNo);
  	List<StoreBean> showStoresByArea(Integer pageNo, String area);
+ 	boolean existStore_Id(String store_id);
  }

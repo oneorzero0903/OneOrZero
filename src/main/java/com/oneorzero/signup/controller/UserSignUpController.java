@@ -61,7 +61,7 @@ public class UserSignUpController{
 			
 			send.sendAccountVerify(mail, context);
 			redirectAttributes.addFlashAttribute("email", email);
-			return "redirect:/signUp/SignUpOK";
+			return "redirect:/";
 		} else {
 			model.addAttribute("SignUpError", "此帳號已被使用");
 			return "signUp/UserSignUp";

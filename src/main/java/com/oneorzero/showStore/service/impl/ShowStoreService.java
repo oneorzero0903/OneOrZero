@@ -48,5 +48,10 @@ public class ShowStoreService implements IShowStoreService {
 		area = "'" + area + "'";
 		return dao.getTotalAreaPages(area);
 	}
+	
+	@Override
+	public boolean existStore_Id(String store_id) {
+		return dao.existStore_Id(store_id);
+	}
 
 }

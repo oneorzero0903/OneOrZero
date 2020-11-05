@@ -28,108 +28,100 @@
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     
-    <div class="main-banner header-text">
+   <div class="main-banner header-text">
       <div class="container-fluid">
         <div class="owl-banner owl-carousel">
           <div class="item">
-            <img src="<c:url value='/images/restaurant1.jpg'	/>" alt="">
+            <div id="adDiv1"><img src="<c:url value='/images/ADdemo.png'	/>" alt="">
+            </div>
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
-                  <span>Fashion</span>
-                </div>
-                <a href="#"><h4>domo1</h4></a>
-                <ul class="post-info">
-                  <li><a href="#">Admin</a></li>
-                  <li><a href="#">May 12, 2020</a></li>
-                  <li><a href="#">12 Comments</a></li>
-                </ul>
+               	</div>
+                  <div style="background-color:#27272786;">
+                
+                <div id="AdName1"><h4 style="color:#d26900;">買起來!</h4></div>
+                
+                
+              </div>
               </div>
             </div>
           </div>
           <div class="item">
-            <img src="<c:url value='/images/cafeImg/1.jpg'	/>" alt="">
+            <div id="adDiv2"><img src="<c:url value='/images/cafeImg/2.jpg'	/>" ></div>
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
-                  <span>Nature</span>
+                 
                 </div>
-                <a href="#"><h4>demo2</h4></a>
-                <ul class="post-info">
-                  <li><a href="#">Admin</a></li>
-                  <li><a href="#">May 14, 2020</a></li>
-                  <li><a href="#">24 Comments</a></li>
-                </ul>
+               <div style="background-color:#27272786">
+                <div id="AdName2" ><h4 style="color:#d26900">黑洞珈琲店</div>
+                
+</div>
+              </div>
+            </div>
+          </div>
+          <div class="item" >
+           <div id="adDiv3"> <img src="<c:url value='/images/cafeImg/3.jpg'	/>"></div>
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                   
+                </div>
+                <div style="background-color:#27272786">
+                <div id="AdName3" ><h4 style="color:#d26900">樓梯好陡steepstairs</h4></div>
+                
+              </div>
               </div>
             </div>
           </div>
           <div class="item">
-            <img src="<c:url value='/images/cafeImg/1.jpg'	/>" alt="">
+            <div id="adDiv4"><img src="<c:url value='/images/cafeImg/4.jpg'	/>" ></div>
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
-                  <span>Lifestyle</span>
+                  
                 </div>
-                <a href="#"><h4>demo3</h4></a>
-                <ul class="post-info">
-                  <li><a href="#">Admin</a></li>
-                  <li><a href="#">May 16, 2020</a></li>
-                  <li><a href="#">36 Comments</a></li>
-                </ul>
+                <div style="background-color:#27272786">
+                 <div id="AdName4" ><h4 style="color:#d26900">朔望咖啡 SYZYGY COFFEE</h4></div>
+               
+              </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="item" >
+            <div id="adDiv5"><img src="<c:url value='/images/cafeImg/5.jpg'	/>" ></div>
+            <div class="item-content">
+              <div class="main-content">
+                <div class="meta-category">
+                  
+                </div>
+                 <div style="background-color:#27272786">
+                 <div id="AdName5" ><h4 style="color:#d26900">TOUCHEART_觸及真心咖啡廳</h4></div>
+                
+                </div>
               </div>
             </div>
           </div>
           <div class="item">
-            <img src="<c:url value='/images/banner-item-04.jpg'	/>" alt="">
+            <img src="<c:url value='/images/cafeImg/6.jpg'	/>" alt="">
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
-                  <span>Fashion</span>
+                  
                 </div>
-                <a href="#"><h4>demo3</h4></a>
-                <ul class="post-info">
-                  <li><a href="#">Admin</a></li>
-                  <li><a href="#">May 18, 2020</a></li>
-                  <li><a href="#">48 Comments</a></li>
-                </ul>
+                <div style="background-color:#27272786">
+                 <div id="AdName6" ><h4 style="color:#d26900">January Couple</h4></div>
+               
               </div>
-            </div>
-          </div>
-          <div class="item">
-            <img src="<c:url value='/images/banner-item-05.jpg'	/>" alt="">
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-                  <span>Nature</span>
-                </div>
-                <a href="#"><h4>domo3</h4></a>
-                <ul class="post-info">
-                  <li><a href="#">Admin</a></li>
-                  <li><a href="#">May 24, 2020</a></li>
-                  <li><a href="#">64 Comments</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <img src="<c:url value='/images/banner-item-06.jpg'	/>" alt="">
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-                  <span>Lifestyle</span>
-                </div>
-                <a href="#"><h4>demo5</h4></a>
-                <ul class="post-info">
-                  <li><a href="#">Admin</a></li>
-                  <li><a href="#">May 26, 2020</a></li>
-                  <li><a href="#">72 Comments</a></li>
-                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+             
     <!-- Banner Ends Here -->
 
     <section class="call-to-action">
@@ -164,15 +156,15 @@
                 <div class="col-lg-12">
                   <div class="blog-post">
                     <div class="blog-thumb">
-                      <img src="<c:url value='/images/blog-post-01.jpg'	/>" alt="">
+                      <img src="<c:url value='/images/cafeImg/7.jpg'	/>" alt="">
                     </div>
                     <div class="down-content">
-                      <span>Lifestyle</span>
-                      <a href="#"><h4>商家A</h4></a>
+                      <span>夏綠地Charlotte Cafe</span>
+                      
                       <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 31, 2020</a></li>
-                        <li><a href="#">12 Comments</a></li>
+                        
+                        <li><a href="#">11:00-20:00</a></li>
+                        <li><a href="#">中正區。台北市</a></li>
                       </ul>
                       <p>坐在樹下喝咖啡，感覺不錯喔♥</p>
                       <div class="post-options">
@@ -199,17 +191,17 @@
                 <div class="col-lg-12">
                   <div class="blog-post">
                     <div class="blog-thumb">
-                      <img src="<c:url value='/images/blog-post-02.jpg'	/>" alt="">
+                      <img src="<c:url value='/images/cafeImg/8.jpg'	/>" alt="">
                     </div>
                     <div class="down-content">
-                      <span>Healthy</span>
-                      <a href="#"><h4>店家B</h4></a>
+                      <span>貝克宅 Beckhome Roasting House</span>
+                     
                       <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 24, 2020</a></li>
-                        <li><a href="#">36 Comments</a></li>
+                        
+                           <li><a href="#">11:00-20:00</a></li>
+                        <li><a href="#">松山區。台北市</a></li>
                       </ul>
-                      <p>你覺得這家怎麼樣，釘高支阿</p>
+                      <p>彷彿回家的舒適感</p>
                       <div class="post-options">
                         <div class="row">
                           <div class="col-6">
@@ -234,17 +226,17 @@
                 <div class="col-lg-12">
                   <div class="blog-post">
                     <div class="blog-thumb">
-                      <img src="<c:url value='/images/blog-post-03.jpg'	/>" alt="">
+                      <img src="<c:url value='/images/cafeImg/9.jpg'	/>" alt="">
                     </div>
                     <div class="down-content">
-                      <span>Fashion</span>
-                      <a href="#"><h4>城市感的如何阿</h4></a>
+                      <span>成真咖啡 台北永康店</span>
+                      
                       <ul class="post-info">
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">May 14, 2020</a></li>
-                        <li><a href="#">48 Comments</a></li>
+                        
+                         <li><a href="#">10:00-18:00</a></li>
+                        <li><a href="#">中正區。台北市</a></li>
                       </ul>
-                      <p>喝了一堆車的二氧化氮，哭哭</p>
+                      <p>甜甜的，如同你的笑容一樣</p>
                       <div class="post-options">
                         <div class="row">
                           <div class="col-6">
@@ -268,7 +260,7 @@
                 </div>
                 <div class="col-lg-12">
                   <div class="main-button">
-                    <a href="<c:url value='/blog'	/>">按我更多♥</a>
+                    <a href="<c:url value='/show/ShowStoresByPage'	/>">按我更多♥</a>
                   </div>
                 </div>
               </div>
@@ -287,21 +279,21 @@
                 <div class="col-lg-12">
                   <div class="sidebar-item recent-posts">
                     <div class="sidebar-heading">
-                      <h2>Recent Posts</h2>
+                      <h2>Recent Shops</h2>
                     </div>
                     <div class="content">
                       <ul>
                         <li><a href="#">
-                          <h5>焼きそばを食べたいです！</h5>
-                          <span>May 31, 2020</span>
+                          <h5>樓上的嬉皮與笑臉男</h5>
+                          <span>台北市。松山區</span>
                         </a></li>
                         <li><a href="#">
-                          <h5> Großes Österreich</h5>
-                          <span>May 28, 2020</span>
+                          <h5> 呆待咖啡 DD coffee</h5>
+                          <span>台北市。萬華區</span>
                         </a></li>
                         <li><a href="#">
-                          <h5>후라이드 치킨이 맛있어요</h5>
-                          <span>May 14, 2020</span>
+                          <h5>DOTEL Coffice Ximen 西門町手沖咖啡館</h5>
+                          <span>台北市。 文山區</span>
                         </a></li>
                       </ul>
                     </div>
@@ -350,6 +342,16 @@
     </section>
 
     <jsp:include page="/fragment/footer.jsp" />
-
+	<script>
+	$('.owl-carousel').owlCarousel({
+		responsiveClass:true,
+		loop:true,
+		autoplay:true,  /* 自動輪播 */
+		autoplayTimeout:2000,  /* 輪播速度 */
+		autoplayHoverPause:true
+		});
+	
+	
+	</script>
   </body>
 </html>

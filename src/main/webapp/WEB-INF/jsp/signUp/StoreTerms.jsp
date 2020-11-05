@@ -196,6 +196,8 @@ color:#fff
             function register() {
                 if ($("[name=agr]").prop("checked")) {
                     location.href = "<c:url value='/signUp/StoreSignUp'	/>";
+                } else {
+                	alert('未勾選已同意!')
                 }
             }
         </script>

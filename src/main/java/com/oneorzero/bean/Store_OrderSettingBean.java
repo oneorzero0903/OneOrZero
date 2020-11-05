@@ -27,8 +27,7 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 	private String address;//地址
 	private String dateStart;//日期(起) (週一:1, 週二:2, 週三:3, 週四:4, 週五:5, 週六:6, 週日:7)
 	private String dateEnd;//日期(迄) (週一:1, 週二:2, 週三:3, 週四:4, 週五:5, 週六:6, 週日:7)
-	private String personMin;//最小預約人數
-	private String personMax;//最大預約人數
+	private String person;//可容納人數
 	private String timeStart;//可預約時間(起)
 	private String timeEnd;//可預約時間(迄)
 	private String space;
@@ -40,7 +39,7 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 	public Store_OrderSettingBean() {
 	}
 
-	public Store_OrderSettingBean(Integer setting_id, String phone, String address, String dateStart, String dateEnd, String personMin, String personMax, String timeStart, String timeEnd, String space, Integer boothNum,
+	public Store_OrderSettingBean(Integer setting_id, String phone, String address, String dateStart, String dateEnd, String person, String timeStart, String timeEnd, String space, Integer boothNum,
 			String create_dt, String update_dt) {
 		String timeStr1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.setting_id = setting_id;
@@ -48,8 +47,7 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 		this.address = address;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
-		this.personMin = personMin;
-		this.personMax = personMax;
+		this.person = person;
 		this.timeStart = timeStart;
 		this.timeEnd = timeEnd;
 		this.space = space;
@@ -90,20 +88,12 @@ public class Store_OrderSettingBean implements java.io.Serializable{
 		this.dateEnd = dateEnd;
 	}
 
-	public String getPersonMin() {
-		return personMin;
+	public String getPerson() {
+		return person;
 	}
 
-	public void setPersonMin(String personMin) {
-		this.personMin = personMin;
-	}
-
-	public String getPersonMax() {
-		return personMax;
-	}
-
-	public void setPersonMax(String personMax) {
-		this.personMax = personMax;
+	public void setPerson(String person) {
+		this.person = person;
 	}
 
 	public StoreBean getStore() {

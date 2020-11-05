@@ -49,7 +49,6 @@ button.pageBtn {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var stores = JSON.parse(xhr.responseText);
 				var content = "";
-				console.log(stores);
 				for (var i = 0; i < stores.length; i++) {
 					content += "<div class='float'>"
 							+ "<table>"

@@ -1,85 +1,68 @@
 package com.oneorzero.storeOrder.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.oneorzero.bean.StoreBean;
+import com.oneorzero.bean.OrderTimeBean;
 import com.oneorzero.bean.Store_OrderSettingBean;
+import com.oneorzero.showStore.model.SearchOrderRequest;
+import com.oneorzero.storeOrder.model.BookingTimeRequest;
 import com.oneorzero.storeOrder.service.IUserOrderService;
 
 @Controller
-@SessionAttributes({ "member" })
-public class UserOrderController{
-	
+@SessionAttributes({ "member", "orderSetting" ,"orderTime"})
+public class UserOrderController {
+
 	@Autowired
 	IUserOrderService service;
-	
-	@GetMapping("/orders/OrderMenu")
+
+	@GetMapping("/orders/Orders")
 	public String getOrderForm(Model model) {
-		return "/orders/OrderMenu";
+		return "orders/Orders";
 	}
-	
-//	@GetMapping("/signUp/Terms")
-//	public String terms(Model model) {
-//		return "signUp/Terms";
-//	}
-//	
-//	@GetMapping("/signUp/UserSignUp")
-//	public String getNewSignUpForm(Model model) {
-//		MemberBean bean = new MemberBean();
-//		model.addAttribute("memberBean", bean);
-//		return "signUp/UserSignUp";
-//	}
-//	
-//	@PostMapping("/signUp/UserSignUp")
-//	public String userSignUp(@RequestParam String email,
-//							@RequestParam String name,
-//							@RequestParam String gender,
-//							@RequestParam String birthday,
-//							@RequestParam String password,
-//							@ModelAttribute("memberBean") MemberBean mb,
-//							Model model,
-//							RedirectAttributes redirectAttributes) {
-//		Map<String, String> errorMsg = new HashMap<String, String>();
-//		model.addAttribute("ErrorMsg", errorMsg);
-//		System.out.println(mb.getEmail());
-//		boolean status = false;
-//		status = service.signUp(mb);
-//		if (status) {
-//			SendMail send = new SendMail();
-//			Base64.Encoder encoder = Base64.getEncoder();
-//			
-//			String mail = mb.getEmail();
-//			String encodeEmail = encoder.encodeToString(mail.getBytes());
-//			
-//			String context = "http://localhost:8080/OneOrZero/signUp/UserAccountVerify"+
-//							 "?" + "email=" + encodeEmail;
-//			
-//			send.sendAccountVerify(mail, context);
-//			redirectAttributes.addFlashAttribute("email", email);
-//			return "redirect:/signUp/SignUpOK";
-//		} else {
-//			model.addAttribute("SignUpError", "此帳號已被使用");
-//			return "signUp/UserSignUp";
-//		}	
-//	}
-//	
-//	@GetMapping("/signUp/SignUpOK")
-//	public String signUpRedirect(Model model) {
-//		return "signUp/SignUpOK";
-//	}
-//	
-//	@GetMapping("/signUp/UserAccountVerify")
-//	public String userAccountVerify(String email,
-//									@ModelAttribute("memberBean") MemberBean mb,
-//									Model model,
-//									RedirectAttributes redirectAttributes) {
-//		Base64.Decoder decoder = Base64.getDecoder();		
-//		email = new String(decoder.decode(email));
-//		service.verifyAccount(email);
-//		return "redirect:/login/UserLogin";
-//	}
+
+	@PostMapping(value = "/show/storeOrder", consumes = { "application/json" }, produces = { "application/json" })
+	public @ResponseBody Map<String, String> order(@RequestBody SearchOrderRequest store_id, Model model) {// 從showOneStoreAjax.jsp進入
+																											// 連到該store_id商家的訂單資訊
+		Map<String, String> map = new HashMap<>();
+		try {
+			List<Store_OrderSettingBean> orderSetting = service.findOrder(store_id.getStore_id());
+			model.addAttribute("orderSetting", orderSetting);
+			map.put("isOk", "ok");
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("isOk", "fail");
+		}
+		return map;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@PostMapping(value = "/orders/booking", consumes = { "application/json" }, produces = { "application/json" })
+	public @ResponseBody Map<String, String> booking(@RequestBody BookingTimeRequest date, Model model) {
+		Map<String, String> map = new HashMap<>();
+		try {
+			List<Store_OrderSettingBean> orderSetting = 
+					(List<Store_OrderSettingBean>)model.getAttribute("orderSetting");
+			List<OrderTimeBean> orderTime = service.getOrderTime(orderSetting, date);
+			model.addAttribute("orderTime", orderTime);
+			map.put("isOk", "ok");
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("isOk", "fail");
+		}
+		return map;
+
+	}
+
 }

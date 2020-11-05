@@ -2,10 +2,8 @@ package com.oneorzero.showStore.dao.impl;
 
  import java.util.ArrayList;
  import java.util.List;
-import java.util.logging.Logger;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+ import org.hibernate.Session;
  import org.hibernate.SessionFactory;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Repository;
@@ -80,6 +78,26 @@ import org.hibernate.Session;
  		long counts = (long) session.createQuery(hql).getSingleResult();
  		int totalPages = (int) (Math.ceil((double)counts / (double)storesPerPage));
  		return totalPages;
+	}
+	
+	@Override
+	public boolean existStore_Id(String store_id) {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT count(store_id) FROM Store_OrderSettingBean WHERE store_id = :store_id";
+		try {
+			Long count = (Long)session.createQuery(hql)
+					.setParameter("store_id", store_id)
+					.getSingleResult();
+			if (count > 0) {
+				System.out.println("count =>" + count);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
  }

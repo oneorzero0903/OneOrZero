@@ -42,7 +42,6 @@ public class StoreOrderController {
 		Map<String, String> map = new HashMap<>();
 		StoreBean store = (StoreBean) model.getAttribute("store");
 		Integer store_id = service.getStore_Id(store.getEmail());
-		System.out.println(store_id);
 		store.setStore_id(store_id);
 		boolean isSuccess = service.insertStoreOrder(storeOrder.getStoreOrder(), store);
 		if (isSuccess) {
