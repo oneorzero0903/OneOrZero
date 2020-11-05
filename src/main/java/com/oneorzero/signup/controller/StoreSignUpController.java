@@ -1,8 +1,6 @@
 package com.oneorzero.signup.controller;
 
 import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,13 +59,8 @@ public class StoreSignUpController{
 							 "?" + "email=" + encodeEmail;
 			
 			send.sendAccountVerify(mail, context);
-<<<<<<< HEAD
-			redirectAttributes.addFlashAttribute("email", email);
-			return "redirect:/indexShop";
-=======
 			redirectAttributes.addFlashAttribute("email", mail);
-			return "redirect:/signUp/SignUpOK";
->>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
+			return "redirect:/indexShop";
 		} else {
 			model.addAttribute("SignUpError", "此帳號已被使用");
 			return "signUp/StoreSignUp";

@@ -1,21 +1,12 @@
 package com.oneorzero.showStore.dao.impl;
 
  import java.util.ArrayList;
-<<<<<<< HEAD
  import java.util.List;
 
  import org.hibernate.Session;
  import org.hibernate.SessionFactory;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Repository;
-=======
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
->>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
 
 import com.oneorzero.bean.StoreBean;
 import com.oneorzero.showStore.dao.IShowStoreDao;

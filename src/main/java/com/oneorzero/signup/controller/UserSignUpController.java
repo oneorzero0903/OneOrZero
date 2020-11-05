@@ -58,13 +58,8 @@ public class UserSignUpController{
 			String context = "http://localhost:8080/OneOrZero/signUp/UserAccountVerify"+
 							 "?" + "email=" + encodeEmail;
 			
-<<<<<<< HEAD
 			send.sendAccountVerify(mail, context);
-			redirectAttributes.addFlashAttribute("email", email);
-=======
-			send.sendAccountVerify(mail, context);			
 			redirectAttributes.addFlashAttribute("email", mail);
->>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
 			return "redirect:/";
 		} else {
 			
