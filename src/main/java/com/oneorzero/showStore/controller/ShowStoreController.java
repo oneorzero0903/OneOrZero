@@ -28,7 +28,7 @@ public class ShowStoreController {
 
 	// 按照頁面顯示店家
 	@GetMapping("/show/pagingStoresData.json")
-	public @ResponseBody List<StoreBean> showStoresByPageNo(
+	public @ResponseBody List<StoreBean> showStoresByPageNo (
 			@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
 			Model model) {
 		return service.showStoresByPageNo(pageNo);

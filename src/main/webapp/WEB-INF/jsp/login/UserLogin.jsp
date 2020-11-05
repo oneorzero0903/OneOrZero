@@ -98,8 +98,7 @@
 						<p style="color: white;">${ErrorMsg.VerifyError}${ErrorMsg.LoginError}</p>
 						<br>
 					</div>
-					<button class='btn btn-dark' onclick="oneClick()"
-						style="margin: 10px">一鍵登入</button>
+					
 					<div align="center">
 						<a href="<c:url value='/signUp/Terms'/>">還沒有帳號？</a> <a
 							href="<c:url value='/login/UserForgetPwd' />">忘記密碼？</a>
@@ -114,6 +113,8 @@
 				</div>
 			</div>
 		</form:form>
+		<button class='btn btn-dark' onclick="oneClick()"
+						style="margin: 10px">一鍵登入</button>
 
 	</div>
 

@@ -28,4 +28,14 @@ public class AdvertisingService implements IAdvertisingService {
 		return dao.buyAd(adBean);
 	}
 
+	@Override
+	public void updateAdImgPath(AdvertisingBean adBean) {
+		dao.updateAdImgPath(adBean);
+	}
+
+	@Override
+	public AdvertisingBean findByPK(Integer ad_id) {
+		return dao.findByPK(ad_id);
+	}
+
 }

@@ -64,18 +64,20 @@ button.pageBtn {
 							+ "</table></div>";
 				}
 				mainDiv.innerHTML = content;
+				
+				var totalPages = ${totalPages};
+				var pageDiv = document.getElementById("pageDiv");
+				var pageLink = "";
+				for (var i = 1; i <= totalPages; i++) {
+					pageLink += "<button class='pageBtn' onclick='showByPage(" + i
+							+ ")'>" + i + "</button>";
+				}
+				pageDiv.innerHTML = pageLink;
+				var areaBtn = document.getElementById("areaBtn");
+				areaBtn.onclick = showByArea;
 			}
 		}
-		var totalPages = ${totalPages};
-		var pageDiv = document.getElementById("pageDiv");
-		var pageLink = "";
-		for (var i = 1; i <= totalPages; i++) {
-			pageLink += "<button class='pageBtn' onclick='showByPage(" + i
-					+ ")'>" + i + "</button>";
-		}
-		pageDiv.innerHTML = pageLink;
-		var areaBtn = document.getElementById("areaBtn");
-		areaBtn.onclick = showByArea;
+		
 	}
 
 	function showByPage(no) {
@@ -139,20 +141,22 @@ button.pageBtn {
 				}
 				if (stores.length == 0) mainDiv.innerHTML = "<p style='color: white;'>查無資料 請更改搜尋條件</p>";
 				else mainDiv.innerHTML = content;
+				
+				var pageDiv = document.getElementById("pageDiv");
+				if (area.length != 3) {
+					var pageLink = "";
+					var totalPages = ${totalPages}
+					for (var i = 1; i <= totalPages; i++) {
+						pageLink += "<button class='pageBtn' onclick='showByPage(" + i
+								+ ")'>" + i + "</button>   ";
+					}
+					pageDiv.innerHTML = pageLink;
+				} else {
+					pageDiv.innerHTML = "";
+				}
 			}
 		}
-		var pageDiv = document.getElementById("pageDiv");
-		if (area.length != 3) {
-			var pageLink = "";
-			var totalPages = ${totalPages}
-			for (var i = 1; i <= totalPages; i++) {
-				pageLink += "<button class='pageBtn' onclick='showByPage(" + i
-						+ ")'>" + i + "</button>   ";
-			}
-			pageDiv.innerHTML = pageLink;
-		} else {
-			pageDiv.innerHTML = "";
-		}
+		
 	}
 	
 </script>

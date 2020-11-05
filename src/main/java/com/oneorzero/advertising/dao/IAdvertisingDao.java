@@ -8,4 +8,6 @@ public interface IAdvertisingDao {
 	List<AdvertisingBean> showOKAd();
 	void deleteExpiredAd();
 	boolean buyAd(AdvertisingBean adBean);
+	void updateAdImgPath(AdvertisingBean adBean);
+	AdvertisingBean findByPK(Integer ad_id);
 }

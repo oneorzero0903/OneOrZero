@@ -7,12 +7,106 @@
 
   <head>
 	<jsp:include page="/fragment/linkCss.jsp" />
-	<style>
-	.adimg{
-	width:520px;
-	height:450px;
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style type="text/css">
+.wrapper {
+	position: relative;
+	width: 99%;
+	overflow: hidden;
+	margin: 0 auto;
+	height: 300px;
+}
+
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul.slides {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	width: 2400px;
+	left: 0px;
+	transition: all .5s;
+}
+
+ul.slides li {
+	width: 400px;
+	height: 300px;
+	overflow: hidden;
+	float: left;
+}
+
+ul.slides li img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.slide_btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	bottom: 0;
+	width: 30px;
+	color: #fff;
+	position: absolute;
+	font-size: 40px;
+}
+
+#prevSlide {
+	left: 0;
+}
+
+#nextSlide {
+	right: 0;
+}
+
+.slide_btn i {
+	color: rgba(255, 8, 64, 1);
+	transition: 2s;
+}
+
+.slide_btn:hover i {
+	color: rgba(255, 255, 255, 1);
+}
+</style>
+
+<script> 
+	window.onload = function() {
+		var adID = document.getElementById("adID");
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "<c:url value='/ad/adList.json' />", true);
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var adLists = JSON.parse(xhr.responseText);
+				var content = "<ul class='slides'>";
+				for (var i=0; i<adLists.length; i++) {  //廣告圖片將連結至店家個人頁面
+					content +=  "<li><a href='<c:url value='/show/showOneStoreAjax/"+ adLists[i].store.store_id+ "' />'>";
+					if (adLists[i].imgPath != null) {
+						content += "<img src='<c:url value='/"
+								   + adLists[i].imgPath +"' />'></a></li>";
+					} else {
+						content += "<img src='<c:url value='/getAdImg/"
+							+ adLists[i].ad_id +"' />'></a></li>";
+					}
+				}
+				if (adLists.length < 6) {  //預設圖片將會連結至廣告方案頁面
+					var noAd = 6 - adLists.length;
+					for (var i=0; i< noAd; i++) {
+						content += "<li ><img src='<c:url value='/images/ADdemo.png' />'></li>"
+					}
+				}
+				content += "</ul>"
+				adID.innerHTML = content;
+			}
+		}
 	}
-	</style>
+</script>
   </head>
 
   <body style="background-color: #272727;">
@@ -33,100 +127,111 @@
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
+    <br><br><br><br><div style="padding-top: 5px;"></div>
+    <div class="wrapper" id="wrapper">
+		<div id="adID" class="slidesAd">
+		<ul class="slides">  <!-- 142~148 不放就不會動？？ what??? -->
+			<li ></li>
+			<li ></li>
+			<li ></li>
+			<li ></li>
+			<li ></li>
+		</ul>
+		</div>
+		<div id="prevSlide" class="slide_btn">
+			<i class="fa fa-caret-left"></i>
+		</div>
+		<div id="nextSlide" class="slide_btn">
+			<i class="fa fa-caret-right"></i>
+		</div>
+	</div>
     
-   <div class="main-banner header-text">
-      <div class="container-fluid">
-        <div class="owl-banner owl-carousel">
-          <div class="item">
-            <div id="adDiv1" class="adimg"><img src="<c:url value='/images/ADdemo.png'	/>" alt="">
-            </div>
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-               	</div>
-                  <div style="background-color:#27272786;">
-                
-                <div id="AdName1"><h4 style="color:#d26900;">買起來!</h4></div>
-                
-                
-              </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div id="adDiv2"  class="adimg"><img src="<c:url value='/images/cafeImg/2.jpg'	/>" ></div>
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-                 
-                </div>
-               <div style="background-color:#27272786">
-                <div id="AdName2" ><h4 style="color:#d26900">黑洞珈琲店</div>
-                
-</div>
-              </div>
-            </div>
-          </div>
-          <div class="item" >
-           <div id="adDiv3"  class="adimg"> <img src="<c:url value='/images/cafeImg/3.jpg'	/>"></div>
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-                   
-                </div>
-                <div style="background-color:#27272786">
-                <div id="AdName3" ><h4 style="color:#d26900">樓梯好陡steepstairs</h4></div>
-                
-              </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div id="adDiv4"  class="adimg"><img src="<c:url value='/images/cafeImg/4.jpg'	/>" ></div>
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-                  
-                </div>
-                <div style="background-color:#27272786">
-                 <div id="AdName4" ><h4 style="color:#d26900">朔望咖啡 SYZYGY COFFEE</h4></div>
-               
-              </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="item" >
-            <div id="adDiv5"  class="adimg"><img src="<c:url value='/images/cafeImg/5.jpg'	/>" ></div>
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-                  
-                </div>
-                 <div style="background-color:#27272786">
-                 <div id="AdName5" ><h4 style="color:#d26900">TOUCHEART_觸及真心咖啡廳</h4></div>
-                
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <img src="<c:url value='/images/cafeImg/6.jpg'	/>" alt="">
-            <div class="item-content">
-              <div class="main-content">
-                <div class="meta-category">
-                  
-                </div>
-                <div style="background-color:#27272786">
-                 <div id="AdName6"  class="adimg"><h4 style="color:#d26900">January Couple</h4></div>
-               
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    
+   <div class="heading-page header-text">
+		<section class="page-heading">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="text-content">
+							<h4>about us</h4>
+							<h2>more about us!</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Banner Ends Here -->
+	
+
+	<script type="text/javascript">
+		var slideNum = 0;
+		var slideCount = $(".slides li").length; //6
+		var lastIndex = slideCount - 1;
+		time = "";
+		go();
+
+		function go() {
+
+			if (time == "") {
+				time = setInterval(function next() {
+					slideNum++;
+					if (slideNum > lastIndex)
+						slideNum = 0;
+					show();
+					function show() {
+
+						let move = 0 - 345 * slideNum;
+						$("ul.slides").css("left", move);
+					}
+
+					$("ul.slides").mouseenter(function() {
+						clearInterval(time);
+						time = "";
+					});
+
+					$("div.slide_btn").mouseenter(function() {
+						clearInterval(time);
+						time = "";
+					});
+
+					$("div.slide_btn").mouseleave(function() {
+						go();
+					})
+				}, 1500);
+			}
+			$("ul.slides").mouseleave(function() {
+				go();
+			})
+		}
+
+		$(function() {
+
+			function show() {
+				let move = 0 - 345 * slideNum;
+				$("ul.slides").css("left", move);
+
+			}
+
+			$("#prevSlide").click(function() {
+				slideNum--;
+				if (slideNum < 0)
+					slideNum = lastIndex;
+				show();
+			})
+
+			$("#nextSlide").click(function() {
+				slideNum++;
+
+				if (slideNum > lastIndex)
+					slideNum = 0;
+				show();
+			})
+
+		});
+	</script>
              
     <!-- Banner Ends Here -->
 
@@ -348,16 +453,5 @@
     </section>
 
     <jsp:include page="/fragment/footer.jsp" />
-	<script>
-	$('.owl-carousel').owlCarousel({
-		responsiveClass:true,
-		loop:true,
-		autoplay:true,  /* 自動輪播 */
-		autoplayTimeout:2000,  /* 輪播速度 */
-		autoplayHoverPause:true
-		});
-	
-	
-	</script>
   </body>
 </html>

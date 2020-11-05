@@ -49,11 +49,23 @@ public class AdvertisingDao implements IAdvertisingDao {
 									 .setParameter("timeNow2", date.getTime())
 									 .setParameter("storeId", adBean.getStore().getStore_id())
 									 .getResultList();
-		if (list == null) {
+		if (list.size() == 0) {
 			session.save(adBean);
 			return true;
 		} else return false;
 		
+	}
+
+	@Override
+	public void updateAdImgPath(AdvertisingBean adBean) {
+		Session session = factory.getCurrentSession();
+		session.update(adBean);
+	}
+
+	@Override
+	public AdvertisingBean findByPK(Integer ad_id) {
+		Session session = factory.getCurrentSession();
+		return session.get(AdvertisingBean.class, ad_id);
 	}
 
 }

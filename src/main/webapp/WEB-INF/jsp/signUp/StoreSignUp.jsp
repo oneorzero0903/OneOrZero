@@ -195,6 +195,7 @@ color:#fff
                 </div>
             </form:form>
             <span>${SignUpError}</span>
+            <br><br>
             <button id='btn' onclick="oneclick()">一鍵輸入</button>
     </div>
     

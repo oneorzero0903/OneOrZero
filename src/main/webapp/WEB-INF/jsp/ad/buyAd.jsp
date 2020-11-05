@@ -65,6 +65,7 @@ header {
 color:#fff
 }
   </style>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script> 
   </head>
 
   <body style="background-color: #ffffee;">
@@ -102,45 +103,78 @@ color:#fff
     
     <!-- Banner Ends Here -->
 	<div align="center">
-		<form:form method="POST" modelAttribute="adBean" id="BuyAdForm" enctype="multipart/form-data">
-			<div class="">
-				<p><fieldset>
-					<p><label class="" for='title'>標題: </label></p>
-					<form:input id="title" path="title" type='text'
-						class='form:input-large' size="30" autocomplete="off" onblur="checkTitle()"/>
-					<span id="spanTitle"></span><br> 
-						
-					<p><label class="" for='description'>描述: </label></p>
-					<form:input id="description" path="description" type='text'
-						class='form:input-large' size="30" autocomplete="off" onblur="checkDescription()"/>
-					<span id="spanDescription"></span><br> 
-					
-					<p><label class="" for='adStartTime'>廣告開始日期: </label></p>
-					<form:input id="adStartTime" path="adStartTime" type='date'
-						class='form:input-large' size="10" autocomplete="off" onblur="checkDate()"/>
-					<span id="spanStartTime"></span><br>
-					
-					<p><label class="" for='adImage'>上傳圖片: </label></p>
-					<form:input id="adImage" path="adImage" type='file' accept='image/*'
-						class='form:input-large' onblur="checkFile()"/>
-					<span id="spanAdImage"></span><br>
-					<br>
-					<div class=''>
-						<input id="btnAdd" type="button" class='btn btn-primary' value='送出' onclick="submit()"/>
-						<input type="reset" class='btn btn-primary' value="取消重填" class="cancel">
+		
+		<form:form method='POST' modelAttribute="advertisingBean" class='form-horizontal'
+				enctype="multipart/form-data">
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='title'>標題</label>
+					<div class="col-lg-10">
+						 <form:input id="title" path="title" type='text' class='form:input-large' />
 					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2"  for='description'>描述</label>
+					<div class="col-lg-10">
+						<form:input id="description" path="description" type='text' class='form:input-large' />
+					</div>
+				</div>
+
+				<div class="form-group">
+				
+					<label class='control-label col-lg-2 col-lg-2' for="category">廣告開始日期</label>
+					<div class='col-lg-10'>
+						<input id="adTimeStr"  type='date' onblur="checkDate()" class='form:input-large' />
+						<form:input hidden="hidden" id="adStartTime" path="adStartTime" type='text'
+						class='form:input-large' />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class='control-label col-lg-2 col-lg-2' for="adImage">上傳圖片</label>
+					<div class='col-lg-10'>
+						<form:input id="adImage" path="adImage" type='file' accept='image/*'
+							class='form:input-large' />
+					</div>
+					<br>
+					<div>
+					<img style="width: 400px;" id="showImg">  <!-- 預覽圖片用 -->
+					</div>
+				</div>
+				<div>
 					
-				</fieldset>
-				<span>${ErrorMsg}</span>
-			</div>
+				<p>${ErrorMsg}</p>
+				</div>
+				
+				<div class="form-group">
+					<div class='col-lg-offset-2 col-lg-10'>
+						<input id="btnAdd" type='submit' class='btn btn-primary'
+							value='送出' />
+					</div>
+				</div>
+			</fieldset>
 		</form:form>
+		
 		<br>
 		<button id='btn' onclick="oneclick()">一鍵輸入</button>
-	
-	
 	</div>
 	
 	<script type="text/javascript">
+		//當使用者圖片選擇完畢,在畫面上show出來預覽
+		
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$("#showImg").attr("src", e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		$("#adImage").change(function() {
+			readURL(this);
+		});
 
 		//只可選擇今天開始之日期
 		function convertToISO(timebit) {
@@ -148,43 +182,35 @@ color:#fff
 		  var isodate = timebit.toISOString().slice(0,10);	
 		  return isodate;
 		}
-		var adStartTime = document.getElementById("adStartTime");
+		var adTimeStr = document.getElementById("adTimeStr");
 		var currentDate = new Date();
-		adStartTime.min = new Date();
-		adStartTime.min = convertToISO(currentDate);
+		adTimeStr.min = new Date();
+		adTimeStr.min = convertToISO(currentDate);
 		
 		function checkDate() {
-			var adStartTime = document.getElementById("adStartTime").value;
-			var spanStartTime = document.getElementById("spanStartTime");
-			if (adStartTime == "") {
-				spanStartTime.innerHTML = "請選擇日期";
+			var adTimeStr = document.getElementById("adTimeStr").value;
+			if (adTimeStr == "") {
 				return false;
 			} else {
-				spanStartTime.innerHTML = "";
+				document.getElementById("adStartTime").value = new Date(adTimeStr).getTime();
 				return true;
 			}
 		}
 		
 		function checkTitle() {
 			var title = document.getElementById("title").value;
-			var spanTitle = document.getElementById("spanTitle");
 			if (title == "") {
-				spanTitle.innerHTML = "請輸入標題";
 				return false;
 			} else {
-				spanTitle.innerHTML = "";
 				return true;
 			}
 		}
 		
 		function checkFile() {
 			var adImage = document.getElementById("adImage").value
-			var spanAdImage = document.getElementById("spanAdImage");
 			if (adImage == "") {
-				spanAdImage.innerHTML = "請上傳圖片";
 				return false;
 			} else {
-				spanAdImage.innerHTML = "";
 				return true;
 			}
 		}

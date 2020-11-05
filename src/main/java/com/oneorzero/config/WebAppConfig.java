@@ -40,12 +40,11 @@ public class WebAppConfig implements WebMvcConfigurer {
 		
 	}
 	
-	//要上傳檔案一定要有這段程式,不然表單會送不出去
 	@Bean
-	 public CommonsMultipartResolver multipartResolver() {
-	  CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-	  resolver.setDefaultEncoding("UTF-8");
-	  resolver.setMaxUploadSize(81920000);
-	  return resolver;
-	 }
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setDefaultEncoding("UTF-8");
+		resolver.setMaxUploadSize(81920000);
+		return resolver;
+	}
 }

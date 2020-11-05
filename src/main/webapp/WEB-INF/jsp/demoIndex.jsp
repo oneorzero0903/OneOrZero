@@ -86,9 +86,14 @@ ul.slides li img {
 				var adLists = JSON.parse(xhr.responseText);
 				var content = "<ul class='slides'>";
 				for (var i=0; i<adLists.length; i++) {  //廣告圖片將連結至店家個人頁面
-					content +=  "<li><a href='<c:url value='/show/showOneStoreAjax/"+ adLists[i].store.store_id 
-					+ "' />'>"+"<img src='<c:url value='/"
-							+ adLists[i].imgPath +"' />'></a></li>"
+					content +=  "<li><a href='<c:url value='/show/showOneStoreAjax/"+ adLists[i].store.store_id+ "' />'>";
+					if (adLists[i].imgPath != null) {
+						content += "<img src='<c:url value='/"
+								   + adLists[i].imgPath +"' />'></a></li>";
+					} else {
+						content += "<img src='<c:url value='/getAdImg/"
+							+ adLists[i].ad_id +"' />'></a></li>";
+					}
 				}
 				if (adLists.length < 6) {  //預設圖片將會連結至廣告方案頁面
 					var noAd = 6 - adLists.length;

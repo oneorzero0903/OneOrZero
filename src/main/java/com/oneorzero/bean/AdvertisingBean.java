@@ -1,5 +1,6 @@
 package com.oneorzero.bean;
 
+import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -24,10 +25,6 @@ public class AdvertisingBean implements java.io.Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer ad_id;  //廣告編號
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "store_id")
-	private StoreBean store;  //商家編號
-	
 	private String title;  //標題
 	private String description;  //說明
 	private String status; //申請狀態(ing:審核中, ok:已通過, bad:未通過)
@@ -36,9 +33,16 @@ public class AdvertisingBean implements java.io.Serializable{
 	private Long adStartTime;  //廣告開始播放之日期轉換為毫秒數
 	private Long adEndTime;  //廣告停止播放之日期轉換為毫秒數
 	
+	private String fileName;
+	@JsonIgnore
+	private Blob blobImg;
 	@JsonIgnore
 	@Transient
 	private MultipartFile adImage;  //暫存上傳圖片,讀取其資料轉為blob物件
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name = "store_id")
+	private StoreBean store;  //商家編號
 	
 	public AdvertisingBean() {
 	}
@@ -122,5 +126,20 @@ public class AdvertisingBean implements java.io.Serializable{
 	public void setAdImage(MultipartFile adImage) {
 		this.adImage = adImage;
 	}
-	
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public Blob getBlobImg() {
+		return blobImg;
+	}
+
+	public void setBlobImg(Blob blobImg) {
+		this.blobImg = blobImg;
+	}
 }

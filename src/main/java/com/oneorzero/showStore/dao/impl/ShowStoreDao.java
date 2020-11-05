@@ -39,7 +39,7 @@ import com.oneorzero.showStore.dao.IShowStoreDao;
  	public int getTotalPages() {
  		Session session = factory.getCurrentSession();
  		String hql = "SELECT count(*) FROM StoreBean";
- 		long counts = (long) session.createQuery(hql).getSingleResult();
+ 		long counts = (long) session.createQuery(hql).getSingleResult();  //必須轉型為long
  		int totalPages = (int) (Math.ceil((double)counts / (double)storesPerPage));
  		return totalPages;
  	}
@@ -50,10 +50,9 @@ import com.oneorzero.showStore.dao.IShowStoreDao;
  		int startNo = (pageNo - 1) * storesPerPage;
  		String hql = "FROM StoreBean";
  		Session session = factory.getCurrentSession();
-
  		return session.createQuery(hql)
  				.setMaxResults(storesPerPage)
- 				.setFirstResult(startNo)
+ 				.setFirstResult(startNo)   //第一筆資料是從0開始
  				.getResultList();
  	}
 
