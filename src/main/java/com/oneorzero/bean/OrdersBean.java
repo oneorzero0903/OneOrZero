@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,19 +22,21 @@ public class OrdersBean implements java.io.Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer order_id; //訂單編號
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "member_id")
 	private MemberBean member; //會員編號
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name = "store_id")
-	private StoreBean store; //商家編號
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "setting_id")
+	private Store_OrderSettingBean store_OrderSettingBean;//訂單編號
 	
 	@Column(name = "email", columnDefinition = "VARCHAR(50) NOT NULL")
 	private String email; //會員Email
-	private String order_date; //預訂日期
+	private String order_date; //預訂日期(yyyy/MM/dd)
+	private String days;//預訂日期(星期)
+	private String times;//預定時間
 	private Integer service_charge; //服務費
-	private Integer  people_count; //人數
+	private Integer people_count; //人數
 	private Integer box; //包廂
 	private String remark; //備註
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); //建立日期
@@ -42,21 +45,39 @@ public class OrdersBean implements java.io.Serializable{
 	public OrdersBean() {
 	}
 	
-	public OrdersBean(String email, String order_date, Integer service_charge, Integer people_count, Integer box,
-			String remark, MemberBean member, StoreBean store) {
+	public OrdersBean(String email, String order_date, String days, String times, Integer service_charge, Integer people_count, Integer box,
+			String remark, MemberBean member, Store_OrderSettingBean store_OrderSettingBean) {
 		super();
 		this.email = email;
 		this.order_date = order_date;
+		this.days = days;
+		this.times = times;
 		this.service_charge = service_charge;
 		this.people_count = people_count;
 		this.box = box;
 		this.remark = remark;
 		this.member = member;
-		this.store = store;
+		this.store_OrderSettingBean = store_OrderSettingBean;
 		
 		String timeStr1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		this.create_dt = timeStr1;
 		this.update_dt = timeStr1;
+	}
+	
+	public String getDays() {
+		return days;
+	}
+
+	public void setDays(String days) {
+		this.days = days;
+	}
+
+	public String getTimes() {
+		return times;
+	}
+
+	public void setTimes(String times) {
+		this.times = times;
 	}
 
 	public Integer getOrder_id() {
@@ -75,12 +96,12 @@ public class OrdersBean implements java.io.Serializable{
 		this.member = member;
 	}
 
-	public StoreBean getStore() {
-		return store;
+	public Store_OrderSettingBean getStore_OrderSettingBean() {
+		return store_OrderSettingBean;
 	}
 
-	public void setStore(StoreBean store) {
-		this.store = store;
+	public void setStore_OrderSettingBean(Store_OrderSettingBean store_OrderSettingBean) {
+		this.store_OrderSettingBean = store_OrderSettingBean;
 	}
 
 	public String getEmail() {

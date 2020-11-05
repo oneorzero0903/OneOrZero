@@ -11,9 +11,10 @@
  </style>
  <head>
  <jsp:include page="/fragment/linkCss.jsp" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script>
+ 	
  	window.onload = function() {
- 		
  		var mainDiv = document.getElementById("mainDiv");
  		var xhr = new XMLHttpRequest();
  		xhr.open("GET", "<c:url value='/show/showOneStore/"+ ${sid} +"' />",true);
@@ -21,6 +22,12 @@
  		xhr.onreadystatechange = function() {
  			if (xhr.readyState == 4 && xhr.status == 200) {
  				var store = JSON.parse(xhr.responseText);
+ 				var orders = searchOrder(store.store_id); 				
+ 				var orderButton = "";
+ 				if (orders){
+					orderButton = "<tr><td><button class='btn btn-primary' onclick='order("+ store.store_id +");'>點我定位</button></td></tr>";
+				}
+ 				
  				var content = "";
  					content += "<div>"+
  					"<table>" +
@@ -31,14 +38,68 @@
  					"<tr><td>" +"營業開始："+ store.opentime_start +"</td></tr>" +
  					"<tr><td>" +"營業結束："+ store.opentime_end +"</td></tr>" +
  					"<tr><td>" +"地址："+ store.address_city+ store.address_area + store.address_road +"</td></tr>" +
+ 					orderButton +
  					"</table></div>";
- 				
+ 					
  					mainDiv.innerHTML = content;
  				
  			}
  		}
- 		
+ 		function searchOrder(store_id_in){
+ 	 		datas = {
+ 	 			store_id: store_id_in
+ 	 		}
+ 	 		var rtn;
+ 	 		 $.ajax({
+ 			  		type: 'PUT',
+ 			  		async:false,//因為在ajax中，須設定為同步後，將變數return出去ajax後才return出去searchOrder
+ 			  		url: '<c:url value="/show/searchOrder"	/>',
+ 			  		data: JSON.stringify(datas),
+ 			  		contentType:"application/json;charset=UTF-8",
+ 			  		dataType: 'json',
+
+ 			  		success:
+ 			  			function (data) {
+ 			  				if (data.isOk == "ok") {
+ 			  					rtn = true;
+ 			  				} else {
+ 			  					rtn = false;
+ 			  				}
+ 			  			},
+ 			  		error:
+ 			  			function (xhr, ajaxOptions, thrownError) {
+ 			  				alert(xhr.status + "\n" + thrownError);
+ 			  			}
+ 			  	});
+ 	 		 return rtn
+ 	 	}
  	}
+ 	function order(store_id_in){//連到UserOrderController，取出store_id訂單
+	 		obj = {
+	 			store_id: store_id_in
+	 		};
+	 		$.ajax({
+		  		type: 'POST',
+		  		url: '<c:url value="/show/storeOrder"	/>',
+		  		data: JSON.stringify(obj),
+		  		contentType:"application/json;charset=UTF-8",
+		  		dataType: 'json',
+
+		  		success:
+		  			function (data) {
+		  				if (data.isOk == "ok") {
+		  					window.location.href = "<c:url value='/orders/Orders'	/>";
+		  				} else {
+		  					window.location.href = "<c:url value='/orders/Orders'	/>";
+		  				}
+		  			},
+		  		error:
+		  			function (xhr, ajaxOptions, thrownError) {
+		  				alert(xhr.status + "\n" + thrownError);
+		  			}
+		  	});
+	 	}
+ 	
  </script>
  </head>
 

@@ -54,7 +54,7 @@ function checkTime(start, end) {
 		checkTimeSubmit = true;
 	}
 }
-function checkspace(space){
+function checkSpace(space){
 	var spaceVal = space.val();
 	if (spaceVal == "0") {
 		space.next().text("請輸入您的預約間格");
@@ -64,17 +64,13 @@ function checkspace(space){
 		checkSpaceSubmit = true;
 	}
 }
-function checkPerson(personMin, personMax) {
-	var personMinVal = personMin.val();
-	var personMaxVal = personMax.val();
-	if (personMaxVal == "" || personMinVal == ""){
-		personMax.next().text("請輸入可容納人數");
-		checkPersonSubmit = false;
-	} else if (personMaxVal - personMinVal <= 0){
-		personMax.next().text("最多人數不可比最少人數少或相等");
+function checkPerson(person) {
+	var personVal = person.val();
+	if (personVal == ""){
+		person.next().text("請輸入可容納人數");
 		checkPersonSubmit = false;
 	} else {
-		personMax.next().text("");
+		person.next().text("");
 		checkPersonSubmit = true;
 	}
 }
