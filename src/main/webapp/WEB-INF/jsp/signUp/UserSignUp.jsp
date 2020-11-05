@@ -34,8 +34,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="text-content">
-                <h4>Login</h4>
-                <h2>登入</h2>
+                <h4>SignUp</h4>
+                <h2>註冊</h2>
               </div>
             </div>
           </div>
@@ -122,23 +122,23 @@
 				}
 
 			}
-			function checkEmail() {
-				let emailVal = document.getElementById("email").value;
-				let spanEmail = document.getElementById("spanEmail");
-				if (emailVal == "") {
-					spanEmail.innerHTML = "Not empty!";
-					//submitBtn.disabled = true;
-					return false
-				} else if (!/@/.test(emailVal) || !/./.test(emailVal)) {
-					spanEmail.innerHTML = "帳號要有@";
-					return false
-				} else {
-					spanEmail.innerHTML = "";
-					return true
-					<!--submitBtn.disabled = false;
-					-->
-				}
-			}
+// 			function checkEmail() {
+// 				let emailVal = document.getElementById("email").value;
+// 				let spanEmail = document.getElementById("spanEmail");
+// 				if (emailVal == "") {
+// 					spanEmail.innerHTML = "Not empty!";
+// 					//submitBtn.disabled = true;
+// 					return false
+// 				} else if (!/@/.test(emailVal) || !/./.test(emailVal)) {
+// 					spanEmail.innerHTML = "帳號要有@";
+// 					return false
+// 				} else {
+// 					spanEmail.innerHTML = "";
+// 					return true
+// 					<!--submitBtn.disabled = false;
+// 					-->
+// 				}
+// 			}
 
 			function checkName() {
 				let nameVal = document.getElementById("name").value;

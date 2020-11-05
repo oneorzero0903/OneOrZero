@@ -50,6 +50,14 @@
                   <a class="nav-link">訂單管理</a>
                 </c:if>
               </li>
+                 <li class="nav-item">
+              	<c:if test="${ funcName != 'SHOPCAR' }">
+                  <a class="nav-link" href="<c:url value='/product/AddNewProduct'	/>">商城管理</a>
+			    </c:if>
+			    <c:if test="${ funcName == 'SHOPCAR' }"> 
+                  <a class="nav-link">商城管理</a>
+                </c:if>
+              </li>
               <li class="nav-item">
               	<c:if test="${ funcName != 'CON' }">
                 	<a class="nav-link" href="<c:url value='/contact'	/>">聯絡我們</a>

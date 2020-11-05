@@ -51,5 +51,22 @@ public class ProductDaoImpl implements IProductDao{
 		
 	}
 	
+	@Override
+	public ProductBean findByPK(int key) {
+		Session session = factory.getCurrentSession();
+//		String hql = "FROM ProductBean where id = :key";
+//		session.createQuery(hql).setParameter("key", key).getSingleResult();
+ 		return session.get(ProductBean.class, key);  //與上兩句功能相同
+	}
 
+	
+	
+	//之後觀察是否有重複上架問題
+	@Override
+	public void insertAddProduct(ProductBean pb) {
+		Session session = factory.getCurrentSession();
+		session.save(pb);
+	}
+	
+	
 }

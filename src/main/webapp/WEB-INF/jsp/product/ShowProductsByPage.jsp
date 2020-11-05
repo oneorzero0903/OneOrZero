@@ -48,18 +48,30 @@ button.pageBtn {
 
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var products = JSON.parse(xhr.responseText);
-				var content = "";
+				var context = "";
 				for (var i = 0; i < products.length; i++) {
-					content += "<div class='float'>"
+					context += "<div class='float'>"
 							+ "<table>"
 							+ "<tr><td align='center'>"
-							+ "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ products[i].imgPath +"' />' />"
-							+ "</td></tr>" 
-							+ "<tr><td>" + products[i].name + "</td></tr>"  
-							+ "<tr><td>" + "\$" + products[i].price + "</td></tr>"
-							+ "</table></div>";
+		 					+ "<a href='<c:url value='/product/ShowOneProduct/"+ products[i].id +"'/>'>";
+		 					if (products[i].imgPath != null) {
+		 						context += "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ products[i].imgPath +"' />' />"
+								+ "</a>"
+								+ "</td></tr>" 
+								+ "<tr><td>" + products[i].name + "</td></tr>"  
+								+ "<tr><td>" + "\$" + products[i].price + "</td></tr>"
+								+ "</table></div>";
+		 					} else {
+								context += "<img class='shopImg' height='200' width='250' src='<c:url value='/getProductImg/"
+				 				        + products[i].id+"' />'></a>" 
+										+ "</td></tr>" 
+										+ "<tr><td>" + products[i].name + "</td></tr>"  
+										+ "<tr><td>" + "\$" + products[i].price + "</td></tr>"
+										+ "</table></div>";
+		 					}
+		 					
 				}
-				mainDiv.innerHTML = content;
+				mainDiv.innerHTML = context;
 				
 				var totalProductPages = ${totalProductPages};
 				var pageDiv = document.getElementById("pageDiv");
@@ -82,18 +94,29 @@ button.pageBtn {
 
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var products = JSON.parse(xhr.responseText);
-				var content = "";
+				var context = "";
 				for (var i = 0; i < products.length; i++) {
-					content += "<div class='float'>"
+					context += "<div class='float'>"
 							+ "<table>"
 							+ "<tr><td align='center'>"
-							+ "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ products[i].imgPath +"' />' />"
-							+ "</td></tr>" 
-							+ "<tr><td>" + products[i].name + "</td></tr>"  
-							+ "<tr><td>" + "\$" + products[i].price + "</td></tr>"
-							+ "</table></div>";
+							+ "<a href='<c:url value='/product/ShowOneProduct/"+ products[i].id +"'/>'>"
+							if (products[i].imgPath != null) {
+		 						context += "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ products[i].imgPath +"' />' />"
+								+ "</a>"
+								+ "</td></tr>" 
+								+ "<tr><td>" + products[i].name + "</td></tr>"  
+								+ "<tr><td>" + "\$" + products[i].price + "</td></tr>"
+								+ "</table></div>";
+		 					} else {
+								context += "<img class='shopImg' height='200' width='250' src='<c:url value='/getProductImg/"
+				 				        + products[i].id+"' />'></a>" 
+										+ "</td></tr>" 
+										+ "<tr><td>" + products[i].name + "</td></tr>"  
+										+ "<tr><td>" + "\$" + products[i].price + "</td></tr>"
+										+ "</table></div>";
+		 					}
 				}
-				mainDiv.innerHTML = content;
+				mainDiv.innerHTML = context;
 			}
 		}
 	}

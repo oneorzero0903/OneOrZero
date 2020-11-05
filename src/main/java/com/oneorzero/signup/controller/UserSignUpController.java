@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oneorzero.bean.MemberBean;
@@ -36,17 +35,17 @@ public class UserSignUpController{
 	}
 	
 	@PostMapping("/signUp/UserSignUp")
-	public String userSignUp(@RequestParam String email,
-							@RequestParam String name,
-							@RequestParam String gender,
-							@RequestParam String birthday,
-							@RequestParam String password,
-							@ModelAttribute("memberBean") MemberBean mb,
-							Model model,
-							RedirectAttributes redirectAttributes) {
+	public String userSignUp(@ModelAttribute("memberBean") MemberBean mb,
+							 Model model,RedirectAttributes redirectAttributes) {
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		model.addAttribute("ErrorMsg", errorMsg);
-		System.out.println(mb.getEmail());
+		if (mb.getEmail() == null || mb.getEmail().trim().length() == 0) {
+			return "/signUp/UserSignUp" ;
+		} if (mb.getName() == null || mb.getName().trim().length() == 0) {
+			return "/signUp/UserSignUp" ;
+		} if (mb.getPassword() == null || mb.getPassword().trim().length() == 0) {
+			return "/signUp/UserSignUp" ;	
+		}
 		boolean status = false;
 		status = service.signUp(mb);
 		if (status) {
@@ -59,14 +58,48 @@ public class UserSignUpController{
 			String context = "http://localhost:8080/OneOrZero/signUp/UserAccountVerify"+
 							 "?" + "email=" + encodeEmail;
 			
-			send.sendAccountVerify(mail, context);
-			redirectAttributes.addFlashAttribute("email", email);
-			return "redirect:/signUp/SignUpOK";
+			send.sendAccountVerify(mail, context);			
+			redirectAttributes.addFlashAttribute("email", mail);
+			return "redirect:/";
 		} else {
+			
 			model.addAttribute("SignUpError", "此帳號已被使用");
 			return "signUp/UserSignUp";
 		}	
+			
 	}
+			//			@RequestParam String email,
+//							@RequestParam String name,
+//							@RequestParam String gender,
+//							@RequestParam String birthday,
+//							@RequestParam String password,
+//							@ModelAttribute("memberBean") MemberBean mb,
+//							Model model,
+//							RedirectAttributes redirectAttributes
+//							 {
+////		Map<String, String> errorMsg = new HashMap<String, String>();
+////		model.addAttribute("ErrorMsg", errorMsg);
+////		System.out.println(mb.getEmail());
+//		boolean status = false;
+//		status = service.signUp(mb);
+//		if (status) {
+//			SendMail send = new SendMail();
+//			Base64.Encoder encoder = Base64.getEncoder();
+//			
+//			String mail = mb.getEmail();
+//			String encodeEmail = encoder.encodeToString(mail.getBytes());
+//			
+//			String context = "http://localhost:8080/OneOrZero/signUp/UserAccountVerify"+
+//							 "?" + "email=" + encodeEmail;
+//			
+//			send.sendAccountVerify(mail, context);
+//			redirectAttributes.addFlashAttribute("email", email);
+//			return "redirect:/";
+//		} else {
+//			model.addAttribute("SignUpError", "此帳號已被使用");
+//			return "signUp/UserSignUp";
+//		}	
+//	}
 	
 	@GetMapping("/signUp/SignUpOK")
 	public String signUpRedirect(Model model) {

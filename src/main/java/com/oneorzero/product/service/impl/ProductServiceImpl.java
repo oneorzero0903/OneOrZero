@@ -32,4 +32,14 @@ public class ProductServiceImpl implements IProductService{
 		return dao.getTotalPages();
 	}
 
+	@Override
+	public ProductBean findByPK(int key) {
+		return dao.findByPK(key);
+	}
+
+	@Override
+	public void insertAddProduct(ProductBean pb) {
+		dao.insertAddProduct(pb);
+	}
+
 }
