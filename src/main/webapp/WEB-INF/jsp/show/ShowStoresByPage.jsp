@@ -71,7 +71,7 @@ button.pageBtn {
 		var pageLink = "";
 		for (var i = 1; i <= totalPages; i++) {
 			pageLink += "<button class='pageBtn' onclick='showByPage(" + i
-					+ ")'>" + i + "</button>   ";
+					+ ")'>" + i + "</button>";
 		}
 		pageDiv.innerHTML = pageLink;
 		var areaBtn = document.getElementById("areaBtn");
@@ -144,7 +144,8 @@ button.pageBtn {
 		var pageDiv = document.getElementById("pageDiv");
 		if (area.length != 3) {
 			var pageLink = "";
-			for (var i = 1; i <= 4; i++) {
+			var totalPages = ${totalPages}
+			for (var i = 1; i <= totalPages; i++) {
 				pageLink += "<button class='pageBtn' onclick='showByPage(" + i
 						+ ")'>" + i + "</button>   ";
 			}

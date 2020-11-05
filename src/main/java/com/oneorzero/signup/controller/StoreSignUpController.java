@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oneorzero.bean.StoreBean;
@@ -36,23 +35,19 @@ public class StoreSignUpController{
 	}
 	
 	@PostMapping("/signUp/StoreSignUp")
-	public String storeSignUp(@RequestParam String email,
-							@RequestParam String password,
-							@RequestParam String store_name,
-							@RequestParam String address_city,
-							@RequestParam String address_area,
-							@RequestParam String address_road,
-							@RequestParam String tel,
-							@RequestParam String phone,
-							@RequestParam String opentime_start,
-							@RequestParam String opentime_end,
-							@RequestParam String contact_person,
-							@ModelAttribute("storeBean") StoreBean sb,
-							Model model,
-							RedirectAttributes redirectAttributes) {
-		Map<String, String> errorMsg = new HashMap<String, String>();
-		model.addAttribute("ErrorMsg", errorMsg);
-		System.out.println(sb.getEmail());
+	public String storeSignUp(@ModelAttribute("storeBean") StoreBean sb,
+							  Model model,RedirectAttributes redirectAttributes) {
+		if (sb.getEmail() == null || sb.getEmail().trim().length() == 0) {
+			return "/signUp/StoreSignUp" ;
+		} if (sb.getPassword() == null || sb.getPassword().trim().length() == 0) {
+			return "/signUp/StoreSignUp" ;
+		} if (sb.getStore_name() == null || sb.getStore_name().trim().length() == 0) {
+			return "/signUp/StoreSignUp" ;	
+		} if (sb.getOpentime_start() == null || sb.getOpentime_start().trim().length() == 0) {
+			return "/signUp/StoreSignUp" ;	
+		} if (sb.getOpentime_end() == null || sb.getOpentime_end().trim().length() == 0) {
+			return "/signUp/StoreSignUp" ;	
+		}
 		boolean status = false;
 		status = service.signUp(sb);
 		if (status) {
@@ -66,8 +61,13 @@ public class StoreSignUpController{
 							 "?" + "email=" + encodeEmail;
 			
 			send.sendAccountVerify(mail, context);
+<<<<<<< HEAD
 			redirectAttributes.addFlashAttribute("email", email);
 			return "redirect:/indexShop";
+=======
+			redirectAttributes.addFlashAttribute("email", mail);
+			return "redirect:/signUp/SignUpOK";
+>>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
 		} else {
 			model.addAttribute("SignUpError", "此帳號已被使用");
 			return "signUp/StoreSignUp";

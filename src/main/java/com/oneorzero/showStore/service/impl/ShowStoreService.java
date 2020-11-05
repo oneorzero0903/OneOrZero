@@ -39,13 +39,11 @@ public class ShowStoreService implements IShowStoreService {
 
 	@Override
 	public List<StoreBean> showStoresByArea(Integer pageNo, String area) {
-		area = "'" + area + "'";
 		return dao.showStoresByArea(pageNo, area);
 	}
 
 	@Override
 	public int getTotalAreaPages(String area) {
-		area = "'" + area + "'";
 		return dao.getTotalAreaPages(area);
 	}
 	

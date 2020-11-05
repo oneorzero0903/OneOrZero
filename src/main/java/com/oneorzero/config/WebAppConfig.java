@@ -3,6 +3,7 @@ package com.oneorzero.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -38,4 +39,13 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/fonts/");
 		
 	}
+	
+	//要上傳檔案一定要有這段程式,不然表單會送不出去
+	@Bean
+	 public CommonsMultipartResolver multipartResolver() {
+	  CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+	  resolver.setDefaultEncoding("UTF-8");
+	  resolver.setMaxUploadSize(81920000);
+	  return resolver;
+	 }
 }

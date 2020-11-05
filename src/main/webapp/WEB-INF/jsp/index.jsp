@@ -7,6 +7,12 @@
 
   <head>
 	<jsp:include page="/fragment/linkCss.jsp" />
+	<style>
+	.adimg{
+	width:520px;
+	height:450px;
+	}
+	</style>
   </head>
 
   <body style="background-color: #272727;">
@@ -32,7 +38,11 @@
       <div class="container-fluid">
         <div class="owl-banner owl-carousel">
           <div class="item">
+<<<<<<< HEAD
             <div id="adDiv1"><img src="<c:url value='/images/ADdemo.png'	/>" alt="">
+=======
+            <div id="adDiv1" class="adimg"><img src="<c:url value='/images/ADdemo.png'	/>" alt="">
+>>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
             </div>
             <div class="item-content">
               <div class="main-content">
@@ -48,7 +58,11 @@
             </div>
           </div>
           <div class="item">
+<<<<<<< HEAD
             <div id="adDiv2"><img src="<c:url value='/images/cafeImg/2.jpg'	/>" ></div>
+=======
+            <div id="adDiv2"  class="adimg"><img src="<c:url value='/images/cafeImg/2.jpg'	/>" ></div>
+>>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
@@ -62,7 +76,11 @@
             </div>
           </div>
           <div class="item" >
+<<<<<<< HEAD
            <div id="adDiv3"> <img src="<c:url value='/images/cafeImg/3.jpg'	/>"></div>
+=======
+           <div id="adDiv3"  class="adimg"> <img src="<c:url value='/images/cafeImg/3.jpg'	/>"></div>
+>>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
@@ -76,7 +94,11 @@
             </div>
           </div>
           <div class="item">
+<<<<<<< HEAD
             <div id="adDiv4"><img src="<c:url value='/images/cafeImg/4.jpg'	/>" ></div>
+=======
+            <div id="adDiv4"  class="adimg"><img src="<c:url value='/images/cafeImg/4.jpg'	/>" ></div>
+>>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
@@ -91,7 +113,11 @@
           </div>
           
           <div class="item" >
+<<<<<<< HEAD
             <div id="adDiv5"><img src="<c:url value='/images/cafeImg/5.jpg'	/>" ></div>
+=======
+            <div id="adDiv5"  class="adimg"><img src="<c:url value='/images/cafeImg/5.jpg'	/>" ></div>
+>>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
             <div class="item-content">
               <div class="main-content">
                 <div class="meta-category">
@@ -112,7 +138,11 @@
                   
                 </div>
                 <div style="background-color:#27272786">
+<<<<<<< HEAD
                  <div id="AdName6" ><h4 style="color:#d26900">January Couple</h4></div>
+=======
+                 <div id="AdName6"  class="adimg"><h4 style="color:#d26900">January Couple</h4></div>
+>>>>>>> 6c9a238a7b07c3fd05b84fb5d194541cea0e1194
                
               </div>
               </div>
