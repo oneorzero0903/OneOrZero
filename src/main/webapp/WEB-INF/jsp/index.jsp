@@ -13,8 +13,8 @@
 	position: relative;
 	width: 99%;
 	overflow: hidden;
-	margin: 0 auto;
-	height: 300px;
+/* 	margin: 0 auto; */
+	height: 450px;
 }
 
 li {
@@ -27,14 +27,14 @@ ul.slides {
 	margin: 0;
 	padding: 0;
 	position: absolute;
-	width: 2400px;
+	width: 3000px;
 	left: 0px;
 	transition: all .5s;
 }
 
 ul.slides li {
-	width: 400px;
-	height: 300px;
+	width: 500px;
+	height: 450px;
 	overflow: hidden;
 	float: left;
 }
@@ -98,17 +98,17 @@ ul.slides li img {
 				if (adLists.length < 6) {  //預設圖片將會連結至廣告方案頁面
 					var noAd = 6 - adLists.length;
 					for (var i=0; i< noAd; i++) {
-						content += "<li ><img src='<c:url value='/images/ADdemo.png' />'></li>"
+						content += "<li ><figure><img src='<c:url value='/images/ADdemo.png' />'><figcation style='background-color: white;'>愛麗絲是我的</figcation></figure></li>";
 					}
 				}
-				content += "</ul>"
-				adID.innerHTML = content;
+				content += "</ul>";
+				adID.innerHTML += content;
 			}
 		}
 	}
 </script>
   </head>
-
+  
   <body style="background-color: #272727;">
 
     <!-- ***** Preloader Start ***** -->
@@ -130,13 +130,6 @@ ul.slides li img {
     <br><br><br><br><div style="padding-top: 5px;"></div>
     <div class="wrapper" id="wrapper">
 		<div id="adID" class="slidesAd">
-		<ul class="slides">  <!-- 142~148 不放就不會動？？ what??? -->
-			<li ></li>
-			<li ></li>
-			<li ></li>
-			<li ></li>
-			<li ></li>
-		</ul>
 		</div>
 		<div id="prevSlide" class="slide_btn">
 			<i class="fa fa-caret-left"></i>
@@ -148,7 +141,7 @@ ul.slides li img {
     
     
     
-   <div class="heading-page header-text">
+   <div class="heading-page header-text" style="padding-top: 10px">
 		<section class="page-heading">
 			<div class="container">
 				<div class="row">
@@ -168,7 +161,7 @@ ul.slides li img {
 
 	<script type="text/javascript">
 		var slideNum = 0;
-		var slideCount = $(".slides li").length; //6
+		var slideCount = 4;
 		var lastIndex = slideCount - 1;
 		time = "";
 		go();
@@ -183,7 +176,7 @@ ul.slides li img {
 					show();
 					function show() {
 
-						let move = 0 - 345 * slideNum;
+						let move = 0 - 500 * slideNum;
 						$("ul.slides").css("left", move);
 					}
 
@@ -210,7 +203,7 @@ ul.slides li img {
 		$(function() {
 
 			function show() {
-				let move = 0 - 345 * slideNum;
+				let move = 0 - 500 * slideNum;
 				$("ul.slides").css("left", move);
 
 			}
