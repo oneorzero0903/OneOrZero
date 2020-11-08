@@ -136,18 +136,12 @@ color:#fff
 
                 <label for="" class="t1">所在縣市</label>
                 <form:select path="address_city" id="address_city">
-                        <form:option value="NONE" label="請選擇..." />
-                        <form:option value="Taipei City">台北市</form:option>
-              			<form:option value="New Taipei City">新北市</form:option>
-<%--                         <form:options items="${storeBean}" /> --%>
                 </form:select>
                 <br>
                 
                 <label for="" class="t1">所在地區</label>
                 <form:select path="address_area" id="address_area">
-                        <form:option value="NONE" label="請選擇..." />
-                        <form:option value="Zhong Zheng">中正區</form:option>
-<%--                         <form:options items="${countryList}" /> --%>
+              
                 </form:select>
                 <br>
                 
@@ -183,7 +177,6 @@ color:#fff
 						onblur="checkContactPerson()" onkeyup="checkContactPerson()"/>
                 <span id="idspName"></span>
                 <br>
-                <span class="st1">(1.不可空白，2.至少2個字以上，3.必須全部為中文字)</span>
             </div>
             <!--  <label for="">上傳照片</label>
                 <input type="file" name="file0" id="progressbarTWInput" multiple="multiple" /><br>
@@ -195,7 +188,6 @@ color:#fff
                 </div>
             </form:form>
             <span>${SignUpError}</span>
-            <br><br>
             <button id='btn' onclick="oneclick()">一鍵輸入</button>
     </div>
     
@@ -205,8 +197,8 @@ color:#fff
 		document.getElementById("password").value = "abcd1234!";
 		document.getElementById("idPwd2").value = "abcd1234!";
 		document.getElementById("store_name").value = "Jacob company";
-		document.getElementById("address_city").value = "Taipei City";
-		document.getElementById("address_area").value = "Zhong Zheng";
+		$("#address_city").val("台北市").change();
+		document.getElementById("address_area").value = "中正區";
 		document.getElementById("address_road").value = "中正路";
 		document.getElementById("tel").value = "02-1234567";
 		document.getElementById("phone").value = "0919123456";
