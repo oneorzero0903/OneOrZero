@@ -3,7 +3,7 @@ package com.oneorzero.report.model;
 public class AreaTotalAmountReport {
 	
 	private String area;
-	private int amount;
+	private long amount;
 	
 	
 	public String getArea() {
@@ -12,10 +12,10 @@ public class AreaTotalAmountReport {
 	public void setArea(String area) {
 		this.area = area;
 	}
-	public int getAmount() {
+	public long getAmount() {
 		return amount;
 	}
-	public void setAmount(int amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
 	}
 	

@@ -19,6 +19,6 @@ public class ReportService implements IReportService {
 
 	@Override
 	public List<AreaTotalAmountReport> computedAreaAmountByCity(String city) {
-		return null;
+		return dao.computedAreaAmountByCity(city);
 	}
 }

@@ -20,7 +20,7 @@ import com.oneorzero.report.model.AreaTotalAmountReport;
 
  	@Override
  	public List<AreaTotalAmountReport> computedAreaAmountByCity(String city) {
- 		String hql = "select addressArea, count(addressArea) as amount from StoreBean sb where addressCity = :city group by addressArea ;";
+ 		String hql = "select address_area, count(address_area) as amount from StoreBean sb where address_city = :city group by address_area";
  		Session session = factory.getCurrentSession();
  		List list = session.createQuery(hql).setParameter("city", city).list();
  		Iterator it = list.iterator();
@@ -29,7 +29,7 @@ import com.oneorzero.report.model.AreaTotalAmountReport;
  			Object[] results = (Object[]) it.next();
  			AreaTotalAmountReport report = new AreaTotalAmountReport();
  			report.setArea((String) results[0]);
- 			report.setAmount((Integer) results[1]);
+ 			report.setAmount((Long) results[1]);
  			reports.add(report);
  		}
  		return reports;

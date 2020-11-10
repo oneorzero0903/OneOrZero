@@ -25,9 +25,9 @@ public class ReportController {
 		return reportService.computedAreaAmountByCity(city);
 	}
 	
-	@GetMapping("/report/AreasAmountByCity")
-	public String areaAmountByCity() {
-		return "report/AreasAmountByCity";
+	@GetMapping("/report/report")
+	public String areaAmountByCity(){
+		return "report/report";
 	}
 	
 }
