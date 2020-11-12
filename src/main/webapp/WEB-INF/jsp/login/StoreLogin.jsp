@@ -142,7 +142,7 @@ header {
 				</div>
 			</div>
 		</form:form>
-		<button class='btn btn-light' onclick="oneClick()" style="margin: 10px">一鍵登入</button>
+		<button class='btn btn-primary' onclick="oneClick()" style="margin: 10px">一鍵登入</button>
 		<div align="center" >
 			<a href="<c:url value='/signUp/StoreTerms' />" style="color:#fff">還沒有帳號？</a> 
 			<a href="<c:url value='/login/StoreForgetPwd' />"style="color:#fff">忘記密碼？</a>

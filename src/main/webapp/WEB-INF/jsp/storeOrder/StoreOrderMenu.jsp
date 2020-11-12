@@ -130,6 +130,7 @@ color:#fff
 													console.log(result.settingList[i])
 													var option = new Option(result.settingList[i]);
 													selectElement.options[selectElement.options.length] = option;
+													times();
 												} else {continue;}
 											}
 									}
@@ -137,19 +138,10 @@ color:#fff
 							}
 						});
 	});
-	</script>
-	<div id="datepicker" align="center" style="margin: 50px"></div>
-	
-			<br>
-			<div align="center">
-				<h5>可訂位包廂:</h5>
-				<select id="person">
-				</select><span></span>
-			</div>
-			<div id='timeArea' align="center" style='height: 150px;'
-				class='center'></div>
-	<script>
 	$("#person").change(function(){//撈出可訂位時間(time)
+		times();
+	})
+	function times(){
 		var xhr3 = new XMLHttpRequest();
 		var selectElement = document.getElementById('person');
 		var setting_IdVal = selectElement.options[ selectElement.selectedIndex ].value;
@@ -167,7 +159,7 @@ color:#fff
 				
 			}
 		}
-	})
+	}
 	function display(result, setting_IdVal){//顯示訂位紀錄
 		//訂位姓名，包廂，時間，訂位時段，訂位狀況(成功/已取消)
 		var content = "<table border='1'  bgcolor='#fbdb98'>";
@@ -183,7 +175,16 @@ color:#fff
 		timeArea.innerHTML = content;
 	}	
 	</script>
-				
+	<div id="datepicker" align="center" style="margin: 50px"></div>
+	
+			<br>
+			<div align="center">
+				<h5>可訂位包廂:</h5>
+				<select id="person">
+				</select><span></span>
+			</div>
+			<div id='timeArea' align="center" style='height: 150px;'
+				class='center'></div>
     <!-- 寫上面 -->
     
     <jsp:include page="/fragment/footer.jsp" />

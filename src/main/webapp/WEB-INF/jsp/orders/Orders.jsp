@@ -85,6 +85,7 @@
 														console.log(result.settingList[i])
 														var option = new Option(result.settingList[i]);
 														selectElement.options[selectElement.options.length] = option;
+														times();
 													} else {continue;}
 												}
 										}
@@ -104,7 +105,61 @@
 				}
 			}
 	 	}
-		
+		$("#person").change(function(){//撈出可訂位時間(time)
+			times();
+		})
+		function times(){
+			var xhr3 = new XMLHttpRequest();
+			var selectElement = document.getElementById('person');
+			var setting_IdVal = selectElement.options[ selectElement.selectedIndex ].value;
+			xhr3.open("POST", "<c:url value='/orders/timeToBooking/"+ setting_IdVal +"' />", true);
+			xhr3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xhr3.send();
+			xhr3.onreadystatechange = function() {
+				if (xhr3.readyState == 4 && xhr3.status == 200) {
+					if (JSON.parse(xhr3.responseText != null)) {
+						result = JSON.parse(xhr3.responseText);
+						displayTimes(result, setting_IdVal);
+					}else{
+						alert("fail");
+					}
+					
+				}
+			}
+		}
+		function displayTimes(result, setting_IdVal){//顯示可訂位時間按鈕
+			var content = "<table border='1'  bgcolor='#fbdb98'>";
+			content += "<tr><td width='100'>可訂位時間:</td>";
+			content += "<td rowspan='4'>";
+			for (var i = 0 ;i < result.timeToBookingList.length; i++){
+				content += "<button class=\"btn btn-primary\" onclick=\"order('" + dayChoose + "','" + setting_IdVal + "','" + result.timeToBookingList[i] + "'" + ")\">"	+ result.timeToBookingList[i]
+						+ "</button>&nbsp;";
+			}
+			content += "</td></tr>";
+			content += "</table>";
+			timeArea.innerHTML = content;
+		}	
+			function order(dayChoose, setting_IdVal, time){//轉到確認訂單頁面
+				var xhr4 = new XMLHttpRequest();
+				datas = {
+					day : dayChoose,
+					setting_id :　setting_IdVal,
+					times : time
+				}
+				xhr4.open("POST", "<c:url value='/orders/orderOk' />", true);
+				xhr4.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+				xhr4.send(JSON.stringify(datas));
+				xhr4.onreadystatechange = function() {
+					if (xhr4.readyState == 4 && (xhr4.status == 200 || xhr4.status == 201)) {
+						result = JSON.parse(xhr4.responseText);
+							if(result.isOk == "ok"){
+								window.location.href = "<c:url value='/orders/orderOks' />";
+							}else {
+								alert("fail");
+							}
+					}
+				}
+			}
 	</script>
 	<div class="form-group"
 		style="background-color: #d26900; margin: 50px 300px;">
@@ -121,61 +176,6 @@
 				class='center'></div>
 		</div>
 	</div>
-	<script>
-	
-	$("#person").change(function(){//撈出可訂位時間(time)
-		var xhr3 = new XMLHttpRequest();
-		var selectElement = document.getElementById('person');
-		var setting_IdVal = selectElement.options[ selectElement.selectedIndex ].value;
-		xhr3.open("POST", "<c:url value='/orders/timeToBooking/"+ setting_IdVal +"' />", true);
-		xhr3.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-		xhr3.send();
-		xhr3.onreadystatechange = function() {
-			if (xhr3.readyState == 4 && xhr3.status == 200) {
-				if (JSON.parse(xhr3.responseText != null)) {
-					result = JSON.parse(xhr3.responseText);
-					displayTimes(result, setting_IdVal);
-				}else{
-					alert("fail");
-				}
-				
-			}
-		}
-	})
-	function displayTimes(result, setting_IdVal){//顯示可訂位時間按鈕
-		var content = "<table border='1'  bgcolor='#fbdb98'>";
-		content += "<tr><td width='100'>可訂位時間:</td>";
-		content += "<td rowspan='4'>";
-		for (var i = 0 ;i < result.timeToBookingList.length; i++){
-			content += "<button class=\"btn btn-primary\" onclick=\"order('" + dayChoose + "','" + setting_IdVal + "','" + result.timeToBookingList[i] + "'" + ")\">"	+ result.timeToBookingList[i]
-					+ "</button>&nbsp;";
-		}
-		content += "</td></tr>";
-		content += "</table>";
-		timeArea.innerHTML = content;
-	}	
-		function order(dayChoose, setting_IdVal, time){//轉到確認訂單頁面
-			var xhr4 = new XMLHttpRequest();
-			datas = {
-				day : dayChoose,
-				setting_id :　setting_IdVal,
-				times : time
-			}
-			xhr4.open("POST", "<c:url value='/orders/orderOk' />", true);
-			xhr4.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-			xhr4.send(JSON.stringify(datas));
-			xhr4.onreadystatechange = function() {
-				if (xhr4.readyState == 4 && (xhr4.status == 200 || xhr4.status == 201)) {
-					result = JSON.parse(xhr4.responseText);
-						if(result.isOk == "ok"){
-							window.location.href = "<c:url value='/orders/orderOks' />";
-						}else {
-							alert("fail");
-						}
-				}
-			}
-		}
-	</script>
 
 	<jsp:include page="/fragment/footer.jsp" />
 

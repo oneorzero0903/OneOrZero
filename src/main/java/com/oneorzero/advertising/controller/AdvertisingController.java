@@ -64,6 +64,9 @@ public class AdvertisingController {
 		if(adBean.getTitle() == null || adBean.getTitle().trim().length() == 0) {
 			return "ad/buyAd";
 		}
+		if(adBean.getAdStartTime() == null) {
+			return "ad/buyAd";
+		}
 		StoreBean sb = (StoreBean) model.getAttribute("store");
 		adBean.setStore(sb);
 		Long adStartTime = adBean.getAdStartTime();

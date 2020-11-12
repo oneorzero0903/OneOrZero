@@ -70,60 +70,7 @@ header {
 </style>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<<<<<<< HEAD
 <script src="<c:url value='/js/report.js'	/>"></script>
-=======
-<script>
-	//各區域的咖啡店總數
-	window.onload = function() {
-		var mainDiv = document.getElementById("mainDiv");
-		genAreaAmountChart();
-
-		function genAreaAmountChart() {
-			var selectArea = $("#area1").val();
-			$.ajax({
-				url : '../report/computedAreaAmountByCity?city=' + selectArea,
-			}).done(function(response) {
-				if (response) {
-					var taipeiarea = response;
-					var area = [];
-					var amount = [];
-					for (var i = 0; i < taipeiarea.length; i++) {
-						area[i] = taipeiarea[i].area;
-						amount[i] = taipeiarea[i].amount;
-					}
-					genBarChart(selectArea + '各區咖啡廳數量', area, amount);
-				}
-			});
-		}
-		function genBarChart(title, categories, amount) {
-			Highcharts.chart('container', {
-				title : {
-					text : title
-				},
-				chart : {
-					type : 'column'
-				},
-				xAxis : {
-					categories : categories
-				},
-				yAxis : {
-					title : {
-						text : '數量'
-					}
-				},
-				series : [ {
-					showInLegend : false,
-					data : amount
-				} ]
-			});
-		}
-		$("#area1").change(function() {
-			genAreaAmountChart();
-		})
-	}
-</script>
->>>>>>> 63333fd382326e3d3535a0e277f046970cb93bfd
 
 </head>
 
@@ -160,11 +107,7 @@ header {
 		</section>
 	</div>
 
-<<<<<<< HEAD
 	<!-- Banner Ends Here --> 
-=======
-	<!-- Banner Ends Here -->
->>>>>>> 63333fd382326e3d3535a0e277f046970cb93bfd
 
 	<!-- 各區域的咖啡店總數 -->
 	<select id="area1">
@@ -172,7 +115,6 @@ header {
 		<option>新北市</option>
 	</select>
 	<div id="container" style="height: 300px"></div>
-<<<<<<< HEAD
 	<br>
 	<!-- 各區域顧客訂位狀況 -->
 	<select id="area2">
@@ -185,8 +127,6 @@ header {
 	
 	<!-- 商品各個項目銷售 -->
 	
-=======
->>>>>>> 63333fd382326e3d3535a0e277f046970cb93bfd
 	<!-- 寫上面 -->
 
 	<jsp:include page="/fragment/footer.jsp" />

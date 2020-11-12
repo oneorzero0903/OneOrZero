@@ -67,7 +67,7 @@
 					"<tr><td>" +"營業開始："+ store.opentime_start +"</td></tr>" +
 					"<tr><td>" +"營業結束："+ store.opentime_end +"</td></tr>" +
 					"<tr><td>" +"地址："+ store.address_city+ store.address_area + store.address_road +"</td></tr>" +
-					"<tr><td><img class='ratingImg' src='<c:url value='/images/goldenBean.png' />'>" + rating +"(" + store.rateCount + ")</td></tr>"
+					"<tr><td><img class='ratingImg' src='<c:url value='/images/goldenBean.png' />'>" + rating +"(" + store.rateCount + ")</td></tr>" +
 					orderButton +
 					"</table></div>";
 					
