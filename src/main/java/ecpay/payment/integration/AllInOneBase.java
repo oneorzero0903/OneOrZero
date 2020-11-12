@@ -1,8 +1,5 @@
 package ecpay.payment.integration;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -38,7 +35,7 @@ public class AllInOneBase {
 //			String configPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
 //			doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
-			String paymentConfPath = "./src/main/resources/payment_conf.xml";
+			String paymentConfPath = "C:\\_spring\\workspaceHibernate\\OneOrZero\\src\\main\\resources\\payment_conf.xml";
 			doc = EcpayFunction.xmlParser(paymentConfPath);
 			
 			doc.getDocumentElement().normalize();

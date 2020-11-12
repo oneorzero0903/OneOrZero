@@ -92,6 +92,10 @@ color:#fff
               <div class="text-content">
                 <h4>商家頁面</h4>
                 <h2>快來成為我們的合作店家</h2>
+                <br>
+                 <div class="btn btn-primary">
+                    <a style="color:white;" href="<c:url value='/signUp/StoreTerms' />" target="_parent">商家註冊</a>
+                 </div>
               </div>
             </div>
           </div>
@@ -101,49 +105,53 @@ color:#fff
     
     <!-- Banner Ends Here -->
 
-    <section class="call-to-action">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="main-content">
-              <div class="row">
-                <div class="col-lg-8">
-                  <span>收費項目</span>
-                  <h4>成為合作店家之後就是享用的我們付費服務囉!!</h4>
-                </div>
-                <div class="col-lg-4">
-                  <div class="main-button">
-                    <a href="#" target="_parent">商家註冊</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
     <section class="blog-posts grid-system">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
             <div class="all-blog-posts">
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6" onclick="location.href='<c:url value='/program/buyProgramAD'	/>'">
                   <div class="blog-post">
                     <div class="blog-thumb">
-                      <img src="<c:url value='/images/blog-thumb-01.jpg'	/>" alt="">
+                      <a href="<c:url value='/program/buyProgramAD'	/>">
+                      <img src="<c:url value='/images/program/programAD.png'	/>" alt="">
+                      </a>
                     </div>
                     <div class="down-content">
-                      <span>首頁輪播廣告</span>
-                      <a href="#"><h4>眼睛好酸</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">50ntd/7days</a></li><br>
-                        <li><a href="#">150ntd/14days</a></li><br>
-                        <li><a href="#">250ntd/30days</a></li>
-                      </ul>
-                      <p>然而我還有幾百頁</p>
+                      <span>方案A</span>
+                      <a href="#"><h4>首頁置頂廣告</h4></a>           
+                      <p>方案內容</p>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              <li><a href="#">bbb</a>,</li>
+                              <li><a href="#">aaa</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>       
+                <div class="col-lg-6" onclick="location.href='<c:url value='/program/buyProgramBT'	/>'">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <a href="<c:url value='/program/buyProgramBT'	/>">
+                      <img src="<c:url value='/images/program/programBT.png'	/>" alt="">
+                      </a>
+                    </div>
+                    <div class="down-content">
+                      <span>方案B</span>
+                      <a href="#"><h4>訂位系統</h4></a>
+                      <!-- <ul class="post-info">
+                        <li><a href="#">ntd/days</a></li>
+                        <li><a href="#">ntd/days</a></li>
+                        <li><a href="#">ntd/days</a></li>
+                      </ul> -->
+                      <p>方案內容</p>
                       <div class="post-options">
                         <div class="row">
                           <div class="col-lg-12">
@@ -158,47 +166,21 @@ color:#fff
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" onclick="location.href='<c:url value='/program/buyProgramSM'	/>'">
                   <div class="blog-post">
                     <div class="blog-thumb">
-                      <img src="<c:url value='/images/blog-thumb-02.jpg'	/>" alt="">
+                    <a href="<c:url value='/program/buyProgramSM'	/>">
+                      <img src="<c:url value='/images/program/programSM.png'	/>" alt="">
+                      </a>
                     </div>
                     <div class="down-content">
-                      <span>賣錢的服務</span>
-                      <a href="#"><h4>腰快斷了</h4></a>
-                      <ul class="post-info">
-                        <li><a href="#">ntd/days</a></li>
-                        <li><a href="#">ntd/days</a></li>
-                        <li><a href="#">ntd/days</a></li>
-                      </ul>
-                      <p>快賈維骨力</p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <li><a href="#">bbb</a>,</li>
-                              <li><a href="#">aaa</a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="blog-post">
-                    <div class="blog-thumb">
-                      <img src="<c:url value='/images/blog-thumb-03.jpg'	/>" alt="">
-                    </div>
-                    <div class="down-content">
-                      <span>賣錢的服務</span>
-                      <a href="#"><h4>活動舉辦</h4></a>
-                      <ul class="post-info">
+                      <span>方案C</span>
+                      <a href="#"><h4>購物商城</h4></a>
+                      <!-- <ul class="post-info">
                         <li><a href="#">150/15days</a></li>
                       
-                      </ul>
-                      <p>您可以在此尋找您喜歡的咖啡廳，洽談後，可po在我們首頁及商業價面做宣傳</p>
+                      </ul> -->
+                      <p>方案內容</p>
                       <div class="post-options">
                         <div class="row">
                           <div class="col-lg-12">
@@ -213,21 +195,23 @@ color:#fff
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" onclick="location.href='<c:url value='/program/buyAll'	/>'">
                   <div class="blog-post">
                     <div class="blog-thumb">
-                      <img src="<c:url value='/images/blog-thumb-04.jpg'	/>" alt="">
+                    <a href="<c:url value='program/buyAll'	/>">
+                      <img src="<c:url value='/images/program/buyAll.png'	/>" alt="">
+                      </a>
                     </div>
                     <div class="down-content">
-                      <span>賣錢的服務</span>
-                      <a href="#"><h4>電腦要沒電了ㄚㄚㄚㄚ</h4></a>
-                      <ul class="post-info">
+                      <span>方案D</span>
+                      <a href="#"><h4>購買全部方案</h4></a>
+                     <!--  <ul class="post-info">
                         <li><a href="#">ntd/days</a></li>
                         <li><a href="#">ntd/days</a></li>
                         <li><a href="#">ntd/days</a></li>
                         <li><a href="#">ntd/days</a></li>
-                      </ul>
-                      <p>錢錢錢給我錢錢錢錢錢錢錢錢</p>
+                      </ul> -->
+                      <p>方案內容</p>
                       <div class="post-options">
                         <div class="row">
                           <div class="col-lg-12">
@@ -249,11 +233,9 @@ color:#fff
             <div class="sidebar">
               <div class="row">
                 <div class="col-lg-12">
-                  <div class="sidebar-item search">
-                    <form id="search_form" name="gs" method="GET" action="#">
-                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
-                    </form>
-                  </div>
+                	<div class="col-lg-12">
+                  		<img src="<c:url value='/images/storecm.jpg' />" >
+                	</div>
                 </div>
                 <div class="col-lg-12">
                   <div class="sidebar-item recent-posts">

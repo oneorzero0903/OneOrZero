@@ -13,13 +13,13 @@ public class LogoutController {
 	public String logout(HttpSession session, SessionStatus status) {
 		status.setComplete();
 		session.invalidate();
-		return "index";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/out/store")
 	public String logoutStore(HttpSession session, SessionStatus status) {
 		status.setComplete();
 		session.invalidate();
-		return "indexShop";
+		return "redirect:/indexShop";
 	}
 }

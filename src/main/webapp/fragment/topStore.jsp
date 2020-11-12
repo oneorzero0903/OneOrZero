@@ -4,9 +4,9 @@
 
     <!-- Header -->
     <header class="">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg fixed-top ">
         <div class="container">
-          <a class="navbar-brand" href="<c:url value='/'	/>"><h2>search("咖啡");<em></em></h2></a>
+            <a  href="<c:url value='/'	/>"><img src="<c:url value='/images/logo10.png'	/>"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -42,24 +42,16 @@
                		</c:if>
                	</li>
                </c:if>
-              <li class="nav-item">
-              	<c:if test="${ funcName != 'ORDST' }">
-                  <a class="nav-link" href="<c:url value='/storeOrder/StoreOrder'	/>">訂單管理</a>
-			    </c:if>
-			    <c:if test="${ funcName == 'ORDST' }"> 
-                  <a class="nav-link">訂單管理</a>
-                </c:if>
-              </li>
-				<li class="nav-item">
-                  <c:if test="${ funcName != 'SHOPCAR' }">
-                  <a class="nav-link" href="<c:url value='/product/AddNewProduct'    />">商城管理</a>
-                </c:if>
-                <c:if test="${ funcName == 'SHOPCAR' }"> 
-                  <a class="nav-link">商城管理</a>
-                </c:if>
-              <li class="nav-item">
-                  <a class="nav-link" href="<c:url value='/ad/buyAd'/>">廣告管理</a>
-              </li>
+               
+              
+            <li class="dropdown show">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 商家方案選擇 </a>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<a class="dropdown-item" href="<c:url value='/ad/buyAd'/>">廣告管理</a>
+					<a class="dropdown-item" href="<c:url value='/storeOrder/StoreOrder'/>">訂單管理</a>
+					<a class="dropdown-item" href="<c:url value='/product/AddNewProduct'    />">商城管理</a>
+				</div>
+			</li>
               
               <li class="nav-item">
               	<c:if test="${ funcName != 'CON' }">
@@ -69,10 +61,14 @@
                     <a class="nav-link">聯絡我們</a>
                 </c:if>
               </li>
+              
               <c:if test="${ ! empty store }">
               	<li class="nav-item">
                     <a class="nav-link">Hello ${ store.store_name }</a>         
               	</li>
+              	<li>
+					<img src="<c:url value='/images/icon.png' />">
+				</li>
               </c:if>
             </ul>
           </div>

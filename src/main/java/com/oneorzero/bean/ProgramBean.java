@@ -3,10 +3,13 @@ package com.oneorzero.bean;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ProgramBean implements java.io.Serializable{
@@ -15,37 +18,39 @@ public class ProgramBean implements java.io.Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer program_id;//方案編號
+	private Integer id;//方案編號
 	
-	private String program_name;//方案名稱
-	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//建立日期
-	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//修改日期
+	private String name;//方案名稱
+	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//購買日期
+	private Long startTime;  //方案開始之日期毫秒數  
+	private Long endTime;  //方案停止之日期毫秒數        
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "store_id")
+	private StoreBean store;
 	
 	public ProgramBean() {
 	}
 	
-	public ProgramBean(String program_name, String create_dt, String update_dt) {
-		String timeStr1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-		this.program_name = program_name;
-		this.create_dt = timeStr1;
-		this.update_dt = timeStr1;
+	public Integer getId() {
+		return id;
 	}
 
-	public Integer getProgram_id() {
-		return program_id;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setProgram_id(Integer program_id) {
-		this.program_id = program_id;
+
+	public String getName() {
+		return name;
 	}
 
-	public String getProgram_name() {
-		return program_name;
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setProgram_name(String program_name) {
-		this.program_name = program_name;
-	}
 
 	public String getCreate_dt() {
 		return create_dt;
@@ -55,12 +60,27 @@ public class ProgramBean implements java.io.Serializable{
 		this.create_dt = create_dt;
 	}
 
-	public String getUpdate_dt() {
-		return update_dt;
+	public StoreBean getStore() {
+		return store;
 	}
 
-	public void setUpdate_dt(String update_dt) {
-		this.update_dt = update_dt;
+	public void setStore(StoreBean store) {
+		this.store = store;
 	}
-	
+
+	public Long getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Long startTime) {
+		this.startTime = startTime;
+	}
+
+	public Long getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Long endTime) {
+		this.endTime = endTime;
+	}
 }

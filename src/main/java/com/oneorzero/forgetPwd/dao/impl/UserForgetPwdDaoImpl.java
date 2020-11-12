@@ -35,9 +35,9 @@ public class UserForgetPwdDaoImpl implements IUserForgetPwdDaoI {
 			member.setPassword(newPwd);
 			member.setResetPwd(1);
 			session.save(member);
-			
+			String subject = "你的search(\"咖啡\");臨時密碼";
 			SendMail mail = new SendMail();
-			mail.sendPwd(account, newPwd);
+			mail.sendEmail(account, subject, newPwd);
 		}
 		return member;
 

@@ -54,11 +54,11 @@ public class UserSignUpController{
 			
 			String mail = mb.getEmail();
 			String encodeEmail = encoder.encodeToString(mail.getBytes());
-			
+			String subject = "search(\"咖啡\"); 帳號開通信件";
 			String context = "http://localhost:8080/OneOrZero/signUp/UserAccountVerify"+
 							 "?" + "email=" + encodeEmail;
 			
-			send.sendAccountVerify(mail, context);
+			send.sendEmail(mail, subject, context);
 			redirectAttributes.addFlashAttribute("email", mail);
 			return "redirect:/";
 		} else {
@@ -68,38 +68,7 @@ public class UserSignUpController{
 		}	
 			
 	}
-			//			@RequestParam String email,
-//							@RequestParam String name,
-//							@RequestParam String gender,
-//							@RequestParam String birthday,
-//							@RequestParam String password,
-//							@ModelAttribute("memberBean") MemberBean mb,
-//							Model model,
-//							RedirectAttributes redirectAttributes
-//							 {
-////		Map<String, String> errorMsg = new HashMap<String, String>();
-////		model.addAttribute("ErrorMsg", errorMsg);
-////		System.out.println(mb.getEmail());
-//		boolean status = false;
-//		status = service.signUp(mb);
-//		if (status) {
-//			SendMail send = new SendMail();
-//			Base64.Encoder encoder = Base64.getEncoder();
-//			
-//			String mail = mb.getEmail();
-//			String encodeEmail = encoder.encodeToString(mail.getBytes());
-//			
-//			String context = "http://localhost:8080/OneOrZero/signUp/UserAccountVerify"+
-//							 "?" + "email=" + encodeEmail;
-//			
-//			send.sendAccountVerify(mail, context);
-//			redirectAttributes.addFlashAttribute("email", email);
-//			return "redirect:/";
-//		} else {
-//			model.addAttribute("SignUpError", "此帳號已被使用");
-//			return "signUp/UserSignUp";
-//		}	
-//	}
+
 	
 	@GetMapping("/signUp/SignUpOK")
 	public String signUpRedirect(Model model) {

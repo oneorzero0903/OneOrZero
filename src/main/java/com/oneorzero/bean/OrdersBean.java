@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class OrdersBean implements java.io.Serializable{
@@ -30,6 +29,8 @@ public class OrdersBean implements java.io.Serializable{
 	@JoinColumn(name = "setting_id")
 	private Store_OrderSettingBean store_OrderSettingBean;//訂單編號
 	
+	private Integer store_id;//商家編號
+	
 	@Column(name = "email", columnDefinition = "VARCHAR(50) NOT NULL")
 	private String email; //會員Email
 	private String order_date; //預訂日期(yyyy/MM/dd)
@@ -39,6 +40,7 @@ public class OrdersBean implements java.io.Serializable{
 	private Integer people_count; //人數
 	private Integer box; //包廂
 	private String remark; //備註
+	private Integer isDelete = 1; //是否取消 1:未取消 0.已取消
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); //建立日期
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); //修改日期
 	
@@ -46,7 +48,7 @@ public class OrdersBean implements java.io.Serializable{
 	}
 	
 	public OrdersBean(String email, String order_date, String days, String times, Integer service_charge, Integer people_count, Integer box,
-			String remark, MemberBean member, Store_OrderSettingBean store_OrderSettingBean) {
+			String remark, MemberBean member, Store_OrderSettingBean store_OrderSettingBean, Integer store_id) {
 		super();
 		this.email = email;
 		this.order_date = order_date;
@@ -58,10 +60,7 @@ public class OrdersBean implements java.io.Serializable{
 		this.remark = remark;
 		this.member = member;
 		this.store_OrderSettingBean = store_OrderSettingBean;
-		
-		String timeStr1 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-		this.create_dt = timeStr1;
-		this.update_dt = timeStr1;
+		this.store_id = store_id;
 	}
 	
 	public String getDays() {
@@ -102,6 +101,14 @@ public class OrdersBean implements java.io.Serializable{
 
 	public void setStore_OrderSettingBean(Store_OrderSettingBean store_OrderSettingBean) {
 		this.store_OrderSettingBean = store_OrderSettingBean;
+	}
+	
+	public Integer getStore() {
+		return store_id;
+	}
+
+	public void setStore(Integer store_id) {
+		this.store_id = store_id;
 	}
 
 	public String getEmail() {
@@ -166,6 +173,14 @@ public class OrdersBean implements java.io.Serializable{
 
 	public void setUpdate_dt(String update_dt) {
 		this.update_dt = update_dt;
+	}
+
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 }

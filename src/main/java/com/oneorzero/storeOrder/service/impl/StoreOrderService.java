@@ -1,5 +1,6 @@
 package com.oneorzero.storeOrder.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.oneorzero.bean.StoreBean;
 import com.oneorzero.bean.Store_OrderSettingBean;
 import com.oneorzero.storeOrder.dao.IStoreOrderDao;
+import com.oneorzero.storeOrder.model.BookingTimeRequest;
+import com.oneorzero.storeOrder.model.StoreOrderListResponse;
 import com.oneorzero.storeOrder.service.IStoreOrderService;
 
 @Service
@@ -47,6 +50,53 @@ public class StoreOrderService implements IStoreOrderService {
 	@Override
 	public Integer getStore_Id(String email) {
 		return dao.getStore_Id(email);
+	}
+
+	@Override
+	public Integer checkStoreOrder(StoreBean store) {
+		return dao.checkStoreOrder(store);
+	}
+	
+	@Override
+	public List<Store_OrderSettingBean> findOrder(String store_id) {
+		return dao.findOrder(store_id);
+	}
+	
+	@SuppressWarnings("null")
+	@Override
+	public List<String> checkDayToGetSetting(List<Store_OrderSettingBean> orderSetting, 
+			BookingTimeRequest date) {
+		
+		String[] dateArr = date.getDate().split("\\-");
+		List<String> list = new ArrayList<>();
+		A:for (int i = 0; i < orderSetting.size(); i++) {
+			boolean check = dao.checkDayToGetSetting(orderSetting.get(i).getSetting_id(), getDay(dateArr[1]));
+			if (check) {
+				list.add(String.valueOf(orderSetting.get(i).getSetting_id()));
+			}else {
+				continue A;
+			}
+		}
+		return list;
+		
+	}
+	
+	@Override
+	public List<StoreOrderListResponse> getOrdersList(Integer setting_id, String date) {
+		return dao.getOrdersList(setting_id, date);
+	}
+	
+	private String getDay(String date) {
+		switch (date) {
+			case "Monday": return "1";
+			case "Tuesday": return "2";
+			case "Wednesday": return "3";
+			case "Thursday": return "4";
+			case "Friday": return "5";
+			case "Saturday": return "6";
+			case "Sunday": return "7";
+			default: return "0";
+		}
 	}
 
 }

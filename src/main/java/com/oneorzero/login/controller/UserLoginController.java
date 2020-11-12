@@ -65,4 +65,9 @@ public class UserLoginController{
 	public String redirect() {
 		return "login/LoginOK";
 	}
+	
+	@GetMapping("/adminpage")
+	public String adminpage() {
+		return "adminpage";
+	}
 }

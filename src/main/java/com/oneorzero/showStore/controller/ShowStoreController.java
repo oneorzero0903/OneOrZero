@@ -20,7 +20,7 @@ import com.oneorzero.showStore.model.SearchOrderRequest;
 import com.oneorzero.showStore.service.IShowStoreService;
 
 @Controller
-@SessionAttributes({ "member" })
+@SessionAttributes({ "member","oneStore" })
 public class ShowStoreController {
 
 	@Autowired
@@ -50,8 +50,9 @@ public class ShowStoreController {
 
 	// 顯示單筆店家資料
 	@GetMapping(value = "show/showOneStore/{key}", produces = { "application/json" })
-	public @ResponseBody StoreBean showStore(@PathVariable Integer key) {
+	public @ResponseBody StoreBean showStore(@PathVariable Integer key, Model model) {
 		StoreBean sb = service.findByPK(key);
+		model.addAttribute("oneStore", sb);
 		return sb;
 	}
 

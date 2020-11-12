@@ -54,11 +54,11 @@ public class StoreSignUpController{
 			
 			String mail = sb.getEmail();
 			String encodeEmail = encoder.encodeToString(mail.getBytes());
-			
+			String subject = "search(\"咖啡\"); 帳號開通信件";
 			String context = "http://localhost:8080/OneOrZero/signUp/StoreAccountVerify"+
 							 "?" + "email=" + encodeEmail;
 			
-			send.sendAccountVerify(mail, context);
+			send.sendEmail(mail, subject, context);
 			redirectAttributes.addFlashAttribute("email", mail);
 			return "redirect:/indexShop";
 		} else {

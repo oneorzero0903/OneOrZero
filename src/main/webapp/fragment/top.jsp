@@ -6,7 +6,7 @@
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="<c:url value='/'	/>"><h2>search("咖啡");<em>.</em></h2></a>
+          <a  href="<c:url value='/'	/>"><img src="<c:url value='/images/logo10.png'	/>"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -48,15 +48,6 @@
               <li class="nav-item">
               	<a class="nav-link" href="<c:url value='/show/ShowStoresByPage'	/>">店家一覽</a>
               </li>
-              
-<!--               <li class="nav-item"> -->
-<%--                 <c:if test="${ funcName != 'ORD' }"> --%>
-<%--                   <a class="nav-link" href="<c:url value='/orders/ShowStoresOrderByPage'	/>">訂位</a> --%>
-<%-- 			    </c:if> --%>
-<%-- 			    <c:if test="${ funcName == 'ORD' }">  --%>
-<!--                   <a class="nav-link">訂位</a> -->
-<%--                 </c:if> --%>
-<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/indexShop'	/>">商家頁面</a>
               </li>
@@ -67,11 +58,15 @@
               	<c:if test="${ funcName == 'CON' }"> 
                     <a class="nav-link">聯絡我們</a>         
                 </c:if>
+                  
               </li>
               <c:if test="${ ! empty member }">
               	<li class="nav-item">
                     <a class="nav-link">Hello ${ member.name }</a>         
               	</li>
+              	<li>
+					<img src="<c:url value='/images/icon.png' />">
+				</li>
               </c:if>
             </ul>
           </div>

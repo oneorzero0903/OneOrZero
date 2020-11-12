@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class MemberBean implements java.io.Serializable {
@@ -33,12 +32,6 @@ public class MemberBean implements java.io.Serializable {
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));; //修改日期
 	private Integer resetPwd = 0; //需要更新密碼 0:不需要 1:需要
 	
-	@OneToOne(mappedBy = "member")
-	private OrdersBean orders;
-	
-	@OneToOne(mappedBy = "member")
-	private ProblemBean problem;
-
 	public MemberBean() {
 	}
 
@@ -57,13 +50,6 @@ public class MemberBean implements java.io.Serializable {
 		this.resetPwd = 0;
 	}
 	
-	public OrdersBean getOrders() {
-		return orders;
-	}
-
-	public void setOrders(OrdersBean orders) {
-		this.orders = orders;
-	}
 
 	public Integer getMember_id() {
 		return member_id;

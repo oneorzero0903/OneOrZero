@@ -2,15 +2,11 @@ package com.oneorzero.bean;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class StoreBean implements java.io.Serializable{
@@ -36,12 +32,24 @@ public class StoreBean implements java.io.Serializable{
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//建立日期
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//修改日期
 	private Integer resetPwd = 0; //需要更新密碼 0:不需要 1:需要
-	private Double rating = 0.0;
+	private Integer rating = 0;
  	private Integer rateCount = 0;
+ 	private Integer isAdmin = 0;
 
 	public StoreBean() {
 	}
 	
+	
+	public Integer getIsAdmin() {
+		return isAdmin;
+	}
+
+
+	public void setIsAdmin(Integer isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+
 	public Integer getStore_id() {
  		return store_id;
  	}
@@ -81,15 +89,16 @@ public class StoreBean implements java.io.Serializable{
  		this.address_city = address_city;
  	}
 
- 	public Double getRating() {
- 		return rating;
- 	}
+ 	public Integer getRating() {
+		return rating;
+	}
 
- 	public void setRating(Double rating) {
- 		this.rating = rating;
- 	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
 
- 	public Integer getRateCount() {
+
+	public Integer getRateCount() {
  		return rateCount;
  	}
  	public void setRateCount(Integer rateCount) {

@@ -189,7 +189,7 @@ color:#fff
         <input type="checkbox" name="agr" value="agree">我已閱讀並同意會員約定條款說明<br>
         <br>
         <div id="btn">
-            <input type="button" value="確認送出" class="button" onclick="register()">
+            <input type="button" value="確認送出" class="btn btn-primary" onclick="register()">
         </div>
 
         <script>

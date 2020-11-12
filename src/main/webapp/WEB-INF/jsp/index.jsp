@@ -13,7 +13,6 @@
 	position: relative;
 	width: 99%;
 	overflow: hidden;
-/* 	margin: 0 auto; */
 	height: 450px;
 }
 
@@ -30,6 +29,7 @@ ul.slides {
 	width: 3000px;
 	left: 0px;
 	transition: all .5s;
+	height: 500px;
 }
 
 ul.slides li {
@@ -66,12 +66,22 @@ ul.slides li img {
 }
 
 .slide_btn i {
-	color: rgba(255, 8, 64, 1);
+	color: #27272786;
 	transition: 2s;
 }
 
 .slide_btn:hover i {
 	color: rgba(255, 255, 255, 1);
+}
+
+figcation{
+padding-left:30px;
+font-size:16px;
+color:#d26900;
+}
+#member{
+padding-top: 5px;
+margin:0px ;
 }
 </style>
 
@@ -98,7 +108,7 @@ ul.slides li img {
 				if (adLists.length < 6) {  //預設圖片將會連結至廣告方案頁面
 					var noAd = 6 - adLists.length;
 					for (var i=0; i< noAd; i++) {
-						content += "<li ><figure><img src='<c:url value='/images/ADdemo.png' />'><figcation style='background-color: white;'>愛麗絲是我的</figcation></figure></li>";
+						content += "<li><figure><img src='<c:url value='/images/ADdemo.png' />'><figcation>方案買起來</figcation></figure></li>";
 					}
 				}
 				content += "</ul>";
@@ -142,18 +152,27 @@ ul.slides li img {
     
     
    <div class="heading-page header-text" style="padding-top: 10px">
-		<section class="page-heading">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="text-content">
-							<h4>about us</h4>
-							<h2>more about us!</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+		 <section class="call-to-action" id="member">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="main-content">
+              <div class="row">
+                <div class="col-lg-8">
+                  <span>加入會員了嗎？</span>
+                  <h4>快按右邊加入會員！</h4>
+                </div>
+                <div class="col-lg-4">
+                  <div class="main-button">
+                    <a rel="nofollow" href="<c:url value='/signUp/Terms'/>" target="_parent">加入會員</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 	</div>
 
 	<!-- Banner Ends Here -->
@@ -227,28 +246,28 @@ ul.slides li img {
 	</script>
              
     <!-- Banner Ends Here -->
-
-    <section class="call-to-action">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="main-content">
-              <div class="row">
-                <div class="col-lg-8">
-                  <span>加入會員了嗎？</span>
-                  <h4>快按右邊加入會員！</h4>
-                </div>
-                <div class="col-lg-4">
-                  <div class="main-button">
-                    <a rel="nofollow" href="<c:url value='/signUp/Terms'/>" target="_parent">加入會員</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<!--     <section class="call-to-action"> -->
+<!--       <div class="container"> -->
+<!--         <div class="row"> -->
+<!--           <div class="col-lg-12"> -->
+<!--             <div class="main-content"> -->
+<!--               <div class="row"> -->
+<!--                 <div class="col-lg-8"> -->
+<!--                   <span>加入會員了嗎？</span> -->
+<!--                   <h4>快按右邊加入會員！</h4> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-4"> -->
+<!--                   <div class="main-button"> -->
+<%--                     <a rel="nofollow" href="<c:url value='/signUp/Terms'/>" target="_parent">加入會員</a> --%>
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </section> -->
+    
 
 
     <section class="blog-posts">

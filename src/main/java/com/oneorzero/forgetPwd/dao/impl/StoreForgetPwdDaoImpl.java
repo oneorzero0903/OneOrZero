@@ -33,9 +33,9 @@ public class StoreForgetPwdDaoImpl implements IStoreForgetPwdDao {
 			store.setPassword(newPwd);
 			store.setResetPwd(1);
 			session.save(store);
-			
+			String subject = "你的search(\"咖啡\");臨時密碼";
 			SendMail mail = new SendMail();
-			mail.sendPwd(account, newPwd);
+			mail.sendEmail(account, subject, newPwd);
 		}
 
 		return store;
