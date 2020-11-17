@@ -69,8 +69,8 @@ color:#fff
 }
   </style>
   </head>
-  <script src="https://code.jquery.com/jquery-3.1.0.js"> </script>
   <script src="<c:url value='/js/StoreSignup.js'	/>"></script>
+  <script src="<c:url value='/js/country.js'	/>"></script>
   <body style="background-color: #ffffee;">
 
     <!-- ***** Preloader Start ***** -->
@@ -108,7 +108,7 @@ color:#fff
 
 	<div class="wrap">
         <h2>商家註冊</h2>
-        <form:form method="POST" modelAttribute="storeBean" id="SignUpForm">
+        <form:form method="POST" modelAttribute="storeBean" id="SignUpForm" enctype="multipart/form-data">
             <label for="email">請輸入信箱</label>
             <form:input id="email" path="email" type='email'
 						class='form:input-large' size="30" autocomplete="off" placeholder="請輸入信箱" onblur="checkEmail()"/>
@@ -133,21 +133,13 @@ color:#fff
             <form:input id="store_name" path="store_name" type='store_name'
 						class='form:input-large' size="10" autocomplete="off" placeholder="請輸入公司名稱"/>
             <div class="st1">
-
-                <label for="" class="t1">所在縣市</label>
+               <label for="" class="t1">所在縣市</label>
                 <form:select path="address_city" id="address_city">
-                        <form:option value="NONE" label="請選擇..." />
-                        <form:option value="Taipei City">台北市</form:option>
-              			<form:option value="New Taipei City">新北市</form:option>
-<%--                         <form:options items="${storeBean}" /> --%>
                 </form:select>
-                <br>
-                
+                <br>  
                 <label for="" class="t1">所在地區</label>
                 <form:select path="address_area" id="address_area">
-                        <form:option value="NONE" label="請選擇..." />
-                        <form:option value="Zhong Zheng">中正區</form:option>
-<%--                         <form:options items="${countryList}" /> --%>
+              
                 </form:select>
                 <br>
                 
@@ -176,6 +168,7 @@ color:#fff
                 <form:input id="opentime_end" path="opentime_end" type='time'
 						class='form:input-large' size="30" autocomplete="off"/>
             </div>
+            <span id="spanTime"></span>
             <div class="st1">
                 <label for="">聯絡人</label>
                 <form:input id="contact_person" path="contact_person" type='contact_person'
@@ -183,47 +176,24 @@ color:#fff
 						onblur="checkContactPerson()" onkeyup="checkContactPerson()"/>
                 <span id="idspName"></span>
                 <br>
-                <span class="st1">(1.不可空白，2.至少2個字以上，3.必須全部為中文字)</span>
             </div>
-            <!--  <label for="">上傳照片</label>
-                <input type="file" name="file0" id="progressbarTWInput" multiple="multiple" /><br>
-                <img src="" id="img0">-->
+              <label for="storeImage">上傳照片</label> 
+                 <form:input type="file"  id="storeImage" path="storeImage" accept='image/*'/><br>
                 <br>
                 <div id="btn">
                     <input type="button" class='btn btn-primary' value="確認送出" onclick="register()">
                     <input type="reset" class='btn btn-primary' value="取消重填" class="cancel">
                 </div>
+                <br>
+					<div>
+					<img style="width: 400px;" id="showImg">  <!-- 預覽圖片用 -->
+					</div>
             </form:form>
             <span>${SignUpError}</span>
             <br><br>
-            <button id='btn' onclick="oneclick()">一鍵輸入</button>
+            <button id='storeSignUpBtn' >一鍵輸入</button>
     </div>
     
-    <script>
-    function oneclick(){//一鍵輸入
-		document.getElementById("email").value = "oneorzerocorp@gmail.com";
-		document.getElementById("password").value = "abcd1234!";
-		document.getElementById("idPwd2").value = "abcd1234!";
-		document.getElementById("store_name").value = "Jacob company";
-		document.getElementById("address_city").value = "Taipei City";
-		document.getElementById("address_area").value = "Zhong Zheng";
-		document.getElementById("address_road").value = "中正路";
-		document.getElementById("tel").value = "02-1234567";
-		document.getElementById("phone").value = "0919123456";
-		document.getElementById("opentime_start").value = "08:00";
-		document.getElementById("opentime_end").value = "20:00";
-		document.getElementById("contact_person").value = "Mark";
-	}
-    function register() {
-        let check = validate();
-        if (check) {
-        	document.forms["SignUpForm"].submit();
-		} else {
-			return false;
-		}
-    }
-    </script>
-
     <!-- 寫上面 -->
 
 	<jsp:include page="/fragment/footer.jsp" />
