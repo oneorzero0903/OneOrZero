@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.oneorzero.bean.ProgramBean;
 import com.oneorzero.bean.StoreBean;
 import com.oneorzero.bean.Store_OrderSettingBean;
 import com.oneorzero.storeOrder.model.BookingTimeRequest;
@@ -33,16 +34,23 @@ public class StoreOrderController {
 	public String getStoreOrderForm(Model model) {
 		StoreBean store = (StoreBean) model.getAttribute("store");
 		if (store != null) {
-			Integer storeOrderCount = service.checkStoreOrder(store);//判斷是否已設定過訂單
-			if (storeOrderCount > 0) {
-				List<Store_OrderSettingBean> storeOrderSetting = service.findOrder(String.valueOf(store.getStore_id()));
-				model.addAttribute("storeOrderSetting", storeOrderSetting);
-				return "storeOrder/StoreOrderMenu";
+			boolean isBuy = service.checkProgram(store.getStore_id(), "programBT");
+			if(isBuy) {
+				Integer storeOrderCount = service.checkStoreOrder(store);//判斷是否已設定過訂單
+				if (storeOrderCount > 0) {
+					List<Store_OrderSettingBean> storeOrderSetting = service.findOrder(String.valueOf(store.getStore_id()));
+					model.addAttribute("storeOrderSetting", storeOrderSetting);
+					return "storeOrder/StoreOrderMenu";
+				}else {
+					Store_OrderSettingBean bean = new Store_OrderSettingBean();
+					model.addAttribute("store_OrderSettingBean", bean);
+					return "storeOrder/StoreOrder";
+				}
 			}else {
-				Store_OrderSettingBean bean = new Store_OrderSettingBean();
-				model.addAttribute("store_OrderSettingBean", bean);
-				return "storeOrder/StoreOrder";
-			}
+				ProgramBean bean = new ProgramBean();
+				model.addAttribute("programBean", bean);
+				return "redirect:/program/buyProgramBT";
+			}			
 		} else {
 			StoreBean bean = new StoreBean();
 			model.addAttribute("storeBean", bean);

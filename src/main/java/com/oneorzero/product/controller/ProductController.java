@@ -18,16 +18,22 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oneorzero.bean.ProductBean;
+import com.oneorzero.bean.ProgramBean;
 import com.oneorzero.bean.StoreBean;
 import com.oneorzero.product.service.IProductService;
 
@@ -79,10 +85,18 @@ public class ProductController {
 	
 	@GetMapping("/product/AddNewProduct")  //此方法會產生一個新增產品的空白表單,並負責控制頁面跳轉
 	public String getEmptyAddNewProductForm(Model model) {
-		if(model.getAttribute("store") != null) {  //商家已登入,所以不為空
-			ProductBean pu = new ProductBean();
-			model.addAttribute("productBean",pu);
-			return "product/AddNewProduct";
+		StoreBean store = (StoreBean) model.getAttribute("store");
+		if(store != null) {  //商家已登入,所以不為空
+			boolean isBuy = service.checkProgram(store.getStore_id(), "programSM");
+			if(isBuy) {
+				ProductBean pu = new ProductBean();
+				model.addAttribute("productBean",pu);
+				return "product/AddNewProduct";
+			}else {
+				ProgramBean bean = new ProgramBean();
+				model.addAttribute("programBean", bean);
+				return "redirect:/program/buyProgramSM";
+			}
 		}else {
 			StoreBean sb = new StoreBean();
 			model.addAttribute("storeBean", sb);
@@ -169,6 +183,43 @@ public class ProductController {
 		return re;
 	}
 	
+	@GetMapping("/showMyProduct.do")
+	public @ResponseBody List<ProductBean> showMyProductajax(Model model) {
+		StoreBean sb = (StoreBean) model.getAttribute("store");
+		return service.showMyProduct(sb.getStore_id());
+	}
+	
+	@GetMapping("/product/showMyProduct")
+	public String showMyProduct() {
+		return "/product/showMyProduct";
+	}
+	
+	@DeleteMapping("/dropProduct.do")
+	public @ResponseBody List<ProductBean> dropProduct(@RequestBody String jsonStr, Model model) {
+		JsonObject object = new Gson().fromJson(jsonStr, JsonObject.class);
+		int id = object.get("id").getAsInt();
+		service.dropProduct(id);
+		StoreBean sb = (StoreBean) model.getAttribute("store");
+		return service.showMyProduct(sb.getStore_id());
+	}
+	
+	@GetMapping("/product/ProductMgt")
+	public String productMgt() {
+		return "/product/ProductMgt";
+	}
+	
+	@PutMapping("/updateProduct.do")
+	public @ResponseBody List<ProductBean> updateProduct(@RequestBody String jsonStr, Model model) {
+		JsonObject object = new Gson().fromJson(jsonStr, JsonObject.class);
+		int id = object.get("id").getAsInt();
+		String name = object.get("name").getAsString();
+		Integer price = object.get("price").getAsInt();
+		Integer stock = object.get("stock").getAsInt();
+		String description = object.get("description").getAsString();
+		service.updateProduct(name, price, stock, description, id);
+		StoreBean sb = (StoreBean) model.getAttribute("store");
+		return service.showMyProduct(sb.getStore_id());
+	}
 	
 	//注意使用者輸入資料是否完整,否則要處理
 //	@PostMapping("/product/AddNewProduct")

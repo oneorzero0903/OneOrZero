@@ -71,6 +71,26 @@ header {
 	color: #fff
 }
 </style>
+ <script type="text/javascript">
+  	window.onload = function() {
+  		$.ajax({
+		  		type: 'GET',
+		  		url: '<c:url value="/isFunctDisabled"/>',
+		  		success:
+		  			function (list) {
+		  				console.log(list.length);
+		  				if (list.length > 0) {
+		  					alert("您已欠款超過35天,請儘快付款,付款後才可繼續使用本功能.");
+		  					location.href = "<c:url value='/indexShop' />";
+		  				}
+		  			},
+		  		error:
+		  			function (xhr, ajaxOptions, thrownError) {
+		  				alert(xhr.status + "\n" + thrownError);
+		  			}
+		  	});		
+	}
+  </script>
 </head>
 
 <body style="background-color: #ffffee;">
@@ -136,7 +156,7 @@ header {
 						</div><p>${ErrorMsg.PriceEmptyError}</p>
 						<div class="form-group">
 							<label for="description">產品描述</label>
-							<form:input type="text" class="form:input-large" path="description"
+							<form:input type="text" class="form:input-large" maxlength="30" path="description"
 								id="description" placeholder="請輸入產品描述" autocomplete="off" />
 						</div>
 						
@@ -159,11 +179,15 @@ header {
 						<div class='col-lg-offset-2 col-lg-10'>
 							<input id="btnAdd" type='submit' class="btn btn-dark" value='送出' />
 						</div>
+						<div>
+						</div>
 					</div>
 
 				</div>
 			</div>
 		</form:form>
+		<button id='crystalBtn' class='btn btn-info' style="margin: 10px">一鍵輸入</button>
+		
 
 	</div>
 
@@ -185,6 +209,15 @@ header {
 	  $("#productImg").change(function() {
 	   readURL(this);
 	  });
+	  
+	  
+	  var crystalBtn = document.getElementById("crystalBtn");
+		crystalBtn.onclick = function() {
+			document.getElementById("name").value = "星巴巴保溫瓶";
+			document.getElementById("price").value = "2000";
+			document.getElementById("stock").value = "100";
+			document.getElementById("description").value = "耐熱溫度 : 瓶蓋100度C!請手洗，不適用於微波爐、烤箱、洗(烘)碗機。 請勿盛裝乾冰、碳酸飲料，以避免內壓上升，導致瓶塞無法打開或內容物噴出等危險。請勿盛裝酸性飲料，避免鋼材受損，影響保溫效果。";
+		}
 		
 	</script>
 </body>

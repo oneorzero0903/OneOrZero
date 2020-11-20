@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oneorzero.report.model.AreaTotalAmountReport;
 import com.oneorzero.report.model.AreaTotalOrderByCustomer;
+import com.oneorzero.report.model.ProductItems;
 import com.oneorzero.report.service.IReportService;
 
 @Controller
@@ -35,5 +36,11 @@ public class ReportController {
 	public @ResponseBody List<AreaTotalOrderByCustomer> compuAreaTotalOrderByCustomer(
 			@RequestParam(value = "city") String city) {
 		return reportService.computedAreaOrderByCustomer(city);
+	}
+	
+	@GetMapping("/report/computedProductItems")
+	public @ResponseBody List<ProductItems> computedProductItems(
+			@RequestParam(value = "type") String type){
+		return reportService.computedProductItems(type);
 	}
 }

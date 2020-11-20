@@ -11,5 +11,8 @@ public interface IProductService {
 	List<ProductBean> getProductsByPageNo(Integer pageNo);
 	int getTotalPages();
 	void insertAddProduct(ProductBean pb);  //給商家新增商品頁面
-
+	List<ProductBean> showMyProduct(Integer id);
+	void dropProduct(Integer id);	
+	void updateProduct(String name, Integer price, Integer stock, String description, Integer id);
+	boolean checkProgram(Integer store_id, String name);
 }

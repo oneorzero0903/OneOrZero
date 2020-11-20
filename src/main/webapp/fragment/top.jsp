@@ -49,6 +49,9 @@
               	<a class="nav-link" href="<c:url value='/show/ShowStoresByPage'	/>">店家一覽</a>
               </li>
               <li class="nav-item">
+              	<a class="nav-link" href="<c:url value='/product/ShowProductsByPage'	/>">商品一覽</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="<c:url value='/indexShop'	/>">商家頁面</a>
               </li>
               <li class="nav-item">
@@ -60,14 +63,34 @@
                 </c:if>
                   
               </li>
+              <li class="dropdown show">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hello ${ member.name } </a>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <c:if test="${ ! empty member }">
-              	<li class="nav-item">
-                    <a class="nav-link">Hello ${ member.name }</a>         
-              	</li>
+              	
+              </c:if>
+					<a class="dropdown-item" href="<c:url value='/infoPage/UserInfoChange'/>">修改會員資料</a>
+					<a class="dropdown-item" href="<c:url value='/storeOrder/StoreOrder'/>">查詢歷史訂單</a>
+				</div>
+			  </li>
+              
+              
               	<li>
 					<img src="<c:url value='/images/icon.png' />">
 				</li>
-              </c:if>
+				<c:if test="${ ! empty member }">
+              	<li class="nav-item">
+					<a href="<c:url value='/shoppingCart/checkout' />"><img style="width: 90px; " src="<c:url value='/images/checkout.png'/>"></a>
+						<c:choose>
+							<c:when test="${empty cartSize}">
+								(0)
+							</c:when>
+							<c:otherwise>
+								(${cartSize})
+							</c:otherwise>
+						</c:choose>
+              	</li>
+               	</c:if>
             </ul>
           </div>
         </div>

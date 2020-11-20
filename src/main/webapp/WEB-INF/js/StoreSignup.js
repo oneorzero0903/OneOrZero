@@ -15,6 +15,11 @@ window.onload = function() {
 		document.getElementById("contact_person").value = "Mark";
 	};
 
+	let registerBtn = document.getElementById("registerBtn");
+	registerBtn.onclick = function() {
+		register();
+	}
+
 	//信箱
 	function checkEmail() {
 		let email = document.getElementById("email");
@@ -125,15 +130,15 @@ window.onload = function() {
 		if (validate()) {
 			var email = document.getElementById('email').value;
 			var password = document.getElementById('password').value; //Password
-			var Store_name = document.getElementById('Store_name').value;
-			var country = document.getElementById('country').value; //Address_city
-			var area = document.getElementById('area').value; //Address_area
-			var Address_road = document.getElementById('Address_road').value;
-			var Tel = document.getElementById('Tel').value;
-			var Phone = document.getElementById('Phone').value;
-			var Opentime_start = document.getElementById('Opentime_start').value;
-			var Opentime_end = document.getElementById('Opentime_end').value;
-			var idName = document.getElementById('idName').value; //contact_person
+			var Store_name = document.getElementById('store_name').value;
+			var country = document.getElementById('address_city').value; //Address_city
+			var area = document.getElementById('address_area').value; //Address_area
+			var Address_road = document.getElementById('address_road').value;
+			var Tel = document.getElementById('tel').value;
+			var Phone = document.getElementById('phone').value;
+			var Opentime_start = document.getElementById('opentime_start').value;
+			var Opentime_end = document.getElementById('opentime_end').value;
+			var idName = document.getElementById('contact_person').value; //contact_person
 			//var progressbarTWInput = document.getElementById('progressbarTWInput').value;
 
 			var myData = {
@@ -241,14 +246,14 @@ window.onload = function() {
 
 	//當使用者圖片選擇完畢,在畫面上show出來預覽
 
-	function register() {
-		let check = validate();
-		if (check) {
-			document.forms["SignUpForm"].submit();
-		} else {
-			return false;
-		}
-	}
+	//function register() {
+	//	let check = validate();
+	//	if (check) {
+	//		document.forms["SignUpForm"].submit();
+	//	} else {
+	//		return false;
+	//	}
+	//}
 
 	function readURL(input) {
 		if (input.files && input.files[0]) {

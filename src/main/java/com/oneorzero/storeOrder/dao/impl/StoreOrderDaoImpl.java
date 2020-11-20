@@ -14,6 +14,7 @@ import com.oneorzero.bean.MemberBean;
 import com.oneorzero.bean.OrderDayBean;
 import com.oneorzero.bean.OrderTimeBean;
 import com.oneorzero.bean.OrdersBean;
+import com.oneorzero.bean.ProgramBean;
 import com.oneorzero.bean.StoreBean;
 import com.oneorzero.bean.Store_OrderSettingBean;
 import com.oneorzero.storeOrder.dao.IStoreOrderDao;
@@ -163,6 +164,18 @@ public class StoreOrderDaoImpl implements IStoreOrderDao {
 		return storeOrderListResponse;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean checkProgram(Integer store_id, String name) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM ProgramBean WHERE store_id = :store_id AND name = :name";
+		List<ProgramBean> nameList = (List<ProgramBean>)session.createQuery(hql)
+				.setParameter("store_id", store_id)
+				.setParameter("name", name)
+				.getResultList();
+		return (nameList.size() > 0);
+	}
+	
 	private String statusChange(Integer isDelete) {
 		switch (isDelete) {
 		case 0:
@@ -194,5 +207,7 @@ public class StoreOrderDaoImpl implements IStoreOrderDao {
 			return 0;
 		}
 	}
+
+	
 
 }

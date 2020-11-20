@@ -181,7 +181,7 @@ color:#fff
                  <form:input type="file"  id="storeImage" path="storeImage" accept='image/*'/><br>
                 <br>
                 <div id="btn">
-                    <input type="button" class='btn btn-primary' value="確認送出" onclick="register()">
+                    <input id="registerBtn" type="button" class='btn btn-primary' value="確認送出">
                     <input type="reset" class='btn btn-primary' value="取消重填" class="cancel">
                 </div>
                 <br>

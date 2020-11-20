@@ -871,7 +871,7 @@ body {
   -webkit-perspective: 800;
           perspective: 800;
   background: radial-gradient(ellipse at top left, rgba(222, 11, 70, 0.26) -160%, rgba(255, 255, 255, 0) 103%), -webkit-radial-gradient(center, ellipse cover, #0C1019 0%, #0B0B0E 100%);
-  overflow: hidden;
+/*   overflow: hidden; */
 }
 body .grain {
   -webkit-transform: scale(1) !important;

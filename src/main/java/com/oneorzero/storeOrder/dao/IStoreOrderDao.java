@@ -14,4 +14,5 @@ public interface IStoreOrderDao {
 	public List<Store_OrderSettingBean> findOrder(String store_id);
 	public boolean checkDayToGetSetting(Integer setting_id, String date);
 	List<StoreOrderListResponse> getOrdersList(Integer setting_id, String date);
+	boolean checkProgram(Integer store_id, String name);
 }

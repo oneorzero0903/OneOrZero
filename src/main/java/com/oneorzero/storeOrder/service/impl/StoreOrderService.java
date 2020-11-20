@@ -99,4 +99,9 @@ public class StoreOrderService implements IStoreOrderService {
 		}
 	}
 
+	@Override
+	public boolean checkProgram(Integer store_id, String name) {
+		return dao.checkProgram(store_id, name);
+	}
+
 }

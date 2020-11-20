@@ -32,7 +32,7 @@ public class ProductBean implements java.io.Serializable{
 	private String imgPath;  //產品照片
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));  //建立日期
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));  //修改日期
-	
+	private String type;
 	private String fileName;
 	
 	@JsonIgnore
@@ -130,6 +130,14 @@ public class ProductBean implements java.io.Serializable{
 
 	public void setProductImg(MultipartFile productImg) {
 		this.productImg = productImg;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 		
 }
