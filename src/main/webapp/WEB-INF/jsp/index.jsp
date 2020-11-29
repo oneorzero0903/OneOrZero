@@ -8,6 +8,7 @@
   <head>
 	<jsp:include page="/fragment/linkCss.jsp" />
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style type="text/css">
 .wrapper {
 	position: relative;
@@ -74,11 +75,6 @@ ul.slides li img {
 	color: rgba(255, 255, 255, 1);
 }
 
-figcation{
-padding-left:30px;
-font-size:16px;
-color:#d26900;
-}
 #member{
 padding-top: 5px;
 margin:0px ;
@@ -108,7 +104,7 @@ margin:0px ;
 				if (adLists.length < 6) {  //預設圖片將會連結至廣告方案頁面
 					var noAd = 6 - adLists.length;
 					for (var i=0; i< noAd; i++) {
-						content += "<li><figure><img src='<c:url value='/images/ADdemo.png' />'><figcation>方案買起來</figcation></figure></li>";
+						content += "<li><a href='<c:url value='/indexShop' />'><img src='<c:url value='/images/ADdemo.png' />'></a></li>";
 					}
 				}
 				content += "</ul>";
@@ -149,8 +145,6 @@ margin:0px ;
 		</div>
 	</div>
     
-    
-    
    <div class="heading-page header-text" style="padding-top: 10px">
 		 <section class="call-to-action" id="member">
       <div class="container">
@@ -159,6 +153,7 @@ margin:0px ;
             <div class="main-content">
               <div class="row">
                 <div class="col-lg-8">
+                <button id='danielBtn' class="btn btn-dark btn-sm" style="font-size: 3px;">時光機</button><br><br>
                   <span>加入會員了嗎？</span>
                   <h4>快按右邊加入會員！</h4>
                 </div>
@@ -244,31 +239,25 @@ margin:0px ;
 
 		});
 	</script>
-             
-    <!-- Banner Ends Here -->
-<!--     <section class="call-to-action"> -->
-<!--       <div class="container"> -->
-<!--         <div class="row"> -->
-<!--           <div class="col-lg-12"> -->
-<!--             <div class="main-content"> -->
-<!--               <div class="row"> -->
-<!--                 <div class="col-lg-8"> -->
-<!--                   <span>加入會員了嗎？</span> -->
-<!--                   <h4>快按右邊加入會員！</h4> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-4"> -->
-<!--                   <div class="main-button"> -->
-<%--                     <a rel="nofollow" href="<c:url value='/signUp/Terms'/>" target="_parent">加入會員</a> --%>
-<!--                   </div> -->
-<!--                 </div> -->
-<!--               </div> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </section> -->
-    
+	<script type="text/javascript">
+		$("#danielBtn").dblclick(function() {
+			$.ajax({
+		  		type: 'GET',
+		  		url: '<c:url value="/timeMachine.do" />',
 
+		  		success:
+		  			function (data) {
+		  				alert("Time travelling success!");
+		  				location.href = "<c:url value='/' />";
+		  			},
+		  		error:
+		  			function (xhr, ajaxOptions, thrownError) {
+		  				alert(xhr.status + "\n" + thrownError);
+		  			}
+		  	});
+		})
+		
+	</script>
 
     <section class="blog-posts">
       <div class="container">
@@ -442,17 +431,15 @@ margin:0px ;
                 <div class="col-lg-12">
                   <div class="sidebar-item tags">
                     <div class="sidebar-heading">
-                      <h2>熱門標籤</h2>
+                      <h2>熱門商品</h2>
                     </div>
                     <div class="content">
                       <ul>
-                        <li><a href="#">免費插座</a></li>
-                        <li><a href="#">免費WIFI</a></li>
-                        <li><a href="#">空間寬擴</a></li>
-                        <li><a href="#">食物美味</a></li>
-                        <li><a href="#">網美首選</a></li>
-                        <li><a href="#">不限時間</a></li>
-                        <li><a href="#">交通方便</a></li>
+                        <li><a href="#">咖啡豆</a></li>
+                        <li><a href="#">咖啡用具</a></li>
+                        <li><a href="#">咖啡作品</a></li>
+                        <li><a href="#">咖啡製品</a></li>
+                        <li><a href="#">美味甜點</a></li>
                       </ul>
                     </div>
                   </div>

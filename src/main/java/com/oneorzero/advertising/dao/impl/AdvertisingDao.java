@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.oneorzero.advertising.dao.IAdvertisingDao;
 import com.oneorzero.bean.AdvertisingBean;
+import com.oneorzero.bean.StoreBean;
 
 @Repository
 @SuppressWarnings("unchecked")
@@ -33,7 +34,7 @@ public class AdvertisingDao implements IAdvertisingDao {
 	@Override
 	public void deleteExpiredAd() {	
 		Session session = factory.getCurrentSession();
-		String hql = "DELETE AdvertisingBean where adEndTime < :time";
+		String hql = "UPDATE AdvertisingBean set status = 'off' where adEndTime < :time";
 		session.createQuery(hql).setParameter("time", date.getTime()).executeUpdate();
 	}
 
@@ -45,8 +46,8 @@ public class AdvertisingDao implements IAdvertisingDao {
 				+ " and adStartTime <= :timeNow1 and :timeNow2 <= adEndTime "
 				+ " and store_id = :storeId";
 		List<AdvertisingBean> list = session.createQuery(hql)
-									 .setParameter("timeNow1", date.getTime())
-									 .setParameter("timeNow2", date.getTime())
+									 .setParameter("timeNow1", adBean.getAdStartTime())
+									 .setParameter("timeNow2",adBean.getAdStartTime())
 									 .setParameter("storeId", adBean.getStore().getStore_id())
 									 .getResultList();
 		if (list.size() == 0) {
@@ -66,6 +67,28 @@ public class AdvertisingDao implements IAdvertisingDao {
 	public AdvertisingBean findByPK(Integer ad_id) {
 		Session session = factory.getCurrentSession();
 		return session.get(AdvertisingBean.class, ad_id);
+	}
+
+	@Override
+	public void timeMachine() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM AdvertisingBean where adStartTime <= :timeNow1 and :timeNow2 <= adEndTime";
+		List<AdvertisingBean> list = session.createQuery(hql)
+											.setMaxResults(5)
+											.setParameter("timeNow1", date.getTime())
+											.setParameter("timeNow2", date.getTime())
+											.getResultList();
+		for (AdvertisingBean ad : list) {
+			ad.setAdEndTime(0L);
+			ad.setStatus("off");
+			session.update(ad);
+		}
+	}
+
+	@Override
+	public StoreBean getStore(Integer id) {
+		Session session = factory.getCurrentSession();
+		return session.get(StoreBean.class, id);
 	}
 
 }

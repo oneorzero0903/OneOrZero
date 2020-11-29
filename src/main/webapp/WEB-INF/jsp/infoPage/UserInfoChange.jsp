@@ -35,8 +35,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="text-content">
-                <h4>about us</h4>
-                <h2>more about us!</h2>
+                <h4>會員管理</h4>
+                <h2>修改會員資料</h2>
               </div>
             </div>
           </div>
@@ -46,6 +46,7 @@
 
 <div align="center">
 	<table style="background-color: white;">
+	
  	<tr><td>信箱</td><td><input type="text" id="email" name="account" value="${member.email}" disabled placeholder="未填寫" size="30"></td></tr>
  	<tr><td>名稱</td><td><input type="text" id="name" name="name" value="${member.name}" placeholder="未填寫" size="30"></td></tr>
  	<tr><td>生日</td><td><input type="date" id="birthday" value="${member.birthday}" placeholder="未填寫" size="30"></td></tr>

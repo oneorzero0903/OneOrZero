@@ -115,7 +115,7 @@ color:#fff
                   <div class="blog-post">
                     <div class="blog-thumb">
                       <a href="<c:url value='/program/buyProgramAD'	/>">
-                      <img src="<c:url value='/images/program/programAD.png'	/>" alt="">
+                      <img src="<c:url value='/images/program/costA.jpg'	/>" alt="">
                       </a>
                     </div>
                     <div class="down-content">
@@ -140,7 +140,7 @@ color:#fff
                   <div class="blog-post">
                     <div class="blog-thumb">
                       <a href="<c:url value='/program/buyProgramBT'	/>">
-                      <img src="<c:url value='/images/program/programBT.png'	/>" alt="">
+                      <img src="<c:url value='/images/program/costB.jpg'	/>" alt="">
                       </a>
                     </div>
                     <div class="down-content">
@@ -170,7 +170,7 @@ color:#fff
                   <div class="blog-post">
                     <div class="blog-thumb">
                     <a href="<c:url value='/program/buyProgramSM'	/>">
-                      <img src="<c:url value='/images/program/programSM.png'	/>" alt="">
+                      <img src="<c:url value='/images/program/costC.jpg'	/>" alt="">
                       </a>
                     </div>
                     <div class="down-content">
@@ -199,7 +199,7 @@ color:#fff
                   <div class="blog-post">
                     <div class="blog-thumb">
                     <a href="<c:url value='program/buyAll'	/>">
-                      <img src="<c:url value='/images/program/buyAll.png'	/>" alt="">
+                      <img src="<c:url value='/images/program/costD.gif'	/>" alt="">
                       </a>
                     </div>
                     <div class="down-content">
@@ -234,7 +234,11 @@ color:#fff
               <div class="row">
                 <div class="col-lg-12">
                 	<div class="col-lg-12">
+                  		<img src="<c:url value='/images/promoted.jpg' />" >
+                	</div>
+                	<div class="col-lg-12" style="margin-top:20px">
                   		<img src="<c:url value='/images/storecm.jpg' />" >
+                	</div>
                 	</div>
                 </div>
                 <div class="col-lg-12">
@@ -277,7 +281,6 @@ color:#fff
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>

@@ -8,6 +8,22 @@
 
   <head>
 	<jsp:include page="/fragment/linkCss.jsp" />
+	
+<style type="text/css">
+.form-control{
+width:300px
+}
+.formw{
+width:600px;
+background-color:#d26900;
+margin:40px;
+padding:20px
+}
+h4{
+margin:20px
+}
+
+</style>
   </head>
 
   <body style="background-color: #272727;">
@@ -34,8 +50,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="text-content">
-                <h4>about us</h4>
-                <h2>more about us!</h2>
+                <h4>忘記密碼</h4>
+                <h2>輸入信箱獲得新密碼</h2>
               </div>
             </div>
           </div>
@@ -46,24 +62,23 @@
     <!-- Banner Ends Here -->
     <%-- 程式寫這邊！！ --%>
     <div align="center">
-	     <h1>忘記密碼介面</h1>
-
-		<h3>重設密碼</h3>
+	    <div class="formw">
 		  <form:form method="POST" modelAttribute="memberBean">
 			<div class="form-group">
-
+				
 				<div class="col-lg-10">
-					<label class="control-label col-lg-2 col-lg-2" for='eamil'>
-						信箱: </label>
+					
+					<h4>輸入信箱 </h4>
 					<form:input id="email" path="email" type='email'
-						class='form:input-large' />
+						class='form-control' />
 				</div><br>
 				<div class='col-lg-offset-2 col-lg-10'>
-					<input id="btnAdd" type='submit' class='btn btn-primary' value='送出' />
+					<input id="btnAdd" type='submit' class='btn btn-dark' value='送出' />
 				</div>
 				<br>${ErrorMsg.AccountEmptyError}${ErrorMsg.LoginError}
 			</div>
 		  </form:form>
+		  </div>
 	 </div>
 
 	<jsp:include page="/fragment/footer.jsp" />

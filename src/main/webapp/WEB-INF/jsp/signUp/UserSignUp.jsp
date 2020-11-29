@@ -11,6 +11,7 @@
 <style>
 .form-control {
 	width: 250px;
+	
 }
 
 label {
@@ -29,6 +30,8 @@ label {
 span {
 color:#d26900;
 }
+
+
 </style>
 </head>
 
@@ -150,11 +153,11 @@ color:#d26900;
 				<br>
 				<br>
 
-				<div class='col-lg-offset-2 col-lg-10'>
+				<div  class='col-lg-offset-2 col-lg-10'>
 
 					<input id="btnAdd" type="button" class='btn btn-light' value='送出'
-						onclick="submit()" /> <input type="reset" class='btn btn-dark'
-						value="取消重填" class="cancel">
+						onclick="submit()" /> 
+					<input type="reset" class='btn btn-dark' value="取消重填" class="cancel">
 				</div>
 
 

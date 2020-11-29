@@ -3,7 +3,10 @@ package com.oneorzero.advertising.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.sql.rowset.serial.SerialBlob;
@@ -20,16 +23,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oneorzero.advertising.service.IAdvertisingService;
 import com.oneorzero.bean.AdvertisingBean;
+import com.oneorzero.bean.MemberBean;
+import com.oneorzero.bean.ProgramBean;
 import com.oneorzero.bean.StoreBean;
+import com.oneorzero.util.SendMail;
 
 @Controller
-@SessionAttributes({"store"})
+@SessionAttributes({"store", "member"})
 public class AdvertisingController {
 	
 	@Autowired
@@ -45,12 +54,20 @@ public class AdvertisingController {
 	}
 	
 	@GetMapping("/ad/buyAd")
-	public String getBuyAdForm(Model model) {
-		if (model.getAttribute("store")!= null) {  //商家要登入才可進入廣告設定頁面
-			AdvertisingBean ab = new AdvertisingBean();
-			model.addAttribute("advertisingBean", ab);
-			return "ad/buyAd";
-		} else {								  //尚未登入,返回商家登入頁面
+	public synchronized String getBuyAdForm(Model model) {
+		StoreBean store = (StoreBean) model.getAttribute("store");
+		if (store != null) { // 商家已登入,所以不為空  //商家要登入才可進入廣告設定頁面
+			boolean isBuy = service.checkProgram(store.getStore_id(), "programAD");
+			if (isBuy) {
+				AdvertisingBean ab = new AdvertisingBean();
+				model.addAttribute("advertisingBean", ab);
+				return "ad/buyAd";
+			} else {
+				ProgramBean bean = new ProgramBean();
+				model.addAttribute("programBean", bean);
+				return "redirect:/program/buyProgramAD";
+			}
+		} else {	    //尚未登入,返回商家登入頁面
 			StoreBean sb = new StoreBean();
 			model.addAttribute("storeBean", sb);
 			return "redirect:/login/StoreLogin";
@@ -129,5 +146,29 @@ public class AdvertisingController {
 		byte[] content = baos.toByteArray();
 		re = new ResponseEntity<byte[]>(content, headers, HttpStatus.OK);
 		return re;
+	}
+	
+	@PostMapping("/sendV2Mail.do")   //寄出vip2 專屬優惠信件
+	public @ResponseBody Map<String, String> sendV2Mail(@RequestBody String jsonStr, Model model) {
+		JsonObject object = new Gson().fromJson(jsonStr, JsonObject.class);
+		Integer id = object.get("store_id").getAsInt();
+		StoreBean sb = service.getStore(id);
+		MemberBean mb = (MemberBean) model.getAttribute("member");
+		SendMail send = new SendMail();
+		ArrayList<String > path = new ArrayList<String>();
+		path.add("/images/discountMail.png");
+		String subject = "search(\"咖啡\"); 專屬優惠券";
+		String content = "<h3>感謝您平時對我們的支持</h3>";
+		content += sb.getStore_name() + "<br><br>";
+		send.sendEmailWithImage(mb.getEmail(), subject, content, path);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("data", "success");
+		return map;
+	}
+	
+	@GetMapping("/timeMachine.do")
+	public String timeMachine() {  // Demo廣告下架按鍵
+		service.timeMachine();
+		return "redirect:/";
 	}
 }

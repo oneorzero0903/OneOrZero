@@ -15,4 +15,5 @@ public interface IStoreOrderService {
 	public List<String> checkDayToGetSetting(List<Store_OrderSettingBean> orderSetting, 
 			BookingTimeRequest date);
 	public List<StoreOrderListResponse> getOrdersList(Integer setting_id, String date);
+	public boolean checkProgram(Integer store_id, String name);
 }

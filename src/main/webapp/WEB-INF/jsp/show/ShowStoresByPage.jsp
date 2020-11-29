@@ -44,7 +44,6 @@ img.ratingImg {
 </style>
 <script>
 	window.onload = function() {
-		var mainDiv = document.getElementById("mainDiv");
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "<c:url value='/show/pagingStoresData.json' />", true);
 		xhr.send();
@@ -52,29 +51,7 @@ img.ratingImg {
 
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var stores = JSON.parse(xhr.responseText);
-				var content = "";
-				for (var i = 0; i < stores.length; i++) {
-					var rating;
-					if (stores[i].rateCount != 0) {
-						rating = (stores[i].rating / stores[i].rateCount).toFixed(1);
-					} else {
-						rating = stores[i].rating.toFixed(1);
-					}
-  					content += "<div class='float'>"
-							+ "<table>"
-							+ "<tr><td align='center'>"
-							+ "<a href='<c:url value='/show/showOneStoreAjax/"+ stores[i].store_id + "' />'>"
-							+ "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ stores[i].imgPath +"' />' />"
-							+ "</a></td></tr>" + "<tr><td>"
-							+ stores[i].store_name + "</td></tr>" + "<tr><td>"
-							+ stores[i].address_area + "</td></tr>"
-							+ "<tr><td>" + "營業開始：" + stores[i].opentime_start
-							+ "</td></tr>" + "<tr><td>" + "營業結束："
-							+ stores[i].opentime_end + "</td></tr>"
-							+ "<tr><td><img class='ratingImg' src='<c:url value='/images/goldenBean.png' />'>" + rating +"(" + stores[i].rateCount + ")</td></tr>"
-							+ "</table></div>";
-				}
-				mainDiv.innerHTML = content;
+				showStores(stores);
 				
 				var totalPages = ${totalPages};
 				var pageDiv = document.getElementById("pageDiv");
@@ -84,8 +61,6 @@ img.ratingImg {
 							+ ")'>" + i + "</button>";
 				}
 				pageDiv.innerHTML = pageLink + "</div>";
-				var areaBtn = document.getElementById("areaBtn");
-				areaBtn.onclick = showByArea;
 			}
 		}
 		
@@ -102,38 +77,13 @@ img.ratingImg {
 
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var stores = JSON.parse(xhr.responseText);
-				var content = "";
-
-				for (var i = 0; i < stores.length; i++) {
-					var rating;
-					if (stores[i].rateCount != 0) {
-						rating = (stores[i].rating / stores[i].rateCount).toFixed(1);
-					} else {
-						rating = stores[i].rating.toFixed(1);
-					}
-					content += "<div class='float'>"
-							+ "<table>"
-							+ "<tr><td align='center'>"
-							+ "<a href='<c:url value='/show/showOneStoreAjax/"+ stores[i].store_id + "' />'>"
-							+ "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ stores[i].imgPath +"' />' />"
-							+ "</a></td></tr>" + "<tr><td>"
-							+ stores[i].store_name + "</td></tr>" + "<tr><td>"
-							+ stores[i].address_area + "</td></tr>"
-							+ "<tr><td>" + "營業開始：" + stores[i].opentime_start
-							+ "</td></tr>" + "<tr><td>" + "營業結束："
-							+ stores[i].opentime_end + "</td></tr>"
-							+ "<tr><td><img class='ratingImg' src='<c:url value='/images/goldenBean.png' />'>" + rating +"(" + stores[i].rateCount + ")</td></tr>"
-							+ "</table></div>";
-				}
-				mainDiv.innerHTML = content;
-				
+				showStores(stores);
 			}
 		}
 	}
 	
 	function showByArea() {
 		var area = document.getElementById("areaId").value;
-		var mainDiv = document.getElementById("mainDiv");
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", "<c:url value='/show/pagingStoresData.json/"+ area +"' />", true);
 		xhr.send();
@@ -141,50 +91,26 @@ img.ratingImg {
 
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var stores = JSON.parse(xhr.responseText);
-				var content = "";
-				for (var i = 0; i < stores.length; i++) {
-					var rating;
-					if (stores[i].rateCount != 0) {
-						rating = (stores[i].rating / stores[i].rateCount).toFixed(1);
-					} else {
-						rating = stores[i].rating.toFixed(1);
-					}
-					content += "<div class='float'>"
-							+ "<table>"
-							+ "<tr><td align='center'>"
-							+ "<a href='<c:url value='/show/showOneStoreAjax/"+ stores[i].store_id + "' />'>"
-							+ "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ stores[i].imgPath +"' />' />"
-							+ "</a></td></tr>" + "<tr><td>"
-							+ stores[i].store_name + "</td></tr>" + "<tr><td>"
-							+ stores[i].address_area + "</td></tr>"
-							+ "<tr><td>" + "營業開始：" + stores[i].opentime_start
-							+ "</td></tr>" + "<tr><td>" + "營業結束："
-							+ stores[i].opentime_end + "</td></tr>"
-							+ "<tr><td><img class='ratingImg' src='<c:url value='/images/goldenBean.png' />'>" + rating +"(" + stores[i].rateCount + ")</td></tr>"
-							+ "</table></div>";
-				}
-				
-				if (stores.length == 0) mainDiv.innerHTML = "<p style='color: white;'>查無資料 請更改搜尋條件</p>";
-				else mainDiv.innerHTML = content;
+				showStores(stores);
 				
 				var pageDiv = document.getElementById("pageDiv");
 				if (area.length != 3) {
-					var pageLink = "";
 					var totalPages = ${totalPages}
+					var pageLink = "<div class='btn-group' role='group' aria-label='Basic example'>";
 					for (var i = 1; i <= totalPages; i++) {
-						pageLink += "<button class='pageBtn' onclick='showByPage(" + i
-								+ ")'>" + i + "</button>   ";
+						pageLink += "<button class='btn btn-secondary' onclick='showByPage(" + i
+								+ ")'>" + i + "</button>";
 					}
-					pageDiv.innerHTML = pageLink;
+					pageDiv.innerHTML = pageLink + "</div>";
 				} else {
-					var pageLink = "";
+					var pageLink = "<div class='btn-group' role='group' aria-label='Basic example'>";
 					area = '"' + area +'"' ;
 					for (var i = 1; i <= 2 ; i++) {
-						pageLink += "<button class='pageBtn' onclick='showAreaByPage("+area+"," + i
+						pageLink += "<button class='btn btn-secondary' onclick='showAreaByPage("+area+"," + i
 								+ ")'>" + i + "</button>   ";
 					}
 					if (stores.length < 6) pageLink = "";
-					pageDiv.innerHTML = pageLink;
+					pageDiv.innerHTML = pageLink + "</div>";
 				}
 			}
 		}
@@ -198,31 +124,39 @@ img.ratingImg {
 				+ queryString, true);
 		xhr.send();
 		xhr.onreadystatechange = function() {
-
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var stores = JSON.parse(xhr.responseText);
-				var content = "";
-
-				for (var i = 0; i < stores.length; i++) {
-					var rating = stores[i].rating.toFixed(1);
-					content += "<div class='float'>"
-							+ "<table>"
-							+ "<tr><td align='center'>"
-							+ "<a href='<c:url value='/show/showOneStoreAjax/"+ stores[i].store_id + "' />'>"
-							+ "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ stores[i].imgPath +"' />' />"
-							+ "</a></td></tr>" + "<tr><td>"
-							+ stores[i].store_name + "</td></tr>" + "<tr><td>"
-							+ stores[i].address_area + "</td></tr>"
-							+ "<tr><td>" + "營業開始：" + stores[i].opentime_start
-							+ "</td></tr>" + "<tr><td>" + "營業結束："
-							+ stores[i].opentime_end + "</td></tr>"
-							+ "<tr><td><img class='ratingImg' src='<c:url value='/images/goldenBean.png' />'>" + rating +"(" + stores[i].rateCount + ")</td></tr>"
-							+ "</table></div>";
-				}
-				mainDiv.innerHTML = content;
-				
+				showStores(stores);
 			}
 		}
+	}
+	
+	function showStores(stores) {
+		var mainDiv = document.getElementById("mainDiv");
+		var content = "";
+		for (var i = 0; i < stores.length; i++) {
+			var rating;
+			if (stores[i].rateCount != 0) {
+				rating = (stores[i].rating / stores[i].rateCount).toFixed(1);
+			} else {
+				rating = stores[i].rating.toFixed(1);
+			}
+			content += "<div class='float'>"
+					+ "<table>"
+					+ "<tr><td align='center'>"
+					+ "<a href='<c:url value='/show/showOneStoreAjax/"+ stores[i].store_id + "' />'>"
+					+ "<img class='shopImg' height='200' width='250' src='<c:url value='/"+ stores[i].imgPath +"' />' />"
+					+ "</a></td></tr>" + "<tr><td>"
+					+ stores[i].store_name + "</td></tr>" + "<tr><td>"
+					+ stores[i].address_area + "</td></tr>"
+					+ "<tr><td>" + "營業開始：" + stores[i].opentime_start
+					+ "</td></tr>" + "<tr><td>" + "營業結束："
+					+ stores[i].opentime_end + "</td></tr>"
+					+ "<tr><td><img class='ratingImg' src='<c:url value='/images/goldenBean.png' />'>" + rating +"(" + stores[i].rateCount + ")</td></tr>"
+					+ "</table></div>";
+		}
+		if (stores.length == 0) mainDiv.innerHTML = "<p style='color: white;'>查無資料 請更改搜尋條件</p>";
+		else mainDiv.innerHTML = content;
 	}
 	
 </script>
@@ -267,7 +201,7 @@ img.ratingImg {
 		<span style="color:white">選擇一個心之所向的地區</span>
 		
 		<select id="areaId" class="form-control" onfocus="changeSize()" 
-		onblur="changeBack()"style="width:300px;margin:auto;padding:auto">
+		onblur="changeBack()" style="width:300px; margin:auto; padding:auto">
 			<option disabled="disabled" selected="selected"></option>
 			<option value="不限">不限</option>
 			<option value="中正區">中正區</option>
@@ -312,8 +246,7 @@ img.ratingImg {
 			<option value="三芝區">三芝區</option>
 			<option value="石門區">石門區</option>
 		</select>
-		<br>	
-		<button id="areaBtn" class="">送出</button>
+		<br>
 	</div>
 	<div align="center" id="mainDiv"></div>
 	<div style="width: 10px;">&nbsp;</div>
@@ -326,6 +259,7 @@ img.ratingImg {
 		}
 		function changeBack() {
 			document.getElementById("areaId").size = '1';
+			showByArea();
 		}
 	</script>
 </body>

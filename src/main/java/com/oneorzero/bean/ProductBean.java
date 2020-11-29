@@ -25,13 +25,14 @@ public class ProductBean implements java.io.Serializable{
 	private Integer id;  //產品編號
 
 	
-	private String name;  //產品名稱
+	private String name;  //產品名稱 
 	private Integer price;  //產品價格
 	private Integer stock; //產品數量
 	private String description;  //產品描述
 	private String imgPath;  //產品照片
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));  //建立日期
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));  //修改日期
+	private String pType;   //bean.food.tool
 	
 	private String fileName;
 	
@@ -131,6 +132,13 @@ public class ProductBean implements java.io.Serializable{
 	public void setProductImg(MultipartFile productImg) {
 		this.productImg = productImg;
 	}
-		
+
+	public String getpType() {
+		return pType;
+	}
+
+	public void setpType(String pType) {
+		this.pType = pType;
+	}
 }
 

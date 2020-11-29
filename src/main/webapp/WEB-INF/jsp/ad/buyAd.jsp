@@ -64,8 +64,36 @@ header {
 .nav-link,.navbar-brand{
 color:#fff
 }
+.form-control{
+width:300px;
+}
+fieldset{
+background-color:#0080ff86;
+width:600px;
+margin:20px;
+}
   </style>
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script> 
+  <script type="text/javascript">
+  	window.onload = function() {
+  		$.ajax({
+		  		type: 'GET',
+		  		url: '<c:url value="/isFunctDisabled"/>',
+		  		success:
+		  			function (list) {
+		  				console.log(list.length);
+		  				if (list.length > 0) {
+		  					alert("您已欠款超過35天,請儘快付款,付款後才可繼續使用本功能.");
+		  					location.href = "<c:url value='/indexShop' />";
+		  				}
+		  			},
+		  		error:
+		  			function (xhr, ajaxOptions, thrownError) {
+		  				alert(xhr.status + "\n" + thrownError);
+		  			}
+		  	});		
+	}
+  </script>
   </head>
 
   <body style="background-color: #ffffee;">
@@ -93,7 +121,7 @@ color:#fff
             <div class="col-lg-12">
               <div class="text-content">
                 <h4>商家頁面</h4>
-                <h2>快來成為我們的合作店家</h2>
+                <h2>首頁廣告輪播設定</h2>
               </div>
             </div>
           </div>
@@ -103,39 +131,42 @@ color:#fff
     
     <!-- Banner Ends Here -->
 	<div align="center">
+	
 		
-		<form:form method='POST' modelAttribute="advertisingBean" class='form-horizontal'
+		<form:form method='POST' modelAttribute="advertisingBean" class='form-horizontal' 
 				enctype="multipart/form-data">
 			<fieldset>
+			<h1 style="color: #272727; margin: 10px">廣告上架</h1>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='title'>標題</label>
+				
+					<label class="control-label col-lg-2 col-lg-2 font-weight-bold" style="margin:20px" for='title'>標題</label>
 					<div class="col-lg-10">
-						 <form:input id="title" path="title" type='text' class='form:input-large' />
+						 <form:input id="title" path="title" type='text' class='form-control' autocomplete="off"/>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2"  for='description'>描述</label>
+					<label class="control-label col-lg-2 col-lg-2 font-weight-bold"  for='description'>描述</label>
 					<div class="col-lg-10">
-						<form:input id="description" path="description" type='text' class='form:input-large' />
+						<form:input id="description" path="description" type='text' class='form-control' />
 					</div>
 				</div>
 
 				<div class="form-group">
 				
-					<label class='control-label col-lg-2 col-lg-2' for="category">廣告開始日期</label>
+					<label for="category">廣告開始日期</label>
 					<div class='col-lg-10'>
-						<input id="adTimeStr"  type='date' onblur="checkDate()" class='form:input-large' />
+						<input id="adTimeStr"  type='date' onblur="checkDate()" class='form-control' />
 						<form:input hidden="hidden" id="adStartTime" path="adStartTime" type='text'
 						class='form:input-large' />
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="adImage">上傳圖片</label>
+					<label class='control-label col-lg-2 col-lg-2 font-weight-bold' for="adImage">上傳圖片</label>
 					<div class='col-lg-10'>
 						<form:input id="adImage" path="adImage" type='file' accept='image/*'
-							class='form:input-large' />
+							class='btn btn-dark' />
 					</div>
 					<br>
 					<div>
@@ -157,8 +188,11 @@ color:#fff
 		</form:form>
 		
 		<br>
-		<button id='btn' onclick="oneclick()">一鍵輸入</button>
+		<button id='btn' class="btn btn-dark"onclick="oneclick()">一鍵輸入</button>
 	</div>
+	   
+		
+	
 	
 	<script type="text/javascript">
 		//當使用者圖片選擇完畢,在畫面上show出來預覽
@@ -220,10 +254,13 @@ color:#fff
 			if (checkAll) document.forms["BuyAdForm"].submit();
 		}
 		
+		function oneclick() {
+			document.getElementById("title").value = "全品項買一送十";
+			document.getElementById("description").value = "全品項買一送十";
+
+		}
 	
 	</script>
-
-    <!-- 寫上面 -->
     
     <jsp:include page="/fragment/footer.jsp" />
 

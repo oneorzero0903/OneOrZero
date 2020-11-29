@@ -48,8 +48,8 @@
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 商家方案選擇 </a>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 					<a class="dropdown-item" href="<c:url value='/ad/buyAd'/>">廣告管理</a>
-					<a class="dropdown-item" href="<c:url value='/storeOrder/StoreOrder'/>">訂單管理</a>
-					<a class="dropdown-item" href="<c:url value='/product/AddNewProduct'    />">商城管理</a>
+					<a class="dropdown-item" href="<c:url value='/storeOrder/StoreOrder'/>">訂位管理</a>
+					<a class="dropdown-item" href="<c:url value='/product/ProductMgt'    />">商城管理</a>
 				</div>
 			</li>
               
@@ -66,10 +66,11 @@
               	<li class="nav-item">
                     <a class="nav-link">Hello ${ store.store_name }</a>         
               	</li>
+			  </c:if>
+              	
               	<li>
 					<img src="<c:url value='/images/icon.png' />">
 				</li>
-              </c:if>
             </ul>
           </div>
         </div>

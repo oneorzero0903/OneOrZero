@@ -138,28 +138,40 @@ header {
 					<div class='col-lg-offset-2 col-lg-10'>
 						<br> <input id="btnAdd" type='submit' class='btn btn-light' value='送出' />
 					</div>
-					<br>${ErrorMsg.VerifyError}${ErrorMsg.LoginError}<br>
+					<br>${ErrorMsg.VerifyError}${ErrorMsg.LoginError}
 				</div>
+				<div align="center" >
+					<a href="<c:url value='/signUp/StoreTerms' />" style="color:#0080ee">還沒有帳號？</a> 
+					<a href="<c:url value='/login/StoreForgetPwd' />"style="color:#0080ee">忘記密碼？</a>
+				</div>
+				<br>
 			</div>
 		</form:form>
-		<button class='btn btn-primary' onclick="oneClick()" style="margin: 10px">一鍵登入</button>
-		<div align="center" >
-			<a href="<c:url value='/signUp/StoreTerms' />" style="color:#fff">還沒有帳號？</a> 
-			<a href="<c:url value='/login/StoreForgetPwd' />"style="color:#fff">忘記密碼？</a>
-		</div>
-
-
+		<button class='btn btn-primary' onclick="oneClick()" style="margin: 10px">方案Demo</button>
+		<button id='yvetteBtn' class='btn btn-info' style="margin: 10px">報表Demo</button>
+		<button id='jacobBtn' class='btn btn-warning' style="margin: 10px">催帳Demo</button>
 	</div>
-
-	<div id="test"></div>
-
 	<br>
 
 	<script>
+	
 		function oneClick() {
 			document.getElementById("email").value = "oneorzerocorp@gmail.com";
 			document.getElementById("password").value = "abcd1234!";
 		}
+		
+		var yvetteBtn = document.getElementById("yvetteBtn");
+		yvetteBtn.onclick = function() {
+			document.getElementById("email").value = "yvette123@gmail.com";
+			document.getElementById("password").value = "abcd1234!";
+		}
+		
+		var jacobBtn = document.getElementById("jacobBtn");
+		jacobBtn.onclick = function() {
+			document.getElementById("email").value = "www.facebook.com/januarycoupletw";
+			document.getElementById("password").value = "abcd1234!";
+		}
+		
 	</script>
 
 	<jsp:include page="/fragment/footer.jsp" />

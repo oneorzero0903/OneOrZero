@@ -68,6 +68,15 @@ header {
 .nav-link, .navbar-brand {
 	color: #fff
 }
+.form-control{
+width:300px
+}
+.formw{
+width:600px;
+background-color:#0080ff86;
+margin:40px;
+}
+
 </style>
 </head>
 
@@ -96,7 +105,7 @@ header {
 					<div class="col-lg-12">
 						<div class="text-content">
 							<h4>商家頁面</h4>
-							<h2>快來成為我們的合作店家</h2>
+							<h2>廣告方案選擇</h2>
 						</div>
 					</div>
 				</div>
@@ -106,35 +115,40 @@ header {
 
 	<!-- Banner Ends Here -->
 	<div align="center">
+<div class=formw>
 
-		<form:form method="POST" modelAttribute="programBean">
+	<img src="<c:url value='/images/adpic.gif'/>">
+		<form:form method="POST" modelAttribute="programBean" >
+		
 			<div class="form-group">
 					<div class="col-lg-10">
 					<br>
-						<h1 style="color: #272727; margin: 10px">廣告輪播買起來~~</h1>
+						<h1 style="color: #272727; margin: 10px">廣告輪播 ($399/月)</h1>
 						<form:input hidden="hidden" id="name" path="name" type="text"
 							class="form-control" value="programAD" />
 						<br>
 					</div>
 					<div class="form-group">
-				
-					<label class='control-label col-lg-2 col-lg-2' for="startTimeStr">選擇方案生效日期</label>
+					<label for="startTimeStr">選擇方案生效日期 </label>
+					<p>方案維持一年</p>
 					<div class='col-lg-10'>
-						<input id="startTimeStr"  type='date' onblur="changeLong()" class='form:input-large' />
+						<input id="startTimeStr"  type='date' onblur="changeLong()" class='form-control' />
 						<form:input hidden="hidden" id="startTime" path="startTime" type='text'
-						class='form:input-large' />
+						class='form-control' />
 					</div>
 					<p>${DateEmptyError}</p>
 				</div>
 					
 					<div class='col-lg-offset-2 col-lg-10'>
-						<input id="btnAdd" type='submit' class="btn btn-dark" value='送出' />
+						<input id="btnAdd" type='submit' class="btn btn-primary" value='送出' />
 						<br>
 					</div>
 					<br>
+					<p>${ErrorMsg}</p>
+					<br>
 			</div>
 		</form:form>
-
+</div>
 	</div>
 
 
@@ -151,6 +165,17 @@ header {
 				return true;
 			}
 		}
+		
+		//只可選擇今天開始之日期
+		function convertToISO(timebit) {
+		  timebit.setHours(0, -timebit.getTimezoneOffset(), 0, 0);
+		  var isodate = timebit.toISOString().slice(0,10);	
+		  return isodate;
+		}
+		var startTimeStr = document.getElementById("startTimeStr");
+		var currentDate = new Date();
+		startTimeStr.min = new Date();
+		startTimeStr.min = convertToISO(currentDate);
 	</script>
 </body>
 </html>

@@ -64,6 +64,17 @@ header {
 .nav-link,.navbar-brand{
 color:#fff
 }
+
+.form-control{
+width:300px
+}
+.formw{
+width:600px;
+background-color:#0080ff86;
+margin:40px;
+padding:20px
+}
+
   </style>
   </head>
 
@@ -92,15 +103,16 @@ color:#fff
             <div class="col-lg-12">
               <div class="text-content">
                 <h4>商家頁面</h4>
-                <h2>快來成為我們的合作店家</h2>
+                <h2>輸入信箱已獲得新密碼</h2>
               </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-	<h1 align="center">忘記密碼介面</h1>
+	
 	<div align="center">
+	<div class="formw">
 		<h3>重設密碼</h3>
 		<form:form method="POST" modelAttribute="storeBean">
 			<div class="form-group">
@@ -108,7 +120,7 @@ color:#fff
 					<label class="control-label col-lg-2 col-lg-2" for='eamil'>
 						信箱: </label>
 					<form:input id="email" path="email" type='email'
-						class='form:input-large' />
+						class='form-control' />
 				</div>
 				<br>
 				<div class='col-lg-offset-2 col-lg-10'>
@@ -117,6 +129,7 @@ color:#fff
 				<br>${ErrorMsg.AccountEmptyError}${ErrorMsg.LoginError}
 			</div>
 		</form:form>
+		</div>
 	</div>
   <footer>
       <div class="container">

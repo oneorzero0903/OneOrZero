@@ -17,25 +17,23 @@ public class ProgramServiceImpl implements IProgramService {
 	IProgramDao dao;
 
 	@Override
-	public void buyProgramAD(ProgramBean pb) {
-		dao.buyProgramAD(pb);
+	public boolean buyProgramAD(ProgramBean pb) {
+		return dao.buyProgramAD(pb);
 	}
 
 	@Override
-	public void buyProgramBT(ProgramBean pb) {
-		dao.buyProgramBT(pb);
+	public boolean buyProgramBT(ProgramBean pb) {
+		return dao.buyProgramBT(pb);
 	}
 
 	@Override
-	public void buyProgramSM(ProgramBean pb) {
-		dao.buyProgramSM(pb);
+	public boolean buyProgramSM(ProgramBean pb) {
+		return dao.buyProgramSM(pb);
 	}
 
 	@Override
-	public void buyAll(List<ProgramBean> pbList) {
-		dao.buyProgramAD(pbList.get(0));
-		dao.buyProgramBT(pbList.get(1));
-		dao.buyProgramSM(pbList.get(2));
+	public boolean buyAll(List<ProgramBean> pbList) {
+		return (dao.buyProgramAD(pbList.get(0)) &&  dao.buyProgramBT(pbList.get(1)) && dao.buyProgramSM(pbList.get(2)));
 	}
 
 }

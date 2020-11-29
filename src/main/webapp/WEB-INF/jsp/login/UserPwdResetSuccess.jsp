@@ -8,6 +8,16 @@
 
   <head>
 	<jsp:include page="/fragment/linkCss.jsp" />
+	
+	<style>
+	
+	.formw{
+width:600px;
+background-color:#d26900;
+margin:40px;
+padding:40px
+}
+	</style>
   </head>
 
   <body style="background-color: #272727;">
@@ -34,8 +44,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="text-content">
-                <h4>about us</h4>
-                <h2>more about us!</h2>
+                <h4>忘記密碼</h4>
+                <h2>重設成功</h2>
               </div>
             </div>
           </div>
@@ -43,8 +53,11 @@
       </section>
     </div>
 	<div align="center">
-		<h1>${EmailOK}${LoginSuccess}</h1>
-		<a href="<c:url value='/'/>">返回首頁 </a>
+	<div class="formw">
+	<h5>${EmailOK}${LoginSuccess}</h5>
+	<h5>記得使用新密碼登入喔！</h5>
+	<a href="<c:url value='/'/>">返回首頁 </a>
+	</div>
 	</div>
 
 	<jsp:include page="/fragment/footer.jsp" />

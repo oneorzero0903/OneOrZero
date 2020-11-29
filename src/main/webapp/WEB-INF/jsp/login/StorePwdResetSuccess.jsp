@@ -64,6 +64,12 @@ header {
 .nav-link,.navbar-brand{
 color:#fff
 }
+.formw{
+width:600px;
+background-color:#0080ff86;
+margin:40px;
+padding:40px
+}
   </style>
   </head>
 
@@ -101,8 +107,11 @@ color:#fff
     </div>
 
 	<div align="center">
-	<h1>${EmailOK}${LoginSuccess}</h1>
+	<div class="formw">
+	<h5>${EmailOK}${LoginSuccess}</h5>
+	<h5>記得使用新密碼登入喔！</h5>
 	<a href="<c:url value='/'/>">返回首頁 </a>
+	</div>
 	</div>
 	
 	<jsp:include page="/fragment/footer.jsp" />

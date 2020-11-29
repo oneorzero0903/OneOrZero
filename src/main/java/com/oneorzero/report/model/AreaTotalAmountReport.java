@@ -1,7 +1,6 @@
 package com.oneorzero.report.model;
 
 public class AreaTotalAmountReport {
-	
 	private String area;
 	private long amount;
 	

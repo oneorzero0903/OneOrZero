@@ -31,7 +31,6 @@ public class MemberBean implements java.io.Serializable {
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));; //建立日期
 	private String update_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));; //修改日期
 	private Integer resetPwd = 0; //需要更新密碼 0:不需要 1:需要
-	
 	public MemberBean() {
 	}
 

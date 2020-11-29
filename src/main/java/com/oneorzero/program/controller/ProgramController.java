@@ -42,8 +42,12 @@ public class ProgramController {
 		} else {
 			StoreBean sb = (StoreBean) model.getAttribute("store");
 			pb.setStore(sb);
-			service.buyProgramAD(pb);
-			return "redirect:/indexShop";
+			if (service.buyProgramAD(pb)) {
+				return "redirect:/indexShop";
+			} else {
+				model.addAttribute("ErrorMsg", "此段期間已購買過此方案");
+				return "program/buyProgramAD";
+			}
 		}
 	}
 
@@ -69,8 +73,12 @@ public class ProgramController {
 		} else {
 			StoreBean sb = (StoreBean) model.getAttribute("store");
 			pb.setStore(sb);
-			service.buyProgramBT(pb);
-			return "redirect:/indexShop";
+			if (service.buyProgramBT(pb)) {
+				return "redirect:/indexShop";
+			} else {
+				model.addAttribute("ErrorMsg", "此段期間已購買過此方案");
+				return "program/buyProgramBT";
+			}
 		}
 	}
 
@@ -96,8 +104,12 @@ public class ProgramController {
 		} else {
 			StoreBean sb = (StoreBean) model.getAttribute("store");
 			pb.setStore(sb);
-			service.buyProgramSM(pb);
-			return "redirect:/indexShop";
+			if (service.buyProgramSM(pb)) {
+				return "redirect:/indexShop";
+			} else {
+				model.addAttribute("ErrorMsg", "此段期間已購買過此方案");
+				return "program/buyProgramSM";
+			}
 		}
 	}
 
@@ -134,8 +146,12 @@ public class ProgramController {
 			pbList.add(pbAD);
 			pbList.add(pbBT);
 			pbList.add(pbSM);
-			service.buyAll(pbList);
-			return "redirect:/indexShop";
+			if (service.buyAll(pbList)) {
+				return "redirect:/indexShop";
+			} else {
+				model.addAttribute("ErrorMsg", "此段期間已購買過此方案");
+				return "program/buyAll";
+			}
 		}
 	}
 }

@@ -8,6 +8,11 @@
  	div.mainDiv {
  	color: white;
  	}
+ 	#cartImg {
+	padding-left:10px;
+	width:120px;
+	border-radius:50px;
+}
  </style>
  <head>
  <jsp:include page="/fragment/linkCss.jsp" />
@@ -35,6 +40,8 @@
  								"<tr><td>金額 : " + product.price +"</td></tr>" +
  								"<tr><td>庫存 : " + product.stock +"</td></tr>" +
  								"<tr><td>描述 : " + product.description +"</td></tr>" +
+ 								"<tr><td align='center'><select class='selectpicker' id='quantityId' ><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>" + 
+								"<a onclick='addToCart("+ product.id +")'><img id='cartImg' src='<c:url value='/images/addToCart.png' />' /></a></td></tr>" + 
  								"</table></div>";
  					mainDiv.innerHTML = content;
  				
@@ -42,6 +49,49 @@
  		}
  		
  	}
+ 	
+	//將購買商品之資訊&數量加入購物車
+	function addToCart(product_id) {
+		var quantity = document.getElementById('quantityId').value;
+		var jsonData = {"quantity":quantity};
+		
+		$.ajax({
+	  		type: 'POST',  //api 的傳送方式 GET、POST、DELETE、PUT
+	  		url: '<c:url value="/BuyProduct.do/'+ product_id +'" />', //api url => api 要打過去後端controller的位置
+	  		data: JSON.stringify(jsonData),   // 要送到後端的資料
+	  		contentType:"application/json;charset=UTF-8", // 資料格式 通常用"application/json;charset=UTF-8"
+	  		dataType: 'json',  // 資料格式
+
+	  		success:
+	  			function (data) {  //裡面放 api 回來成功後要做的事情
+	  				if (data.loginFirst) {
+						location.href = "<c:url value='/login/UserLogin' />";
+	  				} else if(data.success) {
+						alert(data.success);
+						getCartQuantity()
+	  				}
+	  			},
+	  		error:
+	  			function (xhr, ajaxOptions, thrownError) {  //裡面放 api 回來失敗後要做的事情
+
+	  			}
+	  	});
+	}
+	function getCartQuantity () {
+		$.ajax({
+	  		type: 'POST',  //api 的傳送方式 GET、POST、DELETE、PUT
+	  		url: '<c:url value="/getCartQuantity.do" />', //api url => api 要打過去後端controller的位置
+	  		contentType:"application/json;charset=UTF-8", // 資料格式 通常用"application/json;charset=UTF-8"
+	  		dataType: 'json',  // 資料格式
+	  		success:
+	  			function (data) {  //裡面放 api 回來成功後要做的事情
+		  			let headerCartNum = $('#cartQuantity')
+		  			headerCartNum.text('(' + data.success + ')')
+		  			localStorage.setItem('cartQuantity', data.success)
+	  			}
+	  	});
+	}
+ 
  </script>
  </head> 
 

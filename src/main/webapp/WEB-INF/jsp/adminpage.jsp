@@ -291,17 +291,18 @@ color:#fff
         </div>
       </div>
       <div class='future_ui__piece'>
-        <span>Report</span>
+    
+       <a href="<c:url value='/report/report'/>"> <span>Report</span></a>
         <div class='line'></div>
         <div class='tip'>
-           see your result!
+           	報表顯示，統計查詢
         </div>
       </div>
       <div class='future_ui__piece'>
-        <span>ADMIN</span>
+        <span><a href="<c:url value='/collection/collection' />">Collection</a></span>
         <div class='line'></div>
         <div class='tip'>
-         ADMIN
+         	欠債還錢，天經地義
         </div>
       </div>
       <div class='future_ui__piece'>

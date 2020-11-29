@@ -93,6 +93,32 @@
 				commentDiv.innerHTML = content;
 			}
 		}
+		
+		setTimeout( function() {
+			if ("${member.vip}" == "V2") {
+				var store_id = ${sid};
+				var obj = {
+						"store_id": store_id,
+				}
+				
+				$.ajax({
+    		  		type: 'POST',
+    		  		url: '<c:url value="/sendV2Mail.do" />',
+    		  		data: JSON.stringify(obj),
+    		  		contentType:"application/json;charset=UTF-8",
+    		  		dataType: 'json',
+
+    		  		success:
+    		  			function (data) {
+    		  				console.log(data.data);
+    		  			},
+    		  		error:
+    		  			function (xhr, ajaxOptions, thrownError) {
+    		  				alert(xhr.status + "\n" + thrownError);
+    		  			}
+    		  	});
+			}
+		}, 1000)
  		
  		function searchOrder(store_id_in){
  	 		datas = {

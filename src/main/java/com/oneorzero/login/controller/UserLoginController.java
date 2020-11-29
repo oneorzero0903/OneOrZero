@@ -1,6 +1,7 @@
 package com.oneorzero.login.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oneorzero.bean.MemberBean;
+import com.oneorzero.bean.ProductDetailBean;
 import com.oneorzero.login.service.IUserLoginService;
+import com.oneorzero.shoppingCart.service.IShoppingCartService;
 
 @Controller
-@SessionAttributes({"member"})
+@SessionAttributes({"member", "cartSize"})
 public class UserLoginController{
 	
 	@Autowired
 	IUserLoginService service;
+	
+	@Autowired
+	IShoppingCartService shoppingService;
 	
 	@GetMapping("/login/UserLogin")
 	public String getNewLoginForm(Model model) {  //產生空白登入表單
@@ -55,6 +61,8 @@ public class UserLoginController{
 			errorMsg.put("LoginError", "帳號不存在或密碼錯誤");
 		}		
 		if (errorMsg.isEmpty()) {
+			List<ProductDetailBean> list = shoppingService.getMemberCart(bean.getMember_id());
+			model.addAttribute("cartSize", list.size());
 			return "redirect:/";
 		} else {
 			return "login/UserLogin";

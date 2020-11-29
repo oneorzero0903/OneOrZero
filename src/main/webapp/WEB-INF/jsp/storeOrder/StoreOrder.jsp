@@ -64,10 +64,43 @@ header {
 .nav-link,.navbar-brand{
 color:#fff
 }
+.form-control{
+width:300px
+}
+.formw{
+width:600px;
+background-color:#0080ff86;
+margin:40px;
+padding:40px;
+}
+.sec{
+width:100px;	
+margin:20px 20px
+}
   </style>
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="<c:url value='/js/StoreOrder.js'	/>"></script>
+  <script type="text/javascript">
+  	window.onload = function() {
+  		$.ajax({
+		  		type: 'GET',
+		  		url: '<c:url value="/isFunctDisabled"/>',
+		  		success:
+		  			function (list) {
+		  				console.log(list.length);
+		  				if (list.length > 0) {
+		  					alert("您已欠款超過35天,請儘快付款,付款後才可繼續使用本功能.");
+		  					location.href = "<c:url value='/indexShop' />";
+		  				}
+		  			},
+		  		error:
+		  			function (xhr, ajaxOptions, thrownError) {
+		  				alert(xhr.status + "\n" + thrownError);
+		  			}
+		  	});		
+	}
+  </script>
   </head>
 
   <body style="background-color: #ffffee;">
@@ -104,24 +137,30 @@ color:#fff
     </div>
     <!-- Banner Ends Here -->
     
-	<br><br>
-	<div align="left">
+	<div align=center>
+	<div class="formw">
 		<div class="container1">
+		<h1 style="color: #272727; margin: 10px">訂位設定</h1>
 			<label for="" class="t1">電話 :</label> 
-			<input class="phone" id="phone" type='text' size="11" onblur="checkPhone($(this));" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')"/>
+			<input class="phone form-control" id="phone" type='text' size="11" onblur="checkPhone($(this));" maxlength="11" oninput="value=value.replace(/[^\d]/g,'')"/>
     		<span></span><br><br>
     		<label for="" class="t1">地址 :</label> 
-			<input class="address" id="address" type='text' size="30" onblur="checkAddress($(this));" />
+			<input class="address form-control" id="address" type='text' size="30" onblur="checkAddress($(this));" />
     		<span></span><br><br>
-    		<button class="add_form_field" onclick="add()">設定包廂 &nbsp; 
+    		<button class="add_form_field btn btn-primary" onclick="add()">設定包廂 &nbsp; 
       			<span style="font-size:16px; font-weight:bold;">+ </span>
     		</button>
+    		
+    			<hr>
     		<div class="wrap">
   			</div>
+  		
 		<script>
 		let template = `<div class="menuList">
-				<label class="t1" for="">&nbsp; 可預約日期 : &nbsp;</label>
-				<select id="dateStart" onblur="checkDate( $(this), $(this).next() )">
+			<label class="t1" for="">&nbsp; 可預約星期區間 : &nbsp;</label>
+		<div class="row">
+				<div class="col">
+				<select id="dateStart" class="form-control sec" onblur="checkDate( $(this), $(this).next() )">
 				   	<option value="0" selected>請選擇</option> 
 					<option value="1">週一</option>
 					<option value="2">週二</option>
@@ -130,8 +169,10 @@ color:#fff
 					<option value="5">週五</option>
 					<option value="6">週六</option>
 					<option value="7">週日</option>
-				</select>~
-				<select id="dateEnd" onblur="checkDate( $(this).prev(), $(this) )">
+				</select>
+				</div>
+				<div class="col">
+				<select id="dateEnd" class="form-control sec" onblur="checkDate( $(this).prev(), $(this) )">
 			   		<option value="0" selected>請選擇</option> 
 					<option value="1">週一</option>
 					<option value="2">週二</option>
@@ -141,64 +182,19 @@ color:#fff
 					<option value="6">週六</option>
 					<option value="7">週日</option>
 				</select>
-				<span></span>
-				<br>
+				</div>
+			</div>
+			<br>
+				<div>
 				<label class="t1" for="">&nbsp; 可容納人數 : &nbsp;</label>
-				<input class="person" type="text" size="5" id="person" onkeyup="return ValidateNumber($(this),value)" onblur="checkPerson( $(this) );"/>
-				<span></span><br>
+				<input class="person form-control" type="text" size="5" id="person" onkeyup="return ValidateNumber($(this),value)" onblur="checkPerson( $(this) );"/>
+			<br>
+				</div>
 				<label class="t1" for="">&nbsp; 可預約起迄時間 : &nbsp;</label>
-				<select id="timeStart" onfocus='this.size=5;' onblur='this.size=1; checkTime( $(this), $(this).next());' onchange='this.size=1; this.blur();'>
-					<option value="-1" selected>請選擇</option> 
-					<option value="0.0">00:00</option>
-					<option value="0.5">00:30</option>
-					<option value="1.0">01:00</option>
-					<option value="1.5">01:30</option>
-					<option value="2.0">02:00</option>
-					<option value="2.5">02:30</option>
-					<option value="3.0">03:00</option>
-					<option value="3.5">03:30</option>
-					<option value="4.0">04:00</option>
-					<option value="4.5">04:30</option>
-					<option value="5.0">05:00</option>
-					<option value="5.5">05:30</option>
-					<option value="6.0">06:00</option>
-					<option value="6.5">06:30</option>
-					<option value="7.0">07:00</option>
-					<option value="7.5">07:30</option>
-					<option value="8.0">08:00</option>
-					<option value="8.5">08:30</option>
-					<option value="9.0">09:00</option>
-					<option value="9.5">09:30</option>
-					<option value="10.0">10:00</option>
-					<option value="10.5">10:30</option>
-					<option value="11.0">11:00</option>
-					<option value="11.5">11:30</option>
-					<option value="12.0">12:00</option>
-					<option value="12.5">12:30</option>
-					<option value="13.0">13:00</option>
-					<option value="13.5">13:30</option>
-					<option value="14.0">14:00</option>
-					<option value="14.5">14:30</option>
-					<option value="15.0">15:00</option>
-					<option value="15.5">15:30</option>
-					<option value="16.0">16:00</option>
-					<option value="16.5">16:30</option>
-					<option value="17.0">17:00</option>
-					<option value="17.5">17:30</option>
-					<option value="18.0">18:00</option>
-					<option value="18.5">18:30</option>
-					<option value="19.0">19:00</option>
-					<option value="19.5">19:30</option>
-					<option value="20.0">20:00</option>
-					<option value="20.5">20:30</option>
-					<option value="21.0">21:00</option>
-					<option value="21.5">21:30</option>
-					<option value="22.0">22:00</option>
-					<option value="22.5">22:30</option>
-					<option value="23.0">23:00</option>
-					<option value="23.5">23:30</option>
-				</select>~
-				<select id="timeEnd" onfocus='this.size=5;' onblur='this.size=1; checkTime( $(this).prev(), $(this));' onchange='this.size=1; this.blur();'>
+				<div class="row">
+				<div class="col">
+				
+				<select class="form-control sec" id="timeStart" onfocus='this.size=5;' onblur='this.size=1; checkTime( $(this), $(this).next());' onchange='this.size=1; this.blur();'>
 					<option value="-1" selected>請選擇</option> 
 					<option value="0.0">00:00</option>
 					<option value="0.5">00:30</option>
@@ -249,9 +245,63 @@ color:#fff
 					<option value="23.0">23:00</option>
 					<option value="23.5">23:30</option>
 				</select>
-				<span></span>&nbsp;
+				</div>
+				<div class="col">
+				<select id="timeEnd" class="form-control sec" onfocus='this.size=5;' onblur='this.size=1; checkTime( $(this).prev(), $(this));' onchange='this.size=1; this.blur();'>
+					<option value="-1" selected>請選擇</option> 
+					<option value="0.0">00:00</option>
+					<option value="0.5">00:30</option>
+					<option value="1.0">01:00</option>
+					<option value="1.5">01:30</option>
+					<option value="2.0">02:00</option>
+					<option value="2.5">02:30</option>
+					<option value="3.0">03:00</option>
+					<option value="3.5">03:30</option>
+					<option value="4.0">04:00</option>
+					<option value="4.5">04:30</option>
+					<option value="5.0">05:00</option>
+					<option value="5.5">05:30</option>
+					<option value="6.0">06:00</option>
+					<option value="6.5">06:30</option>
+					<option value="7.0">07:00</option>
+					<option value="7.5">07:30</option>
+					<option value="8.0">08:00</option>
+					<option value="8.5">08:30</option>
+					<option value="9.0">09:00</option>
+					<option value="9.5">09:30</option>
+					<option value="10.0">10:00</option>
+					<option value="10.5">10:30</option>
+					<option value="11.0">11:00</option>
+					<option value="11.5">11:30</option>
+					<option value="12.0">12:00</option>
+					<option value="12.5">12:30</option>
+					<option value="13.0">13:00</option>
+					<option value="13.5">13:30</option>
+					<option value="14.0">14:00</option>
+					<option value="14.5">14:30</option>
+					<option value="15.0">15:00</option>
+					<option value="15.5">15:30</option>
+					<option value="16.0">16:00</option>
+					<option value="16.5">16:30</option>
+					<option value="17.0">17:00</option>
+					<option value="17.5">17:30</option>
+					<option value="18.0">18:00</option>
+					<option value="18.5">18:30</option>
+					<option value="19.0">19:00</option>
+					<option value="19.5">19:30</option>
+					<option value="20.0">20:00</option>
+					<option value="20.5">20:30</option>
+					<option value="21.0">21:00</option>
+					<option value="21.5">21:30</option>
+					<option value="22.0">22:00</option>
+					<option value="22.5">22:30</option>
+					<option value="23.0">23:00</option>
+					<option value="23.5">23:30</option>
+				</select>
+			</div>
+			</div>
 				<br><label class="t1" for="">&nbsp; 預約間格 : &nbsp;</label>
-				<select id="space" onblur="checkSpace( $(this) )">
+				<select id="space" class="form-control" onblur="checkSpace( $(this) )">
 			   		<option value="0" selected>請選擇</option> 
 					<option value="1">1小時</option>
 					<option value="2">2小時</option>
@@ -260,9 +310,9 @@ color:#fff
 				</select>
 				<span></span>&nbsp;
 				<br><label class="t1" for="">&nbsp; 包廂數量 : &nbsp;</label>
-				<input class="boothNum" type="text" size="5" id="boothNum" onblur="checkBoothNum($(this));" />
+				<input class="boothNum form-control" type="text" size="5" id="boothNum" onblur="checkBoothNum($(this));" />
 				<span></span>
-				<br><button onclick="del(this)">Delete</button><br><br>
+				<br><button class="btn btn-primary" onclick="del(this)">Delete</button><br><br>
 		  </div>`
 		  
 		    function submit () {
@@ -320,10 +370,11 @@ color:#fff
      	</div><br><br>
      	
 	 		<div id="btn">
-				<input type="button" onclick="submit()" value="確認送出">
-     			<input type="reset"	value="全部清空" />
+				<input class="btn btn-primary" type="button" onclick="submit()" value="確認送出">
+     			<input class="btn btn-primary" type="reset"	value="全部清空" />
      		</div>
 <!--      			<button id='btn' onclick="oneclick()">一鍵輸入</button> -->
+	</div>
 	</div>
     <!-- 寫上面 -->
     <jsp:include page="/fragment/footer.jsp" />

@@ -70,7 +70,37 @@ header {
 .nav-link, .navbar-brand {
 	color: #fff
 }
+.form-control{
+width:300px
+}
+.formw{
+width:600px;
+background-color:#0080ff86;
+margin:40px;
+padding:40px
+}
 </style>
+<script type="text/javascript">
+  	window.onload = function() {
+  		$.ajax({
+		  		type: 'GET',
+		  		url: '<c:url value="/isFunctDisabled"/>',
+		  		success:
+		  			function (list) {
+		  				console.log(list.length);
+		  				if (list.length > 0) {
+		  					alert("您已欠款超過35天,請儘快付款,付款後才可繼續使用本功能.");
+		  					location.href = "<c:url value='/indexShop' />";
+		  				}
+		  			},
+		  		error:
+		  			function (xhr, ajaxOptions, thrownError) {
+		  				alert(xhr.status + "\n" + thrownError);
+		  			}
+		  	});		
+	}
+  </script>
+
 </head>
 
 <body style="background-color: #ffffee;">
@@ -109,9 +139,9 @@ header {
 
 	<!-- Banner Ends Here -->
 
-	<div align="center">
+	<div align="center" >
 
-		<form:form method="POST" modelAttribute="productBean" enctype="multipart/form-data">
+		<form:form method="POST" modelAttribute="productBean" enctype="multipart/form-data" class="formw">
 			<div class="form-group">
 				<div class="login-i">
 					<div class="col-lg-10">
@@ -121,32 +151,33 @@ header {
 							<label for="name">產品名稱</label>
 							<%-- 							<form:input hidden="hidden" type="text" class="form-control" path="store" id="store" value="${store.store_id}" /> --%>
 
-							<form:input type="text" class="form:input-large" path="name"
+							<form:input type="text" class="form-control" path="name"
 								id="name" placeholder="請輸入產品名稱" autocomplete="off" />
 						</div><p>${ErrorMsg.NameEmptyError}</p>
 						<div class="form-group">
 							<label for="price">產品價格</label>
-							<form:input type="text" class="form:input-large" path="price"
+							<form:input type="text" class="form-control" path="price"
 								id="price" placeholder="請輸入產品價格" autocomplete="off" />
 						</div><p>${ErrorMsg.PriceEmptyError}</p>
 						<div class="form-group">
 							<label for="stock">庫存</label>
-							<form:input type="text" class="form:input-large" path="stock"
+							<form:input type="text" class="form-control" path="stock"
 								id="stock" placeholder="請輸入產品庫存" autocomplete="off" />
 						</div><p>${ErrorMsg.PriceEmptyError}</p>
 						<div class="form-group">
 							<label for="description">產品描述</label>
-							<form:input type="text" class="form:input-large" path="description"
+							<form:input type="text" class="form-control" path="description"
 								id="description" placeholder="請輸入產品描述" autocomplete="off" />
 						</div>
 						
 						
 						
 						<div class="form-group">
-    						<label class='control-label col-lg-2 col-lg-2' for="productImg">上傳圖片</label>
+    						<label  for="productImg">上傳圖片</label>
+    					
      						<div class='col-lg-10'>
      					 <form:input id="productImg" path="productImg" type='file' accept='image/*'
-     					  class='form:input-large' />
+     					  class='btn btn-dark' />
     						 </div>
      					<br>
     					 	<div>
@@ -157,13 +188,15 @@ header {
 						<br>
 						
 						<div class='col-lg-offset-2 col-lg-10'>
-							<input id="btnAdd" type='submit' class="btn btn-dark" value='送出' />
+							<input id="btnAdd" type='submit' class="btn btn-primary" value='送出' />
 						</div>
 					</div>
 
 				</div>
 			</div>
 		</form:form>
+<button id='crystalBtn' class='btn btn-info' style="margin: 10px">一鍵輸入</button>
+		
 
 	</div>
 
@@ -185,6 +218,15 @@ header {
 	  $("#productImg").change(function() {
 	   readURL(this);
 	  });
+	  
+	  
+	  var crystalBtn = document.getElementById("crystalBtn");
+		crystalBtn.onclick = function() {
+			document.getElementById("name").value = "星巴巴保溫瓶";
+			document.getElementById("price").value = "2000";
+			document.getElementById("stock").value = "100";
+			document.getElementById("description").value = "耐熱溫度 : 瓶蓋100度C!請手洗，不適用於微波爐、烤箱、洗(烘)碗機。 請勿盛裝乾冰、碳酸飲料，以避免內壓上升，導致瓶塞無法打開或內容物噴出等危險。請勿盛裝酸性飲料，避免鋼材受損，影響保溫效果。";
+		}
 		
 	</script>
 </body>

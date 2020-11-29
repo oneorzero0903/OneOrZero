@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oneorzero.report.model.AreaTotalAmountReport;
-import com.oneorzero.report.model.AreaTotalOrderByCustomer;
+import com.oneorzero.report.model.OrderAmountByDays;
+import com.oneorzero.report.model.OrderAmountByTimes;
+import com.oneorzero.report.model.PaymentCityMonth;
+import com.oneorzero.report.model.ProductItems;
 import com.oneorzero.report.service.IReportService;
 
 @Controller
@@ -31,9 +34,29 @@ public class ReportController {
 		return reportService.computedAreaAmountByCity(city);
 	}
 	
-	@GetMapping("/report/computedAreaOrderByCustomer")
-	public @ResponseBody List<AreaTotalOrderByCustomer> compuAreaTotalOrderByCustomer(
+	@GetMapping("/report/computedOrderAmountByDays")
+	public @ResponseBody List<OrderAmountByDays> computedOrderAmountByDays(
+			@RequestParam(value = "area") String area) {
+		return reportService.computedOrderByDays(area);
+	}
+	
+	@GetMapping("/report/computedOrderAmountByTimes")
+	public @ResponseBody List<OrderAmountByTimes> computedOrderAmountByTimes(
+			@RequestParam(value = "area") String area) {
+		return reportService.computedOrderByTimes(area);
+	}
+	
+	@GetMapping("/report/computedPaymentAreaMonth")
+	public @ResponseBody List<PaymentCityMonth> computedPaymentCityMonth(
+			@RequestParam(value = "month") String month, 
 			@RequestParam(value = "city") String city) {
-		return reportService.computedAreaOrderByCustomer(city);
+		return reportService.computedPaymentCityMonth(month, city);
+	}
+	
+	
+	@GetMapping("/report/computedProductItems")
+	public @ResponseBody List<ProductItems> computedProductItems(
+			@RequestParam(value = "pType") String type){
+		return reportService.computedProductItems(type);
 	}
 }

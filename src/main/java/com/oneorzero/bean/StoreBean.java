@@ -1,5 +1,6 @@
 package com.oneorzero.bean;
 
+import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -7,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class StoreBean implements java.io.Serializable{
@@ -35,6 +41,12 @@ public class StoreBean implements java.io.Serializable{
 	private Integer rating = 0;
  	private Integer rateCount = 0;
  	private Integer isAdmin = 0;
+ 	private String fileName;
+	@JsonIgnore
+	private Blob blobImg;
+	@JsonIgnore
+	@Transient
+	private MultipartFile storeImage;  //暫存上傳圖片,讀取其資料轉為blob物件
 
 	public StoreBean() {
 	}
@@ -171,5 +183,35 @@ public class StoreBean implements java.io.Serializable{
 	public void setUpdate_dt(String update_dt) {
 		this.update_dt = update_dt;
 	}
-	
+
+
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
+	public Blob getBlobImg() {
+		return blobImg;
+	}
+
+
+	public void setBlobImg(Blob blobImg) {
+		this.blobImg = blobImg;
+	}
+
+
+	public MultipartFile getStoreImage() {
+		return storeImage;
+	}
+
+
+	public void setStoreImage(MultipartFile storeImage) {
+		this.storeImage = storeImage;
+	}
+
 }

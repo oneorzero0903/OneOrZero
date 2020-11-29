@@ -94,7 +94,6 @@
 					<div class='col-lg-offset-2 col-lg-10'>
 						<input id="btnAdd" type='submit' class="btn btn-dark"
 							value='送出' />
-						<input type="button" class='btn btn-primary' value="Facebook登入" onclick="FBLogin()" />
 						<p style="color: white;">${ErrorMsg.VerifyError}${ErrorMsg.LoginError}</p>
 						<br>
 					</div>
@@ -103,18 +102,12 @@
 						<a href="<c:url value='/signUp/Terms'/>">還沒有帳號？</a> <a
 							href="<c:url value='/login/UserForgetPwd' />">忘記密碼？</a>
 					</div>
-					<div id="test"></div>
-
 					<br>
-					<div align="center">
-						
-					</div>
-
 				</div>
 			</div>
 		</form:form>
-		<button class='btn btn-dark' onclick="oneClick()"
-						style="margin: 10px">一鍵登入</button>
+		<button class='btn btn-dark' onclick="oneClick()" style="margin: 10px">一般會員</button>
+		<button class='btn btn-secondary' onclick="twoClick()" style="margin: 10px">VIP會員</button>
 
 	</div>
 
@@ -126,6 +119,11 @@
 	<script>
 		function oneClick() {
 			document.getElementById("email").value = "oneorzerocorp@gmail.com";
+			document.getElementById("password").value = "abcd1234!";
+		}
+		
+		function twoClick() {
+			document.getElementById("email").value = "testoneorzero@gmail.com";
 			document.getElementById("password").value = "abcd1234!";
 		}
 	</script>

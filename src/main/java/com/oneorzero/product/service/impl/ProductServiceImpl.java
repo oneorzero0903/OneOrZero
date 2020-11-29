@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 import com.oneorzero.bean.ProductBean;
 import com.oneorzero.product.dao.IProductDao;
 import com.oneorzero.product.service.IProductService;
+import com.oneorzero.program.dao.IProgramDao;
 
 @Service
 @Transactional
 public class ProductServiceImpl implements IProductService{
 	@Autowired
 	IProductDao dao;
+	
+	@Autowired
+	IProgramDao checkProgram;
 	
 	@Override
 	public List<ProductBean> getAllProducts() {
@@ -40,6 +44,31 @@ public class ProductServiceImpl implements IProductService{
 	@Override
 	public void insertAddProduct(ProductBean pb) {
 		dao.insertAddProduct(pb);
+	}
+
+	@Override
+	public List<ProductBean> showMyProduct(Integer id) {
+		return dao.showMyProduct(id);
+	}
+
+	@Override
+	public void dropProduct(Integer id) {
+		dao.dropProduct(id);
+	}
+
+	@Override
+	public void updateProduct(String name, Integer price, Integer stock, String description, Integer id) {
+		dao.updateProduct(name, price, stock, description, id);
+	}
+	
+	@Override
+	public boolean checkProgram(Integer store_id, String name) {
+		return checkProgram.checkProgram(store_id, name);
+	}
+
+	@Override
+	public List<ProductBean> ambiguousSearch(String searchStr) {
+		return dao.ambiguousSearch(searchStr);
 	}
 
 }

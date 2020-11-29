@@ -68,6 +68,14 @@ header {
 .nav-link, .navbar-brand {
 	color: #fff
 }
+.form-control{
+width:300px
+}
+.formw{
+width:600px;
+background-color:#0080ff86;
+margin:40px;
+}
 </style>
 </head>
 
@@ -106,19 +114,21 @@ header {
 
 	<!-- Banner Ends Here -->
 	<div align="center">
-
+	<div class="formw">
+		<img src="<c:url value='/images/adpic.gif'/>">
 		<form:form method="POST" modelAttribute="programBean">
 			<div class="form-group">
 					<div class="col-lg-10">
 					<br>
-						<h1 style="color: #272727; margin: 10px">煞氣a商城功能</h1>
+						<h1 style="color: #272727; margin: 10px">商城方案購買 ($399/月)</h1>
 						<form:input hidden="hidden" id="name" path="name" type="text"
 							class="form-control" value="programSM" />
 						<br>
 					</div>
 					<div class="form-group">
 				
-					<label class='control-label col-lg-2 col-lg-2' for="startTimeStr">選擇方案生效日期</label>
+					<label for="startTimeStr">選擇方案生效日期</label>
+					<p>方案維持一年</p>
 					<div class='col-lg-10'>
 						<input id="startTimeStr"  type='date' onblur="changeLong()" class='form:input-large' />
 						<form:input hidden="hidden" id="startTime" path="startTime" type='text'
@@ -132,9 +142,10 @@ header {
 						<br>
 					</div>
 					<br>
+					<p>${ErrorMsg}</p>
 			</div>
 		</form:form>
-
+</div>
 	</div>
 
 
@@ -151,6 +162,16 @@ header {
 				return true;
 			}
 		}
+		//只可選擇今天開始之日期
+		function convertToISO(timebit) {
+		  timebit.setHours(0, -timebit.getTimezoneOffset(), 0, 0);
+		  var isodate = timebit.toISOString().slice(0,10);	
+		  return isodate;
+		}
+		var startTimeStr = document.getElementById("startTimeStr");
+		var currentDate = new Date();
+		startTimeStr.min = new Date();
+		startTimeStr.min = convertToISO(currentDate);
 	</script>
 </body>
 </html>

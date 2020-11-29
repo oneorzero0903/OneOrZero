@@ -9,7 +9,7 @@
 <jsp:include page="/fragment/linkCss.jsp" />
 <style>
 .page-heading .text-content h4 {
-	color: #0080ff;
+	color: #9370DB;
 	font-size: 18px;
 	text-transform: uppercase;
 	font-weight: 900;
@@ -26,7 +26,7 @@
 }
 
 .call-to-action .main-content span {
-	color: #0080ff;
+	color: #9370DB;
 	font-size: 18px;
 	font-weight: 900;
 	letter-spacing: 0.5px;
@@ -43,7 +43,7 @@
 
 .main-button a {
 	display: inline-block;
-	background-color: #0080ff;
+	background-color: #9370DB;
 	color: #fff;
 	font-size: 13px;
 	font-weight: 500;
@@ -53,11 +53,11 @@
 }
 
 header {
-	position: absolute;
+	position: inherit;
 	z-index: 99999;
 	width: 100%;
 	height: 100px;
-	background-color: #0080ff;
+	background-color: #9370DB;
 	-webkit-transition: all 0.3s ease-in-out 0s;
 	-moz-transition: all 0.3s ease-in-out 0s;
 	-o-transition: all 0.3s ease-in-out 0s;
@@ -67,14 +67,22 @@ header {
 .nav-link, .navbar-brand {
 	color: #fff
 }
+
+.warp {
+	text-align: center;
+}
+/*  .side_by_side{  */
+/*  float: left;  */
+/*  }  */
 </style>
+<link rel="stylesheet" href="<c:url value='/css/adminmenu.css'	/>">
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="<c:url value='/js/report.js'	/>"></script>
-
+<script src="<c:url value='/js/country.js'	/>"></script>
 </head>
 
-<body style="background-color: #ffffee">
+<body>
 
 	<!-- ***** Preloader Start ***** -->
 	<div id="preloader">
@@ -85,52 +93,63 @@ header {
 		</div>
 	</div>
 	<!-- ***** Preloader End ***** -->
-	<!-- 下列敘述設定變數funcName的值為XXX，topMVC.jsp 會用到此變數 -->
-	<%-- <c:set var="funcName" value="XXX" scope="session"/> --%>
+	<!-- 下列敘述設定變數funcName的值為SHO，topMVC.jsp 會用到此變數 -->
+	<%-- 	<c:set var="funcName" value="INDST" scope="session"/> --%>
 	<!-- 引入共同的頁首 -->
-	<jsp:include page="/fragment/topStore.jsp" />
+	<jsp:include page="/fragment/topadmin.jsp" />
 
 	<!-- Page Content -->
 	<!-- Banner Starts Here -->
-	<div class="heading-page header-text">
-		<section class="page-heading">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="text-content">
-							<h4>商家頁面</h4>
-							<h2>快來成為我們的合作店家</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-
-	<!-- Banner Ends Here --> 
-
 	<!-- 各區域的咖啡店總數 -->
-	<select id="area1">
-		<option>台北市</option>
-		<option>新北市</option>
-	</select>
-	<div id="container" style="height: 300px"></div>
-	<br>
-	<!-- 各區域顧客訂位狀況 -->
-	<select id="area2">
-		<option>台北市</option>
-		<option>新北市</option>
-	</select>
-	<div id="container" style="height: 300px"></div>
-	
-	<!-- 每月應收帳款及實收帳款總收入 -->
-	
-	<!-- 商品各個項目銷售 -->
-	
-	<!-- 寫上面 -->
-
+	<div class="wrap">
+		<br>
+		<br>
+		<select id="area1">
+			<option>台北市</option>
+			<option>新北市</option>
+		</select>
+		<div id="coffeeShopTotal"></div>
+		<br>
+		<br>
+		<!-- 各區域顧客訂位狀況 -->
+		<select id="address_city1"></select> <select id="address_area1"></select>
+		<div class="row">
+			<div id="TimeOrders" class="side_by_side col"></div>
+			<div id="DayOrders" class="side_by_side col""></div>
+		</div>
+		<br>
+		<br>
+		<!-- 每月應收帳款及實收帳款總收入 -->		
+		<select id="incomecity">
+			<option>台北市</option>
+			<option>新北市</option>
+		</select> 
+		<select id="incomemonth">
+			<option value="01">一月</option>
+			<option value="02">二月</option>
+			<option value="03">三月</option>
+			<option value="04">四月</option>
+			<option value="05">五月</option>
+			<option value="06">六月</option>
+			<option value="07">七月</option>
+			<option value="08">八月</option>
+			<option value="09">九月</option>
+			<option value="10">十月</option>
+			<option value="11">十一月</option>
+			<option value="12">十二月</option>
+		</select>
+		<div id="income"></div>
+		<br>
+		<br>
+		<!-- 商品各個項目銷售 -->
+		<select id="coffeeproduct">
+			<option value="bean">咖啡豆熱銷TOP 5</option>
+			<option value="food">咖啡食品熱銷TOP 10</option>
+			<option value="tool">咖啡用品熱銷TOP 10</option>
+		</select>
+		<div id="products"></div>
+	</div>
 	<jsp:include page="/fragment/footer.jsp" />
 
 </body>
-
 </html>

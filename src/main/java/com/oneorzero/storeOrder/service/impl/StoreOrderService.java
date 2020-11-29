@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.oneorzero.bean.StoreBean;
 import com.oneorzero.bean.Store_OrderSettingBean;
+import com.oneorzero.program.dao.IProgramDao;
 import com.oneorzero.storeOrder.dao.IStoreOrderDao;
 import com.oneorzero.storeOrder.model.BookingTimeRequest;
 import com.oneorzero.storeOrder.model.StoreOrderListResponse;
@@ -19,6 +20,9 @@ import com.oneorzero.storeOrder.service.IStoreOrderService;
 public class StoreOrderService implements IStoreOrderService {
 	@Autowired
 	IStoreOrderDao dao;
+	
+	@Autowired
+	IProgramDao checkProgram;
 
 	@Override
 	public boolean insertStoreOrder(List<Store_OrderSettingBean> sob, StoreBean store) {
@@ -97,6 +101,11 @@ public class StoreOrderService implements IStoreOrderService {
 			case "Sunday": return "7";
 			default: return "0";
 		}
+	}
+
+	@Override
+	public boolean checkProgram(Integer store_id, String name) {
+		return checkProgram.checkProgram(store_id, name);
 	}
 
 }

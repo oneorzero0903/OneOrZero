@@ -18,9 +18,9 @@ public class ProgramBean implements java.io.Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;//方案編號
+	private Integer id;//方案編號 
 	
-	private String name;//方案名稱
+	private String name;//方案名稱 programAD:廣告方案 programBT:訂位方案 programSM:商城方案
 	private String create_dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));//購買日期
 	private Long startTime;  //方案開始之日期毫秒數  
 	private Long endTime;  //方案停止之日期毫秒數        

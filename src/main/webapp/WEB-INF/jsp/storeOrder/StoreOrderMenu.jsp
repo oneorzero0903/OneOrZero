@@ -66,6 +66,15 @@ header {
 .nav-link,.navbar-brand{
 color:#fff
 }
+.form-control{
+width:300px
+}
+.formw{
+width:600px;
+background-color:#0080ff86;
+margin:40px;
+padding:40px;
+}
   </style>
   </head>
 
@@ -93,8 +102,8 @@ color:#fff
           <div class="row">
             <div class="col-lg-12">
               <div class="text-content">
-                <h4>訂單頁面</h4>
-                <h2>看看有誰定位囉</h2>
+                <h4>訂單查詢頁面</h4>
+                <h2>看看有誰訂位囉</h2>
               </div>
             </div>
           </div>
@@ -103,6 +112,7 @@ color:#fff
     </div>
     
     <!-- Banner Ends Here -->
+    
 	<script>
 	var dayChoose;
 	$(function() {
@@ -175,18 +185,21 @@ color:#fff
 		timeArea.innerHTML = content;
 	}	
 	</script>
+		<div align="center">
+	<div class="formw">
 	<div id="datepicker" align="center" style="margin: 50px"></div>
 	
 			<br>
-			<div align="center">
+		
+			
 				<h5>可訂位包廂:</h5>
-				<select id="person">
+				<select id="person" class="form-control">
 				</select><span></span>
 			</div>
 			<div id='timeArea' align="center" style='height: 150px;'
-				class='center'></div>
+				class='center form-control'></div>
     <!-- 寫上面 -->
-    
+    </div>
     <jsp:include page="/fragment/footer.jsp" />
 
   </body>

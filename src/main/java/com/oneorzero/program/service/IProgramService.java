@@ -7,8 +7,8 @@ import com.oneorzero.bean.ProgramBean;
 
 
 public interface IProgramService {
-	void buyProgramAD(ProgramBean pb);
-	void buyProgramBT(ProgramBean pb);
-	void buyProgramSM(ProgramBean pb);
-	void buyAll(List<ProgramBean> pbList);
+	boolean buyProgramAD(ProgramBean pb);
+	boolean buyProgramBT(ProgramBean pb);
+	boolean buyProgramSM(ProgramBean pb);
+	boolean buyAll(List<ProgramBean> pbList);
 }
