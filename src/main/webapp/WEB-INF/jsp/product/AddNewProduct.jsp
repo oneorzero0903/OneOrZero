@@ -80,7 +80,11 @@ margin:40px;
 padding:40px
 }
 </style>
+<<<<<<< HEAD
 <script type="text/javascript">
+=======
+ <script type="text/javascript">
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
   	window.onload = function() {
   		$.ajax({
 		  		type: 'GET',
@@ -100,7 +104,10 @@ padding:40px
 		  	});		
 	}
   </script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 </head>
 
 <body style="background-color: #ffffee;">
@@ -166,7 +173,11 @@ padding:40px
 						</div><p>${ErrorMsg.PriceEmptyError}</p>
 						<div class="form-group">
 							<label for="description">產品描述</label>
+<<<<<<< HEAD
 							<form:input type="text" class="form-control" path="description"
+=======
+							<form:input type="text" class="form:input-large" maxlength="30" path="description"
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 								id="description" placeholder="請輸入產品描述" autocomplete="off" />
 						</div>
 						
@@ -190,12 +201,18 @@ padding:40px
 						<div class='col-lg-offset-2 col-lg-10'>
 							<input id="btnAdd" type='submit' class="btn btn-primary" value='送出' />
 						</div>
+						<div>
+						</div>
 					</div>
 
 				</div>
 			</div>
 		</form:form>
+<<<<<<< HEAD
 <button id='crystalBtn' class='btn btn-info' style="margin: 10px">一鍵輸入</button>
+=======
+		<button id='crystalBtn' class='btn btn-info' style="margin: 10px">一鍵輸入</button>
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 		
 
 	</div>

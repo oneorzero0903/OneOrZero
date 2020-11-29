@@ -81,6 +81,7 @@ background-color:#0080ff86;
 .form-control {
 	width: 300px;
 }
+<<<<<<< HEAD
 </style>
 <script src="<c:url value='/js/StoreSignup.js'	/>"></script>
  <script src="<c:url value='/js/country.js'	/>"></script>
@@ -97,11 +98,29 @@ background-color:#0080ff86;
 		</div>
 	</div>
 	<!-- ***** Preloader End ***** -->
+=======
+  </style>
+  </head>
+  <script src="<c:url value='/js/StoreSignup.js'	/>"></script>
+  <script src="<c:url value='/js/country.js'	/>"></script>
+  <body style="background-color: #ffffee;">
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 	<!-- 下列敘述設定變數funcName的值為SHO，topMVC.jsp 會用到此變數 -->
 	<c:set var="funcName" value="SIGST" scope="session" />
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/topStore.jsp" />
 
+<<<<<<< HEAD
 	<!-- Page Content -->
 	<!-- Banner Starts Here -->
 	<div class="heading-page header-text">
@@ -290,6 +309,116 @@ background-color:#0080ff86;
 	</script>
 
 	<!-- 寫上面 -->
+=======
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+      <section class="page-heading">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-content">
+                <h4>商家頁面</h4>
+                <h2>商家註冊</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Banner Ends Here -->
+
+	<div class="wrap">
+        <h2>商家註冊</h2>
+        <form:form method="POST" modelAttribute="storeBean" id="SignUpForm" enctype="multipart/form-data">
+            <label for="email">請輸入信箱</label>
+            <form:input id="email" path="email" type='email'
+						class='form:input-large' size="30" autocomplete="off" placeholder="請輸入信箱" onblur="checkEmail()"/>
+            <span id="spanEmail"></span>
+            <br>
+            
+            <label for="password">請輸入密碼</label>
+<!--             <input type="password" id="idPwd1" name="password" placeholder="請輸入密碼" onblur="checkPwd();" onkeyup="checkPwd();" /> -->
+			<form:input id="password" path="password" type='password'
+						class='form:input-large' size="10" autocomplete="off" placeholder="請輸入密碼" onblur="checkPwd();" onkeyup="checkPwd();"/>
+            <span id="idspPwd1"></span>
+            <br>
+            
+            <label for="password1">請再次輸入密碼</label>
+            <input type="password" id="idPwd2" placeholder="請再次輸入密碼" onblur="checkPwdReapeat();"
+                onkeyup="checkPwdReapeat();" />
+            <span id="idspPwd2"></span>
+            <br>
+            
+            <label for="text">公司名稱</label>
+<!--             <input type="text" name="corporation" id="Store_name" class="corporation" placeholder="請輸入公司名稱"> -->
+            <form:input id="store_name" path="store_name" type='store_name'
+						class='form:input-large' size="10" autocomplete="off" placeholder="請輸入公司名稱"/>
+            <div class="st1">
+               <label for="" class="t1">所在縣市</label>
+                <form:select path="address_city" id="address_city">
+                </form:select>
+                <br>  
+                <label for="" class="t1">所在地區</label>
+                <form:select path="address_area" id="address_area">
+              
+                </form:select>
+                <br>
+                
+                <label for="" class="t1">所在地路名</label>
+                <form:input id="address_road" path="address_road" type='address_road'
+						class='form:input-large' size="10" autocomplete="off" placeholder="請輸入路名"/>
+                <br> 
+                
+                <label for="tel" class="tel">公司電話</label>
+                <form:input id="tel" path="tel" type='tel'
+						class='form:input-large' size="10" autocomplete="off" placeholder="請輸入公司電話"/>
+                <br>
+                
+                <label for="cellphone" class="cellphone">行動電話</label>
+                <form:input id="phone" path="phone" type='phone'
+						class='form:input-large' size="10" autocomplete="off" placeholder="請輸入行動電話"/>
+                <br>
+            </div>
+            <div class="st1">
+                <label for="" class="t1">營業開始時間</label>
+                <form:input id="opentime_start" path="opentime_start" type='time'
+						class='form:input-large' size="30" autocomplete="off"/>
+            </div>
+            <div class="st1">
+                <label for="" class="t1" >營業結束時間</label>
+                <form:input id="opentime_end" path="opentime_end" type='time'
+						class='form:input-large' size="30" autocomplete="off"/>
+            </div>
+            <span id="spanTime"></span>
+            <div class="st1">
+                <label for="">聯絡人</label>
+                <form:input id="contact_person" path="contact_person" type='contact_person'
+						class='form:input-large' size="20" autocomplete="off" placeholder="請輸入聯絡人姓名" 
+						onblur="checkContactPerson()" onkeyup="checkContactPerson()"/>
+                <span id="idspName"></span>
+                <br>
+            </div>
+              <label for="storeImage">上傳照片</label> 
+                 <form:input type="file"  id="storeImage" path="storeImage" accept='image/*'/><br>
+                <br>
+                <div id="btn">
+                    <input id="registerBtn" type="button" class='btn btn-primary' value="確認送出">
+                    <input type="reset" class='btn btn-primary' value="取消重填" class="cancel">
+                </div>
+                <br>
+					<div>
+					<img style="width: 400px;" id="showImg">  <!-- 預覽圖片用 -->
+					</div>
+            </form:form>
+            <span>${SignUpError}</span>
+            <br><br>
+            <button id='storeSignUpBtn' >一鍵輸入</button>
+    </div>
+    
+    <!-- 寫上面 -->
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 
 	<jsp:include page="/fragment/footer.jsp" />
 

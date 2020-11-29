@@ -21,7 +21,10 @@ public class ProductDetailBean implements Serializable{
 	private Integer quantity;
 	private Integer totalAmount;
 	private boolean isPaid = false;  //預設false未付款, true表已付款
+<<<<<<< HEAD
 	private String bookingNo;
+=======
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_id")
@@ -82,6 +85,7 @@ public class ProductDetailBean implements Serializable{
 		this.isPaid = isPaid;
 	}
 
+<<<<<<< HEAD
 	public String getBookingNo() {
 		return bookingNo;
 	}
@@ -90,5 +94,7 @@ public class ProductDetailBean implements Serializable{
 		this.bookingNo = bookingNo;
 	}
 
+=======
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 	
 }	

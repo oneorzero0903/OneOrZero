@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.oneorzero.report.model.AreaTotalAmountReport;
+<<<<<<< HEAD
 import com.oneorzero.report.model.OrderAmountByDays;
 import com.oneorzero.report.model.OrderAmountByTimes;
 import com.oneorzero.report.model.PaymentCityMonth;
+=======
+import com.oneorzero.report.model.AreaTotalOrderByCustomer;
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 import com.oneorzero.report.model.ProductItems;
 import com.oneorzero.report.service.IReportService;
 
@@ -57,6 +61,12 @@ public class ReportController {
 	@GetMapping("/report/computedProductItems")
 	public @ResponseBody List<ProductItems> computedProductItems(
 			@RequestParam(value = "pType") String type){
+		return reportService.computedProductItems(type);
+	}
+	
+	@GetMapping("/report/computedProductItems")
+	public @ResponseBody List<ProductItems> computedProductItems(
+			@RequestParam(value = "type") String type){
 		return reportService.computedProductItems(type);
 	}
 }

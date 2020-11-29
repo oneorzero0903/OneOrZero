@@ -10,11 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.oneorzero.bean.ProductBean;
 import com.oneorzero.report.dao.IReportDao;
 import com.oneorzero.report.model.AreaTotalAmountReport;
+<<<<<<< HEAD
 import com.oneorzero.report.model.OrderAmountByDays;
 import com.oneorzero.report.model.OrderAmountByTimes;
 import com.oneorzero.report.model.PaymentCityMonth;
+=======
+import com.oneorzero.report.model.AreaTotalOrderByCustomer;
+>>>>>>> f1b340708c8dd0adc4ffdf8f55f1fd7540ba6612
 import com.oneorzero.report.model.ProductItems;
 import com.oneorzero.report.service.IReportService;
 
@@ -107,6 +112,11 @@ public class ReportService implements IReportService {
 		return result;
 	}
 	
+	@Override
+	public List<ProductItems> computedProductItems(String type) {
+		return dao.computedProductItems(type);
+	}
+
 	@Override
 	public List<ProductItems> computedProductItems(String type) {
 		return dao.computedProductItems(type);
